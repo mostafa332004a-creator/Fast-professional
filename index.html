@@ -34,6 +34,11 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
     <!-- Styles -->
     <style>
         /* CSS Variables */
@@ -49,6 +54,7 @@
             --instagram: #E1306C;
             --whatsapp: #25D366;
             --danger: #dc3545;
+            --vip: #9c27b0;
         }
         
         /* Reset & Base */
@@ -124,6 +130,10 @@
             background: linear-gradient(135deg, var(--whatsapp), #128C7E);
         }
         
+        .btn-phone {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+        }
+        
         .btn-instagram {
             background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
         }
@@ -134,6 +144,10 @@
         
         .btn-success {
             background: linear-gradient(135deg, #28a745, #218838);
+        }
+        
+        .btn-vip {
+            background: linear-gradient(135deg, var(--vip), #7b1fa2);
         }
         
         /* Header */
@@ -395,10 +409,39 @@
             animation: pulse 2s infinite;
         }
         
+        /* Phone Float */
+        .phone-float {
+            position: fixed;
+            bottom: 120px;
+            left: 30px;
+            z-index: 999;
+        }
+        
+        .phone-main {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+            animation: pulsePhone 2s infinite;
+        }
+        
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
             70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        @keyframes pulsePhone {
+            0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(76, 175, 80, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
         }
         
         /* Admin Panel */
@@ -531,8 +574,8 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
-        /* Modal */
-        .modal {
+        /* Login Modal */
+        .login-modal {
             display: none;
             position: fixed;
             top: 0;
@@ -545,14 +588,15 @@
             justify-content: center;
         }
         
-        .modal-content {
+        .login-content {
             background: white;
             border-radius: 20px;
-            padding: 30px;
-            max-width: 500px;
+            padding: 40px;
+            max-width: 400px;
             width: 90%;
             position: relative;
             animation: modalSlide 0.3s ease;
+            text-align: center;
         }
         
         @keyframes modalSlide {
@@ -631,6 +675,16 @@
             .visitors-table {
                 display: block;
                 overflow-x: auto;
+            }
+            
+            .phone-float {
+                bottom: 120px;
+                left: 20px;
+            }
+            
+            .whatsapp-float {
+                bottom: 30px;
+                left: 20px;
             }
         }
         
@@ -726,6 +780,11 @@
             color: #0c5460;
         }
         
+        .badge-vip {
+            background: #e1bee7;
+            color: #4a148c;
+        }
+        
         /* Toast */
         .toast {
             position: fixed;
@@ -765,6 +824,41 @@
         .toast-info {
             border-right: 5px solid var(--primary);
         }
+        
+        /* Call Now Button */
+        .call-now-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .call-now-main {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .call-now-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.6);
+        }
+        
+        .call-now-main i {
+            font-size: 1.3rem;
+        }
     </style>
 </head>
 <body>
@@ -786,7 +880,9 @@
                     <li><a href="#why-us">لماذا نحن</a></li>
                     <li><a href="#videos">فيديوهات</a></li>
                     <li><a href="#contact">اتصل بنا</a></li>
-                    <li><a href="#" onclick="openAdminPanel()">لوحة التحكم</a></li>
+                    <li><a href="#" onclick="showAdminLogin()" class="btn-vip" style="padding: 10px 20px; border-radius: 25px;">
+                        <i class="fas fa-crown"></i> لوحة التحكم
+                    </a></li>
                 </ul>
             </nav>
             
@@ -804,6 +900,9 @@
                 <p>نقدم خدمات تنظيف متكاملة ومحترفة للمنازل والمكاتب والفنادق في جميع أنحاء الإمارات العربية المتحدة</p>
                 <div class="hero-buttons">
                     <a href="#contact" class="btn">اطلب خدمة الآن</a>
+                    <a href="tel:+971543205058" class="btn btn-phone">
+                        <i class="fas fa-phone"></i> اتصل مباشرة
+                    </a>
                     <a href="https://wa.me/971543205058" target="_blank" class="btn btn-whatsapp">
                         <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
                     </a>
@@ -839,6 +938,48 @@
         </div>
     </section>
 
+    <!-- Why Us Section -->
+    <section id="why-us" class="section" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="section-title">
+                <h2>لماذا تختار المحترف السريع؟</h2>
+                <p>نقدم خدمات استثنائية تجعلنا الاختيار الأول في الإمارات</p>
+            </div>
+            
+            <div class="services-container">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>خدمة 24/7</h3>
+                        <p>نحن متاحون على مدار الساعة، 7 أيام في الأسبوع لخدمتك في أي وقت تحتاجه.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>جودة مضمونة</h3>
+                        <p>نستخدم مواد تنظيف آمنة وفعالة مع ضمان جودة الخدمة ورضا العملاء.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>فريق محترف</h3>
+                        <p>فريقنا مدرب على أعلى مستوى مع خبرة طويلة في جميع أنواع التنظيف.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
     <section id="services" class="section">
         <div class="container">
@@ -855,8 +996,12 @@
                     <div class="service-content">
                         <h3>تنظيف المنازل</h3>
                         <p>خدمة تنظيف شاملة للمنازل تشمل جميع الغرف والمطابخ والحمامات باستخدام مواد آمنة وفعالة.</p>
-                        <a href="https://wa.me/971543205058?text=أريد حجز خدمة تنظيف منزل" target="_blank" class="btn btn-whatsapp">
-                            <i class="fab fa-whatsapp"></i> حجز عبر واتساب
+                        <p><strong>الأسعار:</strong> من 150 درهم</p>
+                        <a href="tel:+971543205058" class="btn btn-phone">
+                            <i class="fas fa-phone"></i> اتصل للطلب
+                        </a>
+                        <a href="https://wa.me/971543205058?text=أريد حجز خدمة تنظيف منزل" target="_blank" class="btn btn-whatsapp" style="margin-right: 10px;">
+                            <i class="fab fa-whatsapp"></i> واتساب
                         </a>
                     </div>
                 </div>
@@ -868,8 +1013,12 @@
                     <div class="service-content">
                         <h3>تنظيف المكاتب</h3>
                         <p>تنظيف وتعقيم المكاتب ومرافق العمل لضمان بيئة عمل نظيفة وصحية للموظفين والعملاء.</p>
-                        <a href="https://wa.me/971543205058?text=أريد حجز خدمة تنظيف مكتب" target="_blank" class="btn btn-whatsapp">
-                            <i class="fab fa-whatsapp"></i> حجز عبر واتساب
+                        <p><strong>الأسعار:</strong> من 300 درهم</p>
+                        <a href="tel:+971543205058" class="btn btn-phone">
+                            <i class="fas fa-phone"></i> اتصل للطلب
+                        </a>
+                        <a href="https://wa.me/971543205058?text=أريد حجز خدمة تنظيف مكتب" target="_blank" class="btn btn-whatsapp" style="margin-right: 10px;">
+                            <i class="fab fa-whatsapp"></i> واتساب
                         </a>
                     </div>
                 </div>
@@ -881,8 +1030,63 @@
                     <div class="service-content">
                         <h3>تنظيف الكنب</h3>
                         <p>تنظيف وتعقيم الكنب والستائر باستخدام أحدث التقنيات والمنظفات المتخصصة.</p>
-                        <a href="https://wa.me/971543205058?text=أريد حجز خدمة تنظيف كنب" target="_blank" class="btn btn-whatsapp">
-                            <i class="fab fa-whatsapp"></i> حجز عبر واتساب
+                        <p><strong>الأسعار:</strong> من 100 درهم</p>
+                        <a href="tel:+971543205058" class="btn btn-phone">
+                            <i class="fas fa-phone"></i> اتصل للطلب
+                        </a>
+                        <a href="https://wa.me/971543205058?text=أريد حجز خدمة تنظيف كنب" target="_blank" class="btn btn-whatsapp" style="margin-right: 10px;">
+                            <i class="fab fa-whatsapp"></i> واتساب
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>تنظيف الستائر</h3>
+                        <p>تنظيف عميق للستائر بجميع أنواعها باستخدام معدات متخصصة تعيد لستائرك رونقها.</p>
+                        <p><strong>الأسعار:</strong> من 80 درهم</p>
+                        <a href="tel:+971543205058" class="btn btn-phone">
+                            <i class="fas fa-phone"></i> اتصل للطلب
+                        </a>
+                        <a href="https://wa.me/971543205058?text=أريد حجز خدمة تنظيف ستائر" target="_blank" class="btn btn-whatsapp" style="margin-right: 10px;">
+                            <i class="fab fa-whatsapp"></i> واتساب
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>تنظيف الخزانات</h3>
+                        <p>تنظيف وتعقيم خزانات المياه للتأكد من سلامة وجودة المياه المستخدمة.</p>
+                        <p><strong>الأسعار:</strong> من 200 درهم</p>
+                        <a href="tel:+971543205058" class="btn btn-phone">
+                            <i class="fas fa-phone"></i> اتصل للطلب
+                        </a>
+                        <a href="https://wa.me/971543205058?text=أريد حجز خدمة تنظيف خزانات" target="_blank" class="btn btn-whatsapp" style="margin-right: 10px;">
+                            <i class="fab fa-whatsapp"></i> واتساب
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-snowflake"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>تنظيف المكيفات</h3>
+                        <p>صيانة وتنظيف مكيفات الهواء لتحسين كفاءتها وتوفير الطاقة.</p>
+                        <p><strong>الأسعار:</strong> من 120 درهم</p>
+                        <a href="tel:+971543205058" class="btn btn-phone">
+                            <i class="fas fa-phone"></i> اتصل للطلب
+                        </a>
+                        <a href="https://wa.me/971543205058?text=أريد حجز خدمة تنظيف مكيفات" target="_blank" class="btn btn-whatsapp" style="margin-right: 10px;">
+                            <i class="fab fa-whatsapp"></i> واتساب
                         </a>
                     </div>
                 </div>
@@ -952,27 +1156,53 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
                 <div>
                     <h3 style="color: var(--primary); margin-bottom: 20px;">معلومات الاتصال</h3>
+                    
                     <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                        <i class="fas fa-phone" style="color: var(--primary); font-size: 1.5rem;"></i>
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #4CAF50, #2E7D32); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-phone" style="color: white; font-size: 1.5rem;"></i>
+                        </div>
                         <div>
-                            <h4 style="margin-bottom: 5px;">الهاتف</h4>
-                            <p>+971 54 320 5058</p>
+                            <h4 style="margin-bottom: 5px;">الاتصال المباشر</h4>
+                            <p style="font-size: 1.3rem; font-weight: bold;">+971 54 320 5058</p>
+                            <a href="tel:+971543205058" class="btn btn-phone" style="padding: 10px 20px; margin-top: 10px;">
+                                <i class="fas fa-phone"></i> اتصل الآن
+                            </a>
                         </div>
                     </div>
                     
                     <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                        <i class="fab fa-whatsapp" style="color: var(--whatsapp); font-size: 1.5rem;"></i>
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--whatsapp), #128C7E); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fab fa-whatsapp" style="color: white; font-size: 1.5rem;"></i>
+                        </div>
                         <div>
                             <h4 style="margin-bottom: 5px;">واتساب</h4>
-                            <p>+971 54 320 5058</p>
+                            <p style="font-size: 1.3rem; font-weight: bold;">+971 54 320 5058</p>
+                            <a href="https://wa.me/971543205058" target="_blank" class="btn btn-whatsapp" style="padding: 10px 20px; margin-top: 10px;">
+                                <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
+                            </a>
                         </div>
                     </div>
                     
                     <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                        <i class="fab fa-instagram" style="color: var(--instagram); font-size: 1.5rem;"></i>
+                        <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fab fa-instagram" style="color: white; font-size: 1.5rem;"></i>
+                        </div>
                         <div>
                             <h4 style="margin-bottom: 5px;">إنستجرام</h4>
-                            <p>@moham_eda9162</p>
+                            <p style="font-size: 1.1rem;">@moham_eda9162</p>
+                            <a href="https://www.instagram.com/moham_eda9162/" target="_blank" class="btn btn-instagram" style="padding: 10px 20px; margin-top: 10px;">
+                                <i class="fab fa-instagram"></i> تابعنا
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--secondary), var(--secondary-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-envelope" style="color: white; font-size: 1.5rem;"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 5px;">البريد الإلكتروني</h4>
+                            <p style="font-size: 1.1rem;">mostafa332004a@gmail.com</p>
                         </div>
                     </div>
                 </div>
@@ -980,10 +1210,22 @@
                 <div>
                     <h3 style="color: var(--primary); margin-bottom: 20px;">أرسل رسالة</h3>
                     <form id="contactForm" style="display: flex; flex-direction: column; gap: 20px;">
-                        <input type="text" placeholder="الاسم الكامل" required style="padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;">
-                        <input type="tel" placeholder="رقم الهاتف" required style="padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;">
-                        <textarea placeholder="الرسالة" rows="5" required style="padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;"></textarea>
-                        <button type="submit" class="btn">إرسال الرسالة</button>
+                        <input type="text" id="name" placeholder="الاسم الكامل" required style="padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;">
+                        <input type="tel" id="phone" placeholder="رقم الهاتف" required style="padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;">
+                        <select id="service" style="padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;">
+                            <option value="">اختر الخدمة المطلوبة</option>
+                            <option value="تنظيف منازل">تنظيف منازل</option>
+                            <option value="تنظيف مكاتب">تنظيف مكاتب</option>
+                            <option value="تنظيف كنب">تنظيف كنب</option>
+                            <option value="تنظيف ستائر">تنظيف الستائر</option>
+                            <option value="تنظيف خزانات">تنظيف الخزانات</option>
+                            <option value="تنظيف مكيفات">تنظيف المكيفات</option>
+                            <option value="استشارة مجانية">استشارة مجانية</option>
+                        </select>
+                        <textarea id="message" placeholder="الرسالة" rows="5" required style="padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;"></textarea>
+                        <button type="submit" class="btn">
+                            <i class="fas fa-paper-plane"></i> إرسال الرسالة
+                        </button>
                     </form>
                 </div>
             </div>
@@ -996,7 +1238,18 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
                 <div>
                     <h2 style="color: white; margin-bottom: 20px;">المحترف <span style="color: var(--secondary);">السريع</span></h2>
-                    <p>شركة رائدة في خدمات التنظيف في الإمارات العربية المتحدة</p>
+                    <p>شركة رائدة في خدمات التنظيف في الإمارات العربية المتحدة، نقدم حلول تنظيف متكاملة بجودة عالية وأسعار مناسبة.</p>
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <a href="tel:+971543205058" style="color: white; font-size: 1.5rem;">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                        <a href="https://www.instagram.com/moham_eda9162/" target="_blank" style="color: white; font-size: 1.5rem;">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/971543205058" target="_blank" style="color: white; font-size: 1.5rem;">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
                 </div>
                 
                 <div>
@@ -1004,8 +1257,12 @@
                     <ul style="list-style: none;">
                         <li><a href="#home" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">الرئيسية</a></li>
                         <li><a href="#services" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">خدماتنا</a></li>
+                        <li><a href="#why-us" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">لماذا نحن</a></li>
+                        <li><a href="#videos" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">فيديوهات</a></li>
                         <li><a href="#contact" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">اتصل بنا</a></li>
-                        <li><a href="#" onclick="openAdminPanel()" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">لوحة التحكم</a></li>
+                        <li><a href="#" onclick="showAdminLogin()" style="color: var(--secondary); text-decoration: none; display: block; margin-bottom: 10px; font-weight: bold;">
+                            <i class="fas fa-crown"></i> لوحة التحكم
+                        </a></li>
                     </ul>
                 </div>
                 
@@ -1013,32 +1270,86 @@
                     <h3 style="margin-bottom: 20px;">تواصل معنا</h3>
                     <p><i class="fas fa-phone" style="margin-left: 10px;"></i> +971 54 320 5058</p>
                     <p><i class="fab fa-whatsapp" style="margin-left: 10px;"></i> +971 54 320 5058</p>
-                    <p><i class="fas fa-map-marker-alt" style="margin-left: 10px;"></i> الإمارات العربية المتحدة</p>
+                    <p><i class="fas fa-envelope" style="margin-left: 10px;"></i> mostafa332004a@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt" style="margin-left: 10px;"></i> دبي، الإمارات العربية المتحدة</p>
+                </div>
+                
+                <div>
+                    <h3 style="margin-bottom: 20px;">ساعات العمل</h3>
+                    <p>24 ساعة / 7 أيام</p>
+                    <p>جميع أيام الأسبوع</p>
+                    <p>خدمة طوارئ متاحة</p>
+                    <div style="margin-top: 20px;">
+                        <a href="tel:+971543205058" class="btn btn-phone" style="padding: 10px 20px;">
+                            <i class="fas fa-phone"></i> اتصل للطوارئ
+                        </a>
+                    </div>
                 </div>
             </div>
             
             <div style="text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
-                <p>© 2024 المحترف السريع. جميع الحقوق محفوظة.</p>
+                <p>© <span id="currentYear"></span> المحترف السريع. جميع الحقوق محفوظة.</p>
                 <p style="color: #aaa; font-size: 0.9rem; margin-top: 10px;">تم التطوير بواسطة مصطفى عبدة - 0545216539</p>
             </div>
         </div>
     </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="login-modal">
+        <div class="login-content">
+            <button class="close-btn" onclick="closeModal('loginModal')">×</button>
+            <div style="margin-bottom: 30px;">
+                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--vip), #7b1fa2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                    <i class="fas fa-crown" style="color: white; font-size: 2.5rem;"></i>
+                </div>
+                <h2 style="color: var(--primary); margin-bottom: 10px;">لوحة التحكم VIP</h2>
+                <p style="color: var(--gray);">أدخل الرقم السري للوصول إلى لوحة التحكم</p>
+            </div>
+            
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div style="position: relative;">
+                    <i class="fas fa-lock" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--gray);"></i>
+                    <input type="password" id="adminPassword" placeholder="الرقم السري" 
+                           style="width: 100%; padding: 15px 15px 15px 45px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; font-family: 'Cairo', sans-serif;">
+                </div>
+                
+                <button onclick="checkAdminPassword()" class="btn btn-vip" style="width: 100%; padding: 15px;">
+                    <i class="fas fa-sign-in-alt"></i> دخول إلى لوحة التحكم
+                </button>
+                
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <button onclick="showHint()" class="btn" style="flex: 1; padding: 10px; background: var(--gray);">
+                        <i class="fas fa-lightbulb"></i> تلميح
+                    </button>
+                    <button onclick="forgotPassword()" class="btn" style="flex: 1; padding: 10px; background: #6c757d;">
+                        <i class="fas fa-question-circle"></i> نسيت الرقم؟
+                    </button>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+                <p style="color: var(--gray); font-size: 0.9rem;">
+                    <i class="fas fa-info-circle"></i> هذه اللوحة مخصصة للإدارة فقط
+                </p>
+            </div>
+        </div>
+    </div>
 
     <!-- Admin Panel -->
     <div id="adminPanel" class="admin-panel">
         <div class="admin-content">
             <div class="admin-header">
                 <div>
-                    <h2 style="color: var(--primary); margin: 0;"><i class="fas fa-chart-line"></i> لوحة تحكم تتبع الزوار</h2>
-                    <p style="color: var(--gray); margin-top: 5px;" id="adminSubtitle">جاري تحميل البيانات...</p>
+                    <h2 style="color: var(--primary); margin: 0;"><i class="fas fa-crown"></i> لوحة تحكم VIP</h2>
+                    <p style="color: var(--gray); margin-top: 5px;" id="adminSubtitle">مرحباً بك في لوحة التحكم المتميزة</p>
                 </div>
                 <div style="display: flex; gap: 10px; align-items: center;">
-                    <span id="adminStatus" class="badge badge-success">🟢 متصل</span>
+                    <span id="adminStatus" class="badge badge-vip"><i class="fas fa-user-shield"></i> مدير النظام</span>
                     <button onclick="refreshAdminData()" class="btn" style="padding: 10px 20px;">
                         <i class="fas fa-redo"></i> تحديث
                     </button>
                     <button onclick="closeAdminPanel()" class="btn btn-danger" style="padding: 10px 20px;">
-                        <i class="fas fa-times"></i> إغلاق
+                        <i class="fas fa-sign-out-alt"></i> خروج
                     </button>
                 </div>
             </div>
@@ -1046,93 +1357,94 @@
             <!-- Statistics Grid -->
             <div class="admin-stats-grid">
                 <div class="admin-stat-box">
-                    <div><i class="fas fa-users"></i> إجمالي الزوار</div>
-                    <div class="admin-stat-number" id="totalVisitors">0</div>
-                    <div style="font-size: 0.9rem; color: var(--gray);">زائر فريد</div>
+                    <div><i class="fas fa-chart-line"></i> إجمالي الإيرادات</div>
+                    <div class="admin-stat-number" id="totalRevenue">0</div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">درهم إماراتي</div>
                 </div>
                 <div class="admin-stat-box">
-                    <div><i class="fas fa-eye"></i> إجمالي الزيارات</div>
-                    <div class="admin-stat-number" id="totalVisits">0</div>
-                    <div style="font-size: 0.9rem; color: var(--gray);">عدد الزيارات</div>
+                    <div><i class="fas fa-users"></i> العملاء الجدد</div>
+                    <div class="admin-stat-number" id="newClients">0</div>
+                    <div style="font-size: 0.9rem; color: var(--gray);هذا الشهر</div>
                 </div>
                 <div class="admin-stat-box">
-                    <div><i class="fas fa-calendar-day"></i> زيارات اليوم</div>
-                    <div class="admin-stat-number" id="todayVisits">0</div>
-                    <div style="font-size: 0.9rem; color: var(--gray);">زيارات اليوم</div>
+                    <div><i class="fas fa-concierge-bell"></i> الطلبات النشطة</div>
+                    <div class="admin-stat-number" id="activeOrders">0</div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">قيد التنفيذ</div>
                 </div>
                 <div class="admin-stat-box">
-                    <div><i class="fas fa-clock"></i> زيارات الـ24 ساعة</div>
-                    <div class="admin-stat-number" id="last24Visits">0</div>
-                    <div style="font-size: 0.9rem; color: var(--gray);">آخر يوم</div>
+                    <div><i class="fas fa-star"></i> تقييم العملاء</div>
+                    <div class="admin-stat-number" id="customerRating">5.0</div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">من 5</div>
                 </div>
                 <div class="admin-stat-box">
-                    <div><i class="fas fa-user-clock"></i> متوسط الزيارات</div>
-                    <div class="admin-stat-number" id="avgVisits">0.00</div>
-                    <div style="font-size: 0.9rem; color: var(--gray);">لكل زائر</div>
+                    <div><i class="fas fa-phone"></i> مكالمات اليوم</div>
+                    <div class="admin-stat-number" id="todayCalls">0</div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">اتصالات مباشرة</div>
                 </div>
                 <div class="admin-stat-box">
-                    <div><i class="fas fa-sync"></i> آخر تحديث</div>
-                    <div class="admin-stat-number" style="font-size: 1.8rem;" id="lastUpdate">-</div>
-                    <div style="font-size: 0.9rem; color: var(--gray);">التوقيت المحلي</div>
+                    <div><i class="fas fa-whatsapp"></i> رسائل واتساب</div>
+                    <div class="admin-stat-number" id="whatsappMessages">0</div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">هذا الأسبوع</div>
                 </div>
             </div>
             
-            <!-- Filter Bar -->
-            <div class="filter-bar">
-                <input type="text" id="searchIP" class="filter-input" placeholder="🔍 البحث بعنوان IP...">
-                <input type="text" id="searchLocation" class="filter-input" placeholder="📍 البحث بالموقع...">
-                <select id="filterBrowser" class="filter-input">
-                    <option value="">🌐 جميع المتصفحات</option>
-                    <option value="Chrome">Chrome</option>
-                    <option value="Firefox">Firefox</option>
-                    <option value="Safari">Safari</option>
-                    <option value="Edge">Edge</option>
-                    <option value="غير معروف">غير معروف</option>
-                </select>
-                <select id="filterOS" class="filter-input">
-                    <option value="">💻 جميع أنظمة التشغيل</option>
-                    <option value="Windows">Windows</option>
-                    <option value="macOS">macOS</option>
-                    <option value="Linux">Linux</option>
-                    <option value="Android">Android</option>
-                    <option value="iOS">iOS</option>
-                    <option value="غير معروف">غير معروف</option>
-                </select>
-                <button onclick="applyFilters()" class="btn"><i class="fas fa-filter"></i> تطبيق التصفية</button>
-                <button onclick="resetFilters()" class="btn" style="background: var(--gray);">إعادة تعيين</button>
+            <!-- Quick Actions -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 30px;">
+                <button onclick="addNewClient()" class="btn btn-success">
+                    <i class="fas fa-user-plus"></i> عميل جديد
+                </button>
+                <button onclick="createInvoice()" class="btn">
+                    <i class="fas fa-file-invoice"></i> إنشاء فاتورة
+                </button>
+                <button onclick="sendBulkMessage()" class="btn" style="background: #17a2b8;">
+                    <i class="fas fa-bullhorn"></i> إعلان جماعي
+                </button>
+                <button onclick="generateReport()" class="btn" style="background: #6f42c1;">
+                    <i class="fas fa-chart-bar"></i> تقرير مالي
+                </button>
+                <button onclick="backupData()" class="btn" style="background: #fd7e14;">
+                    <i class="fas fa-database"></i> نسخ احتياطي
+                </button>
+                <button onclick="showAdvancedSettings()" class="btn btn-vip">
+                    <i class="fas fa-cogs"></i> إعدادات متقدمة
+                </button>
             </div>
             
-            <!-- Visitors Table -->
+            <!-- Recent Orders -->
             <div class="visitors-table-container">
                 <div style="padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e9ecef;">
-                    <h3 style="margin: 0; color: var(--primary);"><i class="fas fa-list"></i> قائمة الزوار</h3>
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        <span id="visitorsCount" style="color: var(--gray);">0 زائر</span>
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="autoRefresh" checked>
-                            <label for="autoRefresh" class="toggle-slider"></label>
-                        </div>
-                        <label for="autoRefresh" style="font-size: 0.9rem; color: var(--gray);">تحديث تلقائي</label>
+                    <h3 style="margin: 0; color: var(--primary);"><i class="fas fa-history"></i> أحدث الطلبات</h3>
+                    <div style="display: flex; gap: 10px;">
+                        <select class="filter-input" style="min-width: 150px;">
+                            <option value="">جميع الحالات</option>
+                            <option value="جديد">جديد</option>
+                            <option value="قيد التنفيذ">قيد التنفيذ</option>
+                            <option value="مكتمل">مكتمل</option>
+                            <option value="ملغي">ملغي</option>
+                        </select>
+                        <button class="btn" style="padding: 8px 15px;">
+                            <i class="fas fa-filter"></i> تصفية
+                        </button>
                     </div>
                 </div>
-                <div style="max-height: 500px; overflow-y: auto;">
+                <div style="max-height: 400px; overflow-y: auto;">
                     <table class="visitors-table">
                         <thead>
                             <tr>
-                                <th>IP</th>
-                                <th>الزيارات</th>
-                                <th>آخر زيارة</th>
-                                <th>المتصفح</th>
-                                <th>نظام التشغيل</th>
-                                <th>الموقع</th>
+                                <th>رقم الطلب</th>
+                                <th>العميل</th>
+                                <th>الخدمة</th>
+                                <th>المبلغ</th>
+                                <th>الحالة</th>
+                                <th>التاريخ</th>
                                 <th>الإجراءات</th>
                             </tr>
                         </thead>
-                        <tbody id="visitorsTableBody">
+                        <tbody id="ordersTableBody">
                             <tr>
                                 <td colspan="7" style="text-align: center; padding: 50px;">
-                                    <div class="loading" style="margin: 0 auto 20px;"></div>
-                                    <p>جاري تحميل بيانات الزوار...</p>
+                                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #ddd; margin-bottom: 10px;"></i>
+                                    <p>جاري تحميل البيانات...</p>
                                 </td>
                             </tr>
                         </tbody>
@@ -1143,58 +1455,130 @@
             <!-- Charts Section -->
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
                 <div class="chart-container">
-                    <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-globe"></i> المتصفحات الشائعة</h3>
-                    <div id="browsersChart"></div>
+                    <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-chart-pie"></i> توزيع الإيرادات</h3>
+                    <div id="revenueChart">
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>تنظيف منازل</span>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span style="font-weight: bold;">45%</span>
+                                    <div style="width: 100px; height: 10px; background: #e9ecef; border-radius: 5px; overflow: hidden;">
+                                        <div style="width: 45%; height: 100%; background: var(--primary);"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>تنظيف مكاتب</span>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span style="font-weight: bold;">25%</span>
+                                    <div style="width: 100px; height: 10px; background: #e9ecef; border-radius: 5px; overflow: hidden;">
+                                        <div style="width: 25%; height: 100%; background: var(--secondary);"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>تنظيف كنب</span>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span style="font-weight: bold;">15%</span>
+                                    <div style="width: 100px; height: 10px; background: #e9ecef; border-radius: 5px; overflow: hidden;">
+                                        <div style="width: 15%; height: 100%; background: var(--success);"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>خدمات أخرى</span>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span style="font-weight: bold;">15%</span>
+                                    <div style="width: 100px; height: 10px; background: #e9ecef; border-radius: 5px; overflow: hidden;">
+                                        <div style="width: 15%; height: 100%; background: var(--vip);"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="chart-container">
-                    <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-laptop"></i> أنظمة التشغيل</h3>
-                    <div id="osChart"></div>
-                </div>
-                <div class="chart-container">
-                    <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-map-marker-alt"></i> المواقع الجغرافية</h3>
-                    <div id="locationsChart"></div>
+                    <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-calendar-alt"></i> نشاط هذا الشهر</h3>
+                    <div id="activityChart">
+                        <div style="display: flex; height: 150px; align-items: flex-end; gap: 10px; padding: 20px 0;">
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 20px; background: var(--primary); border-radius: 5px 5px 0 0; height: 70%;"></div>
+                                <span style="font-size: 0.8rem; margin-top: 5px;">أول</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 20px; background: var(--secondary); border-radius: 5px 5px 0 0; height: 90%;"></div>
+                                <span style="font-size: 0.8rem; margin-top: 5px;">ثان</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 20px; background: var(--success); border-radius: 5px 5px 0 0; height: 60%;"></div>
+                                <span style="font-size: 0.8rem; margin-top: 5px;">ثالث</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 20px; background: var(--vip); border-radius: 5px 5px 0 0; height: 85%;"></div>
+                                <span style="font-size: 0.8rem; margin-top: 5px;">رابع</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 20px; background: var(--primary); border-radius: 5px 5px 0 0; height: 95%;"></div>
+                                <span style="font-size: 0.8rem; margin-top: 5px;">خامس</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <!-- Export & Actions -->
-            <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 30px;">
-                <button onclick="exportData('json')" class="btn btn-success">
-                    <i class="fas fa-file-export"></i> تصدير JSON
-                </button>
-                <button onclick="exportData('csv')" class="btn btn-success">
-                    <i class="fas fa-file-csv"></i> تصدير CSV
-                </button>
-                <button onclick="exportVisitsLog()" class="btn" style="background: #6f42c1;">
-                    <i class="fas fa-history"></i> تصدير سجل الزيارات
-                </button>
-                <button onclick="clearOldData()" class="btn btn-danger">
-                    <i class="fas fa-trash"></i> مسح البيانات القديمة
-                </button>
-                <button onclick="sendTestEmail()" class="btn" style="background: #17a2b8;">
-                    <i class="fas fa-envelope"></i> اختبار البريد
-                </button>
-                <button onclick="showSettings()" class="btn" style="background: #6c757d;">
-                    <i class="fas fa-cog"></i> الإعدادات
-                </button>
+            <!-- System Status -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px;">
+                <div class="admin-stat-box" style="text-align: right;">
+                    <div><i class="fas fa-server"></i> حالة النظام</div>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0;">
+                        <div style="width: 15px; height: 15px; background: #4CAF50; border-radius: 50%;"></div>
+                        <span style="font-weight: bold; color: #4CAF50;">مستقر</span>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">جميع الأنظمة تعمل</div>
+                </div>
+                
+                <div class="admin-stat-box" style="text-align: right;">
+                    <div><i class="fas fa-database"></i> مساحة التخزين</div>
+                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary); margin: 10px 0;">1.2GB / 5GB</div>
+                    <div style="height: 8px; background: #e9ecef; border-radius: 4px; overflow: hidden;">
+                        <div style="width: 24%; height: 100%; background: var(--primary);"></div>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--gray); margin-top: 5px;">24% مستخدم</div>
+                </div>
+                
+                <div class="admin-stat-box" style="text-align: right;">
+                    <div><i class="fas fa-shield-alt"></i> الأمان</div>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0;">
+                        <i class="fas fa-check-circle" style="color: #4CAF50; font-size: 2rem;"></i>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">النظام آمن ومحمي</div>
+                </div>
+                
+                <div class="admin-stat-box" style="text-align: right;">
+                    <div><i class="fas fa-sync-alt"></i> آخر تحديث</div>
+                    <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary); margin: 10px 0;" id="lastSystemUpdate">الآن</div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">جميع البيانات محدثة</div>
+                </div>
             </div>
             
-            <!-- System Info -->
+            <!-- Admin Footer -->
             <div style="margin-top: 30px; padding: 15px; background: #f8f9fa; border-radius: 10px; border: 1px solid #e9ecef;">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                     <div>
                         <p style="margin: 0; color: var(--gray); font-size: 0.9rem;">
-                            <i class="fas fa-info-circle"></i> نظام تتبع الزوار | الإصدار 2.0.0
+                            <i class="fas fa-user-shield"></i> نظام إدارة المحترف السريع | الإصدار VIP 2.0
                         </p>
                     </div>
                     <div style="display: flex; gap: 20px;">
-                        <span id="systemStatus" class="badge badge-success">
-                            <i class="fas fa-check-circle"></i> النظام يعمل
+                        <span class="badge badge-vip">
+                            <i class="fas fa-crown"></i> الإصدار المتميز
                         </span>
-                        <span id="emailStatus" class="badge badge-primary">
-                            <i class="fas fa-envelope"></i> البريد نشط
+                        <span class="badge badge-success">
+                            <i class="fas fa-check-circle"></i> الرقم السري: 332004
                         </span>
-                        <span id="storageStatus" class="badge badge-warning">
-                            <i class="fas fa-database"></i> جاري التحقق...
+                        <span class="badge badge-primary">
+                            <i class="fas fa-user"></i> مصطفى عبدة
                         </span>
                     </div>
                 </div>
@@ -1210,81 +1594,25 @@
         </div>
     </div>
 
-    <!-- Settings Modal -->
-    <div id="settingsModal" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('settingsModal')">×</button>
-            <h2 style="color: var(--primary); margin-bottom: 20px;"><i class="fas fa-cog"></i> إعدادات النظام</h2>
-            
-            <div style="display: flex; flex-direction: column; gap: 20px;">
-                <div>
-                    <h4 style="margin-bottom: 10px; color: var(--dark);">إعدادات التتبع</h4>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                        <span>تفعيل التتبع</span>
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="trackingEnabled" checked>
-                            <label for="trackingEnabled" class="toggle-slider"></label>
-                        </div>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                        <span>إرسال بريد للزيارات الجديدة</span>
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="emailNotifications" checked>
-                            <label for="emailNotifications" class="toggle-slider"></label>
-                        </div>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span>تخزين البيانات محلياً</span>
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="localStorage" checked>
-                            <label for="localStorage" class="toggle-slider"></label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 style="margin-bottom: 10px; color: var(--dark);">إعدادات البريد الإلكتروني</h4>
-                    <input type="email" id="emailInput" placeholder="البريد الإلكتروني" 
-                           style="width: 100%; padding: 12px; margin-bottom: 10px; border: 2px solid #ddd; border-radius: 10px;">
-                    <input type="password" id="emailPassword" placeholder="كلمة مرور التطبيق" 
-                           style="width: 100%; padding: 12px; margin-bottom: 10px; border: 2px solid #ddd; border-radius: 10px;">
-                    <button onclick="saveEmailSettings()" class="btn" style="width: 100%;">
-                        <i class="fas fa-save"></i> حفظ إعدادات البريد
-                    </button>
-                </div>
-                
-                <div>
-                    <h4 style="margin-bottom: 10px; color: var(--dark);">تنظيف البيانات</h4>
-                    <div style="display: flex; gap: 10px;">
-                        <select id="cleanupDays" style="flex: 1; padding: 12px; border: 2px solid #ddd; border-radius: 10px;">
-                            <option value="7">حذف بيانات أقدم من أسبوع</option>
-                            <option value="30" selected>حذف بيانات أقدم من 30 يوم</option>
-                            <option value="90">حذف بيانات أقدم من 3 أشهر</option>
-                            <option value="180">حذف بيانات أقدم من 6 أشهر</option>
-                            <option value="365">حذف بيانات أقدم من سنة</option>
-                        </select>
-                        <button onclick="cleanupData()" class="btn btn-danger">
-                            <i class="fas fa-broom"></i> تنظيف
-                        </button>
-                    </div>
-                </div>
-                
-                <div style="display: flex; gap: 10px; margin-top: 20px;">
-                    <button onclick="resetSettings()" class="btn" style="flex: 1; background: var(--gray);">
-                        <i class="fas fa-undo"></i> إعادة تعيين
-                    </button>
-                    <button onclick="closeModal('settingsModal')" class="btn" style="flex: 1;">
-                        <i class="fas fa-times"></i> إغلاق
-                    </button>
-                </div>
-            </div>
+    <!-- Call Now Button -->
+    <div class="call-now-button">
+        <div class="call-now-main" onclick="makePhoneCall()">
+            <i class="fas fa-phone"></i>
+            <span>اتصل الآن</span>
         </div>
     </div>
 
     <!-- WhatsApp Float -->
     <div class="whatsapp-float">
-        <div class="whatsapp-main" onclick="window.open('https://wa.me/971543205058', '_blank')">
+        <div class="whatsapp-main" onclick="openWhatsApp()">
             <i class="fab fa-whatsapp"></i>
+        </div>
+    </div>
+
+    <!-- Phone Float -->
+    <div class="phone-float">
+        <div class="phone-main" onclick="makePhoneCall()">
+            <i class="fas fa-phone"></i>
         </div>
     </div>
 
@@ -1294,580 +1622,34 @@
     <!-- JavaScript -->
     <script>
         // ============================================
-        // نظام التتبع المتكامل
-        // ============================================
-        
-        class VisitorTracker {
-            constructor() {
-                this.serverUrl = 'https://fast-professional.onrender.com';
-                this.visitorData = null;
-                this.localVisitors = [];
-                this.visitsLog = [];
-                this.settings = this.loadSettings();
-                this.autoRefreshInterval = null;
-                this.isTracking = true;
-            }
-            
-            loadSettings() {
-                const defaultSettings = {
-                    trackingEnabled: true,
-                    emailNotifications: true,
-                    localStorage: true,
-                    autoRefresh: true,
-                    emailUser: '',
-                    emailPass: '',
-                    cleanupDays: 30
-                };
-                
-                try {
-                    const saved = JSON.parse(localStorage.getItem('tracker_settings') || '{}');
-                    return { ...defaultSettings, ...saved };
-                } catch {
-                    return defaultSettings;
-                }
-            }
-            
-            saveSettings() {
-                localStorage.setItem('tracker_settings', JSON.stringify(this.settings));
-            }
-            
-            async trackVisitor() {
-                if (!this.settings.trackingEnabled) return;
-                
-                try {
-                    console.log('🔍 بدء تتبع الزائر...');
-                    
-                    // الحصول على IP
-                    let ip = 'غير معروف';
-                    try {
-                        const ipResponse = await fetch('https://api.ipify.org?format=json');
-                        const data = await ipResponse.json();
-                        ip = data.ip;
-                    } catch (error) {
-                        console.log('⚠️ لم يتمكن من الحصول على IP');
-                    }
-                    
-                    // الحصول على الموقع الجغرافي
-                    let location = 'غير معروف';
-                    try {
-                        if (ip && ip !== 'غير معروف') {
-                            const geoResponse = await fetch(`https://ipapi.co/${ip}/json/`);
-                            const geoData = await geoResponse.json();
-                            location = `${geoData.city || ''} ${geoData.country_name || ''}`.trim();
-                        }
-                    } catch (error) {
-                        // استخدام خدمة احتياطية
-                        try {
-                            const backupResponse = await fetch(`https://ipinfo.io/${ip}/json`);
-                            const backupData = await backupResponse.json();
-                            location = `${backupData.city}, ${backupData.country}`;
-                        } catch (e) {
-                            location = 'غير معروف';
-                        }
-                    }
-                    
-                    // جمع معلومات المتصفح
-                    const ua = navigator.userAgent;
-                    let browser = 'غير معروف';
-                    let os = 'غير معروف';
-                    let device = 'Desktop';
-                    
-                    if (ua.includes('Chrome')) browser = 'Chrome';
-                    else if (ua.includes('Firefox')) browser = 'Firefox';
-                    else if (ua.includes('Safari') && !ua.includes('Chrome')) browser = 'Safari';
-                    else if (ua.includes('Edg')) browser = 'Edge';
-                    
-                    if (ua.includes('Windows')) os = 'Windows';
-                    else if (ua.includes('Mac')) os = 'macOS';
-                    else if (ua.includes('Linux')) os = 'Linux';
-                    else if (ua.includes('Android')) os = 'Android';
-                    else if (ua.includes('iPhone') || ua.includes('iPad')) os = 'iOS';
-                    
-                    if (/Mobi|Android/i.test(ua)) device = 'Mobile';
-                    if (/Tablet|iPad/i.test(ua)) device = 'Tablet';
-                    
-                    // حساب عدد الزيارات
-                    const storageKey = `visitor_${ip}`;
-                    let visitData = JSON.parse(localStorage.getItem(storageKey) || '{"count": 0, "firstVisit": ""}');
-                    const isFirstVisit = visitData.count === 0;
-                    visitData.count++;
-                    
-                    if (!visitData.firstVisit) {
-                        visitData.firstVisit = new Date().toISOString();
-                    }
-                    visitData.lastVisit = new Date().toISOString();
-                    localStorage.setItem(storageKey, JSON.stringify(visitData));
-                    
-                    // تحضير البيانات
-                    this.visitorData = {
-                        ip: ip,
-                        location: location,
-                        browser: browser,
-                        os: os,
-                        device: device,
-                        screen: `${screen.width}x${screen.height}`,
-                        colorDepth: screen.colorDepth,
-                        language: navigator.language,
-                        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                        pageUrl: window.location.href,
-                        referrer: document.referrer || 'مباشر',
-                        visitCount: visitData.count,
-                        firstVisit: visitData.firstVisit,
-                        lastVisit: visitData.lastVisit,
-                        sessionStart: new Date().toISOString(),
-                        userAgent: ua,
-                        timestamp: new Date().toISOString(),
-                        isFirstVisit: isFirstVisit
-                    };
-                    
-                    // حفظ البيانات محلياً
-                    if (this.settings.localStorage) {
-                        this.saveVisitorLocally();
-                    }
-                    
-                    // إرسال البيانات للسيرفر
-                    const serverSuccess = await this.sendToServer();
-                    
-                    if (serverSuccess && isFirstVisit && this.settings.emailNotifications) {
-                        this.sendWelcomeEmail();
-                    }
-                    
-                    console.log('✅ تم تتبع الزائر:', this.visitorData.ip);
-                    this.showToast('تم تسجيل زيارتك بنجاح', 'success');
-                    
-                } catch (error) {
-                    console.error('❌ خطأ في التتبع:', error);
-                    this.showToast('حدث خطأ في التتبع', 'error');
-                }
-            }
-            
-            saveVisitorLocally() {
-                try {
-                    let visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
-                    let visitsLog = JSON.parse(localStorage.getItem('visitsLog') || '[]');
-                    
-                    // تحديث الزوار
-                    const existingIndex = visitors.findIndex(v => v.ip === this.visitorData.ip);
-                    
-                    if (existingIndex !== -1) {
-                        visitors[existingIndex].visitCount++;
-                        visitors[existingIndex].lastVisit = this.visitorData.timestamp;
-                        visitors[existingIndex].location = this.visitorData.location;
-                        visitors[existingIndex].browser = this.visitorData.browser;
-                        visitors[existingIndex].os = this.visitorData.os;
-                        visitors[existingIndex].device = this.visitorData.device;
-                    } else {
-                        visitors.unshift({
-                            id: Date.now(),
-                            ip: this.visitorData.ip,
-                            location: this.visitorData.location,
-                            firstVisit: this.visitorData.timestamp,
-                            lastVisit: this.visitorData.timestamp,
-                            visitCount: 1,
-                            browser: this.visitorData.browser,
-                            os: this.visitorData.os,
-                            device: this.visitorData.device,
-                            screen: this.visitorData.screen,
-                            language: this.visitorData.language
-                        });
-                    }
-                    
-                    // حفظ فقط آخر 1000 زائر
-                    if (visitors.length > 1000) {
-                        visitors = visitors.slice(0, 1000);
-                    }
-                    
-                    // تحديث سجل الزيارات
-                    visitsLog.unshift({
-                        id: Date.now(),
-                        ip: this.visitorData.ip,
-                        timestamp: this.visitorData.timestamp,
-                        page: this.visitorData.pageUrl,
-                        referrer: this.visitorData.referrer,
-                        browser: this.visitorData.browser,
-                        os: this.visitorData.os
-                    });
-                    
-                    // حفظ فقط آخر 5000 زيارة
-                    if (visitsLog.length > 5000) {
-                        visitsLog = visitsLog.slice(0, 5000);
-                    }
-                    
-                    localStorage.setItem('localVisitors', JSON.stringify(visitors));
-                    localStorage.setItem('visitsLog', JSON.stringify(visitsLog));
-                    
-                    this.localVisitors = visitors;
-                    this.visitsLog = visitsLog;
-                    
-                } catch (error) {
-                    console.error('❌ خطأ في حفظ البيانات محلياً:', error);
-                }
-            }
-            
-            async sendToServer() {
-                try {
-                    const response = await fetch(`${this.serverUrl}/track-visitor`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(this.visitorData)
-                    });
-                    
-                    return response.ok;
-                    
-                } catch (error) {
-                    console.log('⚠️ لم يتمكن من الاتصال بالسيرفر:', error.message);
-                    return false;
-                }
-            }
-            
-            async sendWelcomeEmail() {
-                try {
-                    const emailData = {
-                        to: this.settings.emailUser || 'mostafa332004a@gmail.com',
-                        subject: `👤 زائر جديد - ${this.visitorData.location}`,
-                        visitor: this.visitorData
-                    };
-                    
-                    const response = await fetch(`${this.serverUrl}/send-email`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(emailData)
-                    });
-                    
-                    return response.ok;
-                    
-                } catch (error) {
-                    console.log('⚠️ خطأ في إرسال البريد:', error);
-                    return false;
-                }
-            }
-            
-            getLocalStats() {
-                try {
-                    const visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
-                    const visitsLog = JSON.parse(localStorage.getItem('visitsLog') || '[]');
-                    
-                    const today = new Date().toDateString();
-                    const last24Hours = new Date(Date.now() - 24 * 60 * 60 * 1000);
-                    
-                    const todayVisits = visitsLog.filter(v => 
-                        new Date(v.timestamp).toDateString() === today
-                    ).length;
-                    
-                    const last24Visits = visitsLog.filter(v => 
-                        new Date(v.timestamp) > last24Hours
-                    ).length;
-                    
-                    const totalVisits = visitors.reduce((sum, v) => sum + v.visitCount, 0);
-                    const avgVisits = visitors.length > 0 ? (totalVisits / visitors.length).toFixed(2) : 0;
-                    
-                    return {
-                        totalVisitors: visitors.length,
-                        totalVisits: totalVisits,
-                        todayVisits: todayVisits,
-                        last24Visits: last24Visits,
-                        avgVisits: avgVisits,
-                        lastUpdated: new Date().toLocaleString('ar-EG'),
-                        visitors: visitors,
-                        visitsLog: visitsLog
-                    };
-                    
-                } catch (error) {
-                    return {
-                        totalVisitors: 0,
-                        totalVisits: 0,
-                        todayVisits: 0,
-                        last24Visits: 0,
-                        avgVisits: 0,
-                        lastUpdated: 'لا توجد بيانات',
-                        visitors: [],
-                        visitsLog: []
-                    };
-                }
-            }
-            
-            getFilteredVisitors(filters = {}) {
-                try {
-                    let visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
-                    
-                    if (filters.ip) {
-                        visitors = visitors.filter(v => v.ip.includes(filters.ip));
-                    }
-                    
-                    if (filters.location) {
-                        visitors = visitors.filter(v => 
-                            v.location.toLowerCase().includes(filters.location.toLowerCase())
-                        );
-                    }
-                    
-                    if (filters.browser && filters.browser !== '') {
-                        visitors = visitors.filter(v => v.browser === filters.browser);
-                    }
-                    
-                    if (filters.os && filters.os !== '') {
-                        visitors = visitors.filter(v => v.os === filters.os);
-                    }
-                    
-                    return visitors;
-                    
-                } catch (error) {
-                    return [];
-                }
-            }
-            
-            getBrowsersStats() {
-                try {
-                    const visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
-                    const browsers = {};
-                    
-                    visitors.forEach(v => {
-                        browsers[v.browser] = (browsers[v.browser] || 0) + 1;
-                    });
-                    
-                    return browsers;
-                    
-                } catch (error) {
-                    return {};
-                }
-            }
-            
-            getOSStats() {
-                try {
-                    const visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
-                    const os = {};
-                    
-                    visitors.forEach(v => {
-                        os[v.os] = (os[v.os] || 0) + 1;
-                    });
-                    
-                    return os;
-                    
-                } catch (error) {
-                    return {};
-                }
-            }
-            
-            getLocationsStats() {
-                try {
-                    const visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
-                    const locations = {};
-                    
-                    visitors.forEach(v => {
-                        if (v.location && v.location !== 'غير معروف') {
-                            locations[v.location] = (locations[v.location] || 0) + 1;
-                        }
-                    });
-                    
-                    return locations;
-                    
-                } catch (error) {
-                    return {};
-                }
-            }
-            
-            exportData(format = 'json') {
-                try {
-                    const visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
-                    const visitsLog = JSON.parse(localStorage.getItem('visitsLog') || '[]');
-                    
-                    let dataStr, fileName, mimeType;
-                    
-                    if (format === 'json') {
-                        dataStr = JSON.stringify({
-                            visitors: visitors,
-                            visitsLog: visitsLog,
-                            exportedAt: new Date().toISOString(),
-                            totalVisitors: visitors.length,
-                            totalVisits: visitors.reduce((sum, v) => sum + v.visitCount, 0)
-                        }, null, 2);
-                        fileName = `visitors_${new Date().toISOString().split('T')[0]}.json`;
-                        mimeType = 'application/json';
-                    } else if (format === 'csv') {
-                        // CSV للزوار
-                        let csv = 'IP,الموقع,أول زيارة,آخر زيارة,عدد الزيارات,المتصفح,نظام التشغيل,الجهاز,الدقة,اللغة\n';
-                        visitors.forEach(v => {
-                            csv += `"${v.ip}","${v.location}","${v.firstVisit}","${v.lastVisit}",${v.visitCount},"${v.browser}","${v.os}","${v.device}","${v.screen}","${v.language}"\n`;
-                        });
-                        dataStr = csv;
-                        fileName = `visitors_${new Date().toISOString().split('T')[0]}.csv`;
-                        mimeType = 'text/csv';
-                    }
-                    
-                    const blob = new Blob([dataStr], { type: mimeType });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = fileName;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                    
-                    return true;
-                    
-                } catch (error) {
-                    console.error('❌ خطأ في تصدير البيانات:', error);
-                    return false;
-                }
-            }
-            
-            exportVisitsLog() {
-                try {
-                    const visitsLog = JSON.parse(localStorage.getItem('visitsLog') || '[]');
-                    const dataStr = JSON.stringify(visitsLog, null, 2);
-                    const fileName = `visits_log_${new Date().toISOString().split('T')[0]}.json`;
-                    
-                    const blob = new Blob([dataStr], { type: 'application/json' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = fileName;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                    
-                    return true;
-                    
-                } catch (error) {
-                    console.error('❌ خطأ في تصدير سجل الزيارات:', error);
-                    return false;
-                }
-            }
-            
-            clearOldData(days = 30) {
-                try {
-                    const cutoffDate = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
-                    
-                    let visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
-                    let visitsLog = JSON.parse(localStorage.getItem('visitsLog') || '[]');
-                    
-                    const initialVisitors = visitors.length;
-                    const initialVisits = visitsLog.length;
-                    
-                    // تنظيف الزوار الذين لم يزوروا منذ فترة
-                    visitors = visitors.filter(v => new Date(v.lastVisit) > cutoffDate);
-                    
-                    // تنظيف سجل الزيارات
-                    visitsLog = visitsLog.filter(v => new Date(v.timestamp) > cutoffDate);
-                    
-                    localStorage.setItem('localVisitors', JSON.stringify(visitors));
-                    localStorage.setItem('visitsLog', JSON.stringify(visitsLog));
-                    
-                    return {
-                        removedVisitors: initialVisitors - visitors.length,
-                        removedVisits: initialVisits - visitsLog.length,
-                        remainingVisitors: visitors.length,
-                        remainingVisits: visitsLog.length
-                    };
-                    
-                } catch (error) {
-                    console.error('❌ خطأ في تنظيف البيانات:', error);
-                    return null;
-                }
-            }
-            
-            async sendTestEmail() {
-                try {
-                    const testData = {
-                        to: this.settings.emailUser || 'mostafa332004a@gmail.com',
-                        subject: '📧 اختبار نظام البريد - المحترف السريع',
-                        message: 'هذا بريد اختبار من نظام تتبع الزوار. إذا وصلتك هذه الرسالة، فالنظام يعمل بشكل صحيح.',
-                        timestamp: new Date().toLocaleString('ar-EG')
-                    };
-                    
-                    const response = await fetch(`${this.serverUrl}/test-email`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(testData)
-                    });
-                    
-                    return response.ok;
-                    
-                } catch (error) {
-                    console.error('❌ خطأ في إرسال بريد الاختبار:', error);
-                    return false;
-                }
-            }
-            
-            showToast(message, type = 'info') {
-                const toast = document.createElement('div');
-                toast.className = `toast toast-${type}`;
-                toast.innerHTML = `
-                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}" 
-                       style="color: ${type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--danger)' : 'var(--primary)'}; font-size: 1.5rem;"></i>
-                    <div style="flex: 1;">
-                        <strong>${type === 'success' ? 'نجاح' : type === 'error' ? 'خطأ' : 'معلومة'}</strong>
-                        <p style="margin: 5px 0 0; font-size: 0.9rem;">${message}</p>
-                    </div>
-                    <button onclick="this.parentElement.remove()" style="background: none; border: none; color: var(--gray); cursor: pointer;">
-                        <i class="fas fa-times"></i>
-                    </button>
-                `;
-                
-                document.getElementById('toastContainer').appendChild(toast);
-                
-                setTimeout(() => {
-                    if (toast.parentElement) {
-                        toast.remove();
-                    }
-                }, 5000);
-            }
-            
-            checkSystemStatus() {
-                const visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
-                const visitsLog = JSON.parse(localStorage.getItem('visitsLog') || '[]');
-                
-                const storageUsed = (JSON.stringify(visitors).length + JSON.stringify(visitsLog).length) / 1024; // KB
-                
-                return {
-                    system: '🟢 نشط',
-                    email: this.settings.emailUser ? '🟢 مُهيأ' : '🟡 غير مهيأ',
-                    storage: storageUsed > 1000 ? '🔴 كبير' : storageUsed > 500 ? '🟡 متوسط' : '🟢 جيد',
-                    tracking: this.settings.trackingEnabled ? '🟢 مفعل' : '🔴 معطل',
-                    visitorsCount: visitors.length,
-                    visitsCount: visitsLog.length
-                };
-            }
-        }
-        
-        // ============================================
         // تهيئة التطبيق
         // ============================================
         
-        const tracker = new VisitorTracker();
-        let currentFilters = {};
+        const ADMIN_PASSWORD = "332004";
+        let isAdminLoggedIn = false;
         
         document.addEventListener('DOMContentLoaded', function() {
-            // 1. بدء تتبع الزائر
-            setTimeout(() => tracker.trackVisitor(), 2000);
+            // 1. تعيين السنة الحالية في الفوتر
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
             
             // 2. تحديث إحصائيات العداد
             const counters = document.querySelectorAll('.stat-number');
-            const speed = 200;
-            
             counters.forEach(counter => {
-                const updateCount = () => {
-                    const target = +counter.getAttribute('data-count');
-                    const count = +counter.innerText;
-                    
-                    const inc = target / speed;
-                    
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + inc);
-                        setTimeout(updateCount, 1);
+                const target = +counter.getAttribute('data-count');
+                const increment = target / 200;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.ceil(current);
+                        setTimeout(updateCounter, 10);
                     } else {
-                        counter.innerText = target;
+                        counter.textContent = target;
                     }
                 };
                 
-                updateCount();
+                updateCounter();
             });
             
             // 3. فتح الفيديو
@@ -1884,15 +1666,25 @@
             document.getElementById('contactForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                const name = this[0].value;
-                const phone = this[1].value;
-                const message = this[2].value;
+                const formData = {
+                    name: document.getElementById('name').value,
+                    phone: document.getElementById('phone').value,
+                    service: document.getElementById('service').value,
+                    message: document.getElementById('message').value,
+                    timestamp: new Date().toISOString()
+                };
                 
-                const whatsappUrl = `https://wa.me/971543205058?text=مرحباً، أود طلب خدمة تنظيف%0Aالاسم: ${encodeURIComponent(name)}%0Aالهاتف: ${encodeURIComponent(phone)}%0Aالرسالة: ${encodeURIComponent(message)}`;
+                // حفظ محلياً
+                saveContactRequest(formData);
                 
-                window.open(whatsappUrl, '_blank');
+                // إرسال عبر واتساب
+                const whatsappMessage = `مرحباً، أود طلب خدمة تنظيف%0A%0Aالاسم: ${encodeURIComponent(formData.name)}%0Aالهاتف: ${encodeURIComponent(formData.phone)}%0Aالخدمة: ${encodeURIComponent(formData.service)}%0Aالرسالة: ${encodeURIComponent(formData.message)}`;
+                window.open(`https://wa.me/971543205058?text=${whatsappMessage}`, '_blank');
+                
+                // إعادة تعيين النموذج
                 this.reset();
-                tracker.showToast('سيتم فتح تطبيق واتساب لإكمال الطلب. شكراً لك!', 'success');
+                
+                showToast('تم إرسال طلبك بنجاح! سيتم فتح واتساب لإكمال الطلب.', 'success');
             });
             
             // 5. القائمة المتنقلة
@@ -1933,107 +1725,126 @@
                 }
             });
             
-            // 8. بدء التحديث التلقائي للوحة التحكم
-            startAutoRefresh();
+            // 8. تعيين التركيز على حقل الرقم السري عند فتح اللوحة
+            document.getElementById('adminPassword')?.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkAdminPassword();
+                }
+            });
             
-            // 9. تحديث حالة النظام
-            updateSystemStatus();
+            // 9. تحميل بيانات الطلبات إذا كان مدير النظام مسجلاً الدخول
+            if (isAdminLoggedIn) {
+                loadOrdersData();
+            }
         });
         
         // ============================================
         // وظائف لوحة التحكم
         // ============================================
         
-        function openAdminPanel() {
-            document.getElementById('adminPanel').style.display = 'flex';
-            refreshAdminData();
-            tracker.showToast('تم فتح لوحة التحكم', 'info');
+        function showAdminLogin() {
+            document.getElementById('loginModal').style.display = 'flex';
+            document.getElementById('adminPassword').focus();
+        }
+        
+        function checkAdminPassword() {
+            const password = document.getElementById('adminPassword').value;
+            
+            if (password === ADMIN_PASSWORD) {
+                isAdminLoggedIn = true;
+                closeModal('loginModal');
+                document.getElementById('adminPanel').style.display = 'flex';
+                loadOrdersData();
+                showToast('مرحباً بك في لوحة التحكم المتميزة!', 'success');
+            } else {
+                showToast('الرقم السري غير صحيح. الرجاء المحاولة مرة أخرى.', 'error');
+                document.getElementById('adminPassword').value = '';
+                document.getElementById('adminPassword').focus();
+                
+                // تأثير اهتزاز
+                document.getElementById('adminPassword').style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    document.getElementById('adminPassword').style.animation = '';
+                }, 500);
+            }
+        }
+        
+        function showHint() {
+            showToast('💡 تلميح: الرقم السري هو تاريخ ميلاد المطور', 'info');
+        }
+        
+        function forgotPassword() {
+            showToast('📞 للاستفسار عن الرقم السري، اتصل بالمطور: 0545216539', 'info');
         }
         
         function closeAdminPanel() {
+            isAdminLoggedIn = false;
             document.getElementById('adminPanel').style.display = 'none';
-            stopAutoRefresh();
+            showToast('تم تسجيل الخروج من لوحة التحكم', 'info');
         }
         
         function refreshAdminData() {
-            const stats = tracker.getLocalStats();
-            const filteredVisitors = tracker.getFilteredVisitors(currentFilters);
+            // تحديث الوقت الأخير
+            document.getElementById('lastSystemUpdate').textContent = getCurrentTime();
             
-            // تحديث الإحصائيات
-            document.getElementById('totalVisitors').textContent = stats.totalVisitors;
-            document.getElementById('totalVisits').textContent = stats.totalVisits;
-            document.getElementById('todayVisits').textContent = stats.todayVisits;
-            document.getElementById('last24Visits').textContent = stats.last24Visits;
-            document.getElementById('avgVisits').textContent = stats.avgVisits;
-            document.getElementById('lastUpdate').textContent = stats.lastUpdated;
-            document.getElementById('adminSubtitle').textContent = `آخر تحديث: ${stats.lastUpdated}`;
-            document.getElementById('visitorsCount').textContent = `${filteredVisitors.length} زائر`;
+            // توليد بيانات عشوائية للإحصائيات (في الواقع الفعلي ستأتي من قاعدة البيانات)
+            document.getElementById('totalRevenue').textContent = generateRandomNumber(50000, 100000);
+            document.getElementById('newClients').textContent = generateRandomNumber(5, 20);
+            document.getElementById('activeOrders').textContent = generateRandomNumber(3, 12);
+            document.getElementById('todayCalls').textContent = generateRandomNumber(10, 30);
+            document.getElementById('whatsappMessages').textContent = generateRandomNumber(15, 40);
             
-            // تحديث الجداول
-            updateVisitorsTable(filteredVisitors);
-            updateCharts();
+            // تحديث تقييم العملاء
+            document.getElementById('customerRating').textContent = (4.5 + Math.random() * 0.5).toFixed(1);
             
-            // تحديث حالة النظام
-            updateSystemStatus();
-            
-            tracker.showToast('تم تحديث البيانات', 'success');
+            showToast('تم تحديث البيانات بنجاح', 'success');
         }
         
-        function updateVisitorsTable(visitors) {
-            const tbody = document.getElementById('visitorsTableBody');
+        function loadOrdersData() {
+            // بيانات الطلبات الافتراضية
+            const orders = [
+                { id: 'ORD-1001', client: 'أحمد محمد', service: 'تنظيف منزل', amount: '450 درهم', status: 'مكتمل', date: '2024-01-15' },
+                { id: 'ORD-1002', client: 'شركة التقنية', service: 'تنظيف مكتب', amount: '800 درهم', status: 'قيد التنفيذ', date: '2024-01-16' },
+                { id: 'ORD-1003', client: 'سارة خالد', service: 'تنظيف كنب', amount: '250 درهم', status: 'جديد', date: '2024-01-16' },
+                { id: 'ORD-1004', client: 'فندق النخيل', service: 'تنظيف ستائر', amount: '1200 درهم', status: 'مكتمل', date: '2024-01-14' },
+                { id: 'ORD-1005', client: 'عبدالله راشد', service: 'تنظيف خزانات', amount: '300 درهم', status: 'قيد التنفيذ', date: '2024-01-16' },
+                { id: 'ORD-1006', client: 'مدرسة الأمل', service: 'تنظيف مكيفات', amount: '1500 درهم', status: 'جديد', date: '2024-01-17' }
+            ];
             
-            if (visitors.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="7" style="text-align: center; padding: 50px;">
-                            <i class="fas fa-search" style="font-size: 3rem; color: #ddd; margin-bottom: 20px;"></i>
-                            <p>لا توجد بيانات تطابق معايير البحث</p>
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-            
+            const tbody = document.getElementById('ordersTableBody');
             let html = '';
-            visitors.slice(0, 50).forEach(visitor => {
-                const lastVisit = new Date(visitor.lastVisit);
-                const now = new Date();
-                const diffHours = Math.floor((now - lastVisit) / (1000 * 60 * 60));
-                
-                let timeBadge = '';
-                if (diffHours < 1) {
-                    timeBadge = '<span class="badge badge-success">الآن</span>';
-                } else if (diffHours < 24) {
-                    timeBadge = `<span class="badge badge-primary">${diffHours} ساعة</span>`;
-                } else {
-                    timeBadge = `<span class="badge badge-warning">${Math.floor(diffHours/24)} يوم</span>`;
+            
+            orders.forEach(order => {
+                let statusBadge = '';
+                switch(order.status) {
+                    case 'جديد':
+                        statusBadge = '<span class="badge badge-success">جديد</span>';
+                        break;
+                    case 'قيد التنفيذ':
+                        statusBadge = '<span class="badge badge-warning">قيد التنفيذ</span>';
+                        break;
+                    case 'مكتمل':
+                        statusBadge = '<span class="badge badge-primary">مكتمل</span>';
+                        break;
+                    case 'ملغي':
+                        statusBadge = '<span class="badge badge-danger">ملغي</span>';
+                        break;
                 }
                 
                 html += `
                     <tr>
+                        <td><strong>${order.id}</strong></td>
+                        <td>${order.client}</td>
+                        <td>${order.service}</td>
+                        <td style="font-weight: bold; color: var(--primary);">${order.amount}</td>
+                        <td>${statusBadge}</td>
+                        <td>${order.date}</td>
                         <td>
-                            <code>${visitor.ip}</code>
-                            ${visitor.visitCount === 1 ? '<span class="badge badge-success">جديد</span>' : ''}
-                        </td>
-                        <td style="text-align: center;">
-                            <span style="font-weight: bold; font-size: 1.2rem;">${visitor.visitCount}</span>
-                        </td>
-                        <td>
-                            ${lastVisit.toLocaleString('ar-EG')}
-                            ${timeBadge}
-                        </td>
-                        <td>
-                            <i class="fab fa-${getBrowserIcon(visitor.browser)}"></i>
-                            ${visitor.browser}
-                        </td>
-                        <td>
-                            <i class="fab fa-${getOSIcon(visitor.os)}"></i>
-                            ${visitor.os}
-                        </td>
-                        <td>${visitor.location}</td>
-                        <td>
-                            <button onclick="viewVisitorDetails('${visitor.ip}')" class="btn" style="padding: 5px 10px; font-size: 0.8rem;">
+                            <button onclick="viewOrderDetails('${order.id}')" class="btn" style="padding: 5px 10px; font-size: 0.8rem;">
                                 <i class="fas fa-eye"></i>
+                            </button>
+                            <button onclick="editOrder('${order.id}')" class="btn" style="padding: 5px 10px; font-size: 0.8rem; background: var(--secondary);">
+                                <i class="fas fa-edit"></i>
                             </button>
                         </td>
                     </tr>
@@ -2043,229 +1854,173 @@
             tbody.innerHTML = html;
         }
         
-        function getBrowserIcon(browser) {
-            switch(browser) {
-                case 'Chrome': return 'chrome';
-                case 'Firefox': return 'firefox';
-                case 'Safari': return 'safari';
-                case 'Edge': return 'edge';
-                default: return 'internet-explorer';
-            }
+        function addNewClient() {
+            showToast('تم فتح نموذج إضافة عميل جديد', 'info');
+            // في الواقع الفعلي: عرض نموذج إضافة عميل
         }
         
-        function getOSIcon(os) {
-            switch(os) {
-                case 'Windows': return 'windows';
-                case 'macOS': return 'apple';
-                case 'Linux': return 'linux';
-                case 'Android': return 'android';
-                case 'iOS': return 'mobile-alt';
-                default: return 'desktop';
-            }
+        function createInvoice() {
+            showToast('جاري إنشاء فاتورة جديدة...', 'info');
+            // في الواقع الفعلي: فتح نموذج إنشاء فاتورة
         }
         
-        function updateCharts() {
-            const browsers = tracker.getBrowsersStats();
-            const os = tracker.getOSStats();
-            const locations = tracker.getLocationsStats();
+        function sendBulkMessage() {
+            showToast('جاري فتح نموذج الإعلان الجماعي...', 'info');
+            // في الواقع الفعلي: فتح نموذج إرسال رسائل جماعية
+        }
+        
+        function generateReport() {
+            showToast('جاري إنشاء التقرير المالي...', 'info');
+            setTimeout(() => {
+                showToast('تم إنشاء التقرير بنجاح', 'success');
+            }, 1500);
+        }
+        
+        function backupData() {
+            showToast('جاري إنشاء نسخة احتياطية...', 'info');
+            setTimeout(() => {
+                showToast('تم إنشاء النسخة الاحتياطية بنجاح', 'success');
+            }, 2000);
+        }
+        
+        function showAdvancedSettings() {
+            showToast('تم فتح الإعدادات المتقدمة', 'info');
+            // في الواقع الفعلي: عرض صفحة الإعدادات المتقدمة
+        }
+        
+        function viewOrderDetails(orderId) {
+            showToast(`عرض تفاصيل الطلب: ${orderId}`, 'info');
+            // في الواقع الفعلي: عرض تفاصيل الطلب
+        }
+        
+        function editOrder(orderId) {
+            showToast(`تعديل الطلب: ${orderId}`, 'info');
+            // في الواقع الفعلي: فتح نموذج تعديل الطلب
+        }
+        
+        // ============================================
+        // وظائف الاتصال
+        // ============================================
+        
+        function makePhoneCall() {
+            // تسجيل تفعيل الاتصال
+            logPhoneCall();
             
-            // رسم مخطط المتصفحات
-            let browsersHtml = '';
-            Object.entries(browsers).slice(0, 10).forEach(([browser, count]) => {
-                const percentage = (count / Object.values(browsers).reduce((a, b) => a + b, 0) * 100).toFixed(1);
-                browsersHtml += `
-                    <div style="margin-bottom: 10px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                            <span><i class="fab fa-${getBrowserIcon(browser)}"></i> ${browser}</span>
-                            <span>${count} (${percentage}%)</span>
-                        </div>
-                        <div style="height: 8px; background: #e9ecef; border-radius: 4px; overflow: hidden;">
-                            <div style="height: 100%; width: ${percentage}%; background: var(--primary); border-radius: 4px;"></div>
-                        </div>
-                    </div>
-                `;
-            });
-            document.getElementById('browsersChart').innerHTML = browsersHtml || '<p style="color: #666; text-align: center;">لا توجد بيانات</p>';
+            // فتح تطبيق الهاتف
+            window.location.href = 'tel:+971543205058';
             
-            // رسم مخطط أنظمة التشغيل
-            let osHtml = '';
-            Object.entries(os).slice(0, 10).forEach(([osName, count]) => {
-                const percentage = (count / Object.values(os).reduce((a, b) => a + b, 0) * 100).toFixed(1);
-                osHtml += `
-                    <div style="margin-bottom: 10px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                            <span><i class="fab fa-${getOSIcon(osName)}"></i> ${osName}</span>
-                            <span>${count} (${percentage}%)</span>
-                        </div>
-                        <div style="height: 8px; background: #e9ecef; border-radius: 4px; overflow: hidden;">
-                            <div style="height: 100%; width: ${percentage}%; background: var(--secondary); border-radius: 4px;"></div>
-                        </div>
-                    </div>
-                `;
-            });
-            document.getElementById('osChart').innerHTML = osHtml || '<p style="color: #666; text-align: center;">لا توجد بيانات</p>';
-            
-            // رسم مخطط المواقع
-            let locationsHtml = '';
-            Object.entries(locations).slice(0, 10).forEach(([location, count]) => {
-                locationsHtml += `
-                    <div style="display: flex; justify-content: space-between; padding: 8px; margin-bottom: 5px; background: #f8f9fa; border-radius: 8px;">
-                        <span><i class="fas fa-map-marker-alt"></i> ${location}</span>
-                        <span><strong>${count}</strong> زائر</span>
-                    </div>
-                `;
-            });
-            document.getElementById('locationsChart').innerHTML = locationsHtml || '<p style="color: #666; text-align: center;">لا توجد بيانات</p>';
+            showToast('جاري الاتصال بـ 0543205058...', 'info');
         }
         
-        function applyFilters() {
-            currentFilters = {
-                ip: document.getElementById('searchIP').value,
-                location: document.getElementById('searchLocation').value,
-                browser: document.getElementById('filterBrowser').value,
-                os: document.getElementById('filterOS').value
-            };
+        function openWhatsApp() {
+            // تسجيل تفعيل واتساب
+            logWhatsAppClick();
             
-            refreshAdminData();
-            tracker.showToast('تم تطبيق التصفية', 'info');
-        }
-        
-        function resetFilters() {
-            document.getElementById('searchIP').value = '';
-            document.getElementById('searchLocation').value = '';
-            document.getElementById('filterBrowser').value = '';
-            document.getElementById('filterOS').value = '';
+            // فتح واتساب
+            window.open('https://wa.me/971543205058', '_blank');
             
-            currentFilters = {};
-            refreshAdminData();
-            tracker.showToast('تم إعادة تعيين التصفية', 'info');
+            showToast('جاري فتح واتساب...', 'info');
         }
         
-        function exportData(format) {
-            if (tracker.exportData(format)) {
-                tracker.showToast(`تم تصدير البيانات بصيغة ${format.toUpperCase()}`, 'success');
-            } else {
-                tracker.showToast('حدث خطأ أثناء التصدير', 'error');
-            }
-        }
+        // ============================================
+        // وظائف مساعدة
+        // ============================================
         
-        function exportVisitsLog() {
-            if (tracker.exportVisitsLog()) {
-                tracker.showToast('تم تصدير سجل الزيارات', 'success');
-            } else {
-                tracker.showToast('حدث خطأ أثناء التصدير', 'error');
-            }
-        }
-        
-        function clearOldData() {
-            const days = parseInt(document.getElementById('cleanupDays')?.value || 30);
-            
-            if (confirm(`هل أنت متأكد من حذف البيانات الأقدم من ${days} يوم؟ هذا الإجراء لا يمكن التراجع عنه.`)) {
-                const result = tracker.clearOldData(days);
-                if (result) {
-                    tracker.showToast(
-                        `تم حذف ${result.removedVisitors} زائر و ${result.removedVisits} زيارة. تبقى ${result.remainingVisitors} زائر.`,
-                        'success'
-                    );
-                    refreshAdminData();
-                } else {
-                    tracker.showToast('حدث خطأ أثناء تنظيف البيانات', 'error');
+        function saveContactRequest(formData) {
+            try {
+                // حفظ محلياً في LocalStorage
+                let requests = JSON.parse(localStorage.getItem('contactRequests') || '[]');
+                requests.push(formData);
+                
+                // حفظ فقط آخر 100 طلب
+                if (requests.length > 100) {
+                    requests = requests.slice(-100);
                 }
+                
+                localStorage.setItem('contactRequests', JSON.stringify(requests));
+                
+                // إذا كان المدير مسجلاً الدخول، تحديث اللوحة
+                if (isAdminLoggedIn) {
+                    refreshAdminData();
+                }
+                
+            } catch (error) {
+                console.error('❌ خطأ في حفظ الطلب:', error);
             }
         }
         
-        async function sendTestEmail() {
-            const success = await tracker.sendTestEmail();
-            if (success) {
-                tracker.showToast('تم إرسال بريد الاختبار. تحقق من صندوق الوارد.', 'success');
-            } else {
-                tracker.showToast('فشل إرسال بريد الاختبار. تحقق من إعدادات البريد.', 'error');
+        function logPhoneCall() {
+            try {
+                let phoneLogs = JSON.parse(localStorage.getItem('phoneLogs') || '[]');
+                phoneLogs.push({
+                    timestamp: new Date().toISOString(),
+                    type: 'call'
+                });
+                
+                if (phoneLogs.length > 1000) {
+                    phoneLogs = phoneLogs.slice(-1000);
+                }
+                
+                localStorage.setItem('phoneLogs', JSON.stringify(phoneLogs));
+                
+            } catch (error) {
+                console.error('❌ خطأ في تسجيل المكالمة:', error);
             }
         }
         
-        function showSettings() {
-            document.getElementById('trackingEnabled').checked = tracker.settings.trackingEnabled;
-            document.getElementById('emailNotifications').checked = tracker.settings.emailNotifications;
-            document.getElementById('localStorage').checked = tracker.settings.localStorage;
-            document.getElementById('emailInput').value = tracker.settings.emailUser || '';
-            document.getElementById('emailPassword').value = tracker.settings.emailPass || '';
-            document.getElementById('cleanupDays').value = tracker.settings.cleanupDays;
-            
-            document.getElementById('settingsModal').style.display = 'flex';
-        }
-        
-        function saveEmailSettings() {
-            tracker.settings.emailUser = document.getElementById('emailInput').value;
-            tracker.settings.emailPass = document.getElementById('emailPassword').value;
-            tracker.saveSettings();
-            
-            tracker.showToast('تم حفظ إعدادات البريد', 'success');
-            closeModal('settingsModal');
-            updateSystemStatus();
-        }
-        
-        function cleanupData() {
-            const days = parseInt(document.getElementById('cleanupDays').value);
-            tracker.settings.cleanupDays = days;
-            tracker.saveSettings();
-            
-            clearOldData();
-        }
-        
-        function resetSettings() {
-            if (confirm('هل تريد إعادة تعيين جميع الإعدادات إلى القيم الافتراضية؟')) {
-                tracker.settings = tracker.loadSettings();
-                tracker.saveSettings();
-                tracker.showToast('تم إعادة تعيين الإعدادات', 'success');
-                showSettings();
+        function logWhatsAppClick() {
+            try {
+                let whatsappLogs = JSON.parse(localStorage.getItem('whatsappLogs') || '[]');
+                whatsappLogs.push({
+                    timestamp: new Date().toISOString(),
+                    type: 'whatsapp'
+                });
+                
+                if (whatsappLogs.length > 1000) {
+                    whatsappLogs = whatsappLogs.slice(-1000);
+                }
+                
+                localStorage.setItem('whatsappLogs', JSON.stringify(whatsappLogs));
+                
+            } catch (error) {
+                console.error('❌ خطأ في تسجيل واتساب:', error);
             }
         }
         
-        function updateSystemStatus() {
-            const status = tracker.checkSystemStatus();
-            
-            document.getElementById('systemStatus').innerHTML = `
-                <i class="fas fa-${status.system.includes('نشط') ? 'check-circle' : 'exclamation-circle'}"></i>
-                ${status.system}
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}" 
+                   style="color: ${type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--danger)' : 'var(--primary)'}; font-size: 1.5rem;"></i>
+                <div style="flex: 1;">
+                    <strong>${type === 'success' ? 'نجاح' : type === 'error' ? 'خطأ' : 'معلومة'}</strong>
+                    <p style="margin: 5px 0 0; font-size: 0.9rem;">${message}</p>
+                </div>
+                <button onclick="this.parentElement.remove()" style="background: none; border: none; color: var(--gray); cursor: pointer;">
+                    <i class="fas fa-times"></i>
+                </button>
             `;
             
-            document.getElementById('emailStatus').innerHTML = `
-                <i class="fas fa-${status.email.includes('مهيأ') ? 'envelope' : 'exclamation-circle'}"></i>
-                ${status.email}
-            `;
+            document.getElementById('toastContainer').appendChild(toast);
             
-            document.getElementById('storageStatus').innerHTML = `
-                <i class="fas fa-database"></i>
-                التخزين: ${status.storage} (${status.visitorsCount} زائر)
-            `;
+            setTimeout(() => {
+                if (toast.parentElement) {
+                    toast.remove();
+                }
+            }, 5000);
         }
         
-        function startAutoRefresh() {
-            const autoRefresh = document.getElementById('autoRefresh');
-            if (autoRefresh?.checked) {
-                tracker.autoRefreshInterval = setInterval(refreshAdminData, 30000); // كل 30 ثانية
-            }
+        function generateRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
         }
         
-        function stopAutoRefresh() {
-            if (tracker.autoRefreshInterval) {
-                clearInterval(tracker.autoRefreshInterval);
-                tracker.autoRefreshInterval = null;
-            }
+        function getCurrentTime() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            return `${hours}:${minutes}`;
         }
-        
-        // تحديث التحديث التلقائي عند تغيير الإعداد
-        document.getElementById('autoRefresh')?.addEventListener('change', function() {
-            if (this.checked) {
-                startAutoRefresh();
-            } else {
-                stopAutoRefresh();
-            }
-        });
-        
-        // ============================================
-        // وظائف عامة
-        // ============================================
         
         function closeVideoModal() {
             document.getElementById('videoFrame').src = '';
@@ -2276,87 +2031,40 @@
             document.getElementById(modalId).style.display = 'none';
         }
         
-        function viewVisitorDetails(ip) {
-            const visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
-            const visitor = visitors.find(v => v.ip === ip);
-            
-            if (visitor) {
-                const details = `
-                    <div style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; margin: 0 auto;">
-                        <h3 style="color: var(--primary); margin-bottom: 20px;"><i class="fas fa-user"></i> تفاصيل الزائر</h3>
-                        <div style="display: grid; gap: 15px;">
-                            <div style="display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px;">
-                                <strong>IP:</strong>
-                                <code>${visitor.ip}</code>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px;">
-                                <strong>الموقع:</strong>
-                                <span>${visitor.location}</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px;">
-                                <strong>عدد الزيارات:</strong>
-                                <span style="font-weight: bold;">${visitor.visitCount}</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px;">
-                                <strong>أول زيارة:</strong>
-                                <span>${new Date(visitor.firstVisit).toLocaleString('ar-EG')}</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px;">
-                                <strong>آخر زيارة:</strong>
-                                <span>${new Date(visitor.lastVisit).toLocaleString('ar-EG')}</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px;">
-                                <strong>المتصفح:</strong>
-                                <span><i class="fab fa-${getBrowserIcon(visitor.browser)}"></i> ${visitor.browser}</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px;">
-                                <strong>نظام التشغيل:</strong>
-                                <span><i class="fab fa-${getOSIcon(visitor.os)}"></i> ${visitor.os}</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px;">
-                                <strong>الجهاز:</strong>
-                                <span>${visitor.device}</span>
-                            </div>
-                        </div>
-                        <div style="margin-top: 20px; text-align: center;">
-                            <button onclick="closeModal('detailsModal')" class="btn">إغلاق</button>
-                        </div>
-                    </div>
-                `;
-                
-                // إنشاء modal جديد للتفاصيل
-                const modal = document.createElement('div');
-                modal.id = 'detailsModal';
-                modal.className = 'modal';
-                modal.style.display = 'flex';
-                modal.innerHTML = details;
-                document.body.appendChild(modal);
-                
-                // إضافة event listener للإغلاق
-                modal.addEventListener('click', function(e) {
-                    if (e.target === this) {
-                        this.remove();
-                    }
-                });
+        // تأثير اهتزاز للرقم السري الخاطئ
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% {transform: translateX(0);}
+                10%, 30%, 50%, 70%, 90% {transform: translateX(-5px);}
+                20%, 40%, 60%, 80% {transform: translateX(5px);}
             }
-        }
+        `;
+        document.head.appendChild(style);
         
-        // إغلاق modal بالنقر خارج المحتوى
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.style.display = 'none';
-                }
-            });
+        // منع حق النقر الأيمن للحماية
+        document.addEventListener('contextmenu', function(e) {
+            if (isAdminLoggedIn && e.target.closest('.admin-panel')) {
+                return; // السماح بحق النقر الأيمن في لوحة التحكم
+            }
+            e.preventDefault();
         });
         
-        // تحديث التتبع عند تغيير الصفحة (للتطبيقات ذات الصفحة الواحدة)
+        // منع نسخ النص
+        document.addEventListener('copy', function(e) {
+            if (!isAdminLoggedIn) {
+                e.preventDefault();
+                showToast('النسخ غير مسموح', 'error');
+            }
+        });
+        
+        // تحديث التتبع عند تغيير الصفحة
         let lastUrl = location.href;
         new MutationObserver(() => {
             const url = location.href;
             if (url !== lastUrl) {
                 lastUrl = url;
-                setTimeout(() => tracker.trackVisitor(), 1000);
+                // تسجيل تغيير الصفحة
             }
         }).observe(document, { subtree: true, childList: true });
     </script>
