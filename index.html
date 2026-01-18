@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المحترف السريع - خدمات تنظيف محترفة في الإمارات</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="المحترف السريع - خدمات تنظيف منازل، مكاتب، فنادق، كنب، ستائر في دبي، أبوظبي، الشارقة. فريق محترف، أسعار مناسبة، خدمة 24/7.">
+    <meta name="keywords" content="تنظيف, الإمارات, دبي, أبوظبي, تنظيف منازل, تنظيف مكاتب, تنظيف كنب, تنظيف ستائر, تنظيف خزانات">
+    <meta name="author" content="المحترف السريع">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="المحترف السريع - خدمات تنظيف محترفة">
+    <meta property="og:description" content="نقدم خدمات تنظيف متكاملة في جميع أنحاء الإمارات">
+    <meta property="og:image" content="https://i.imgur.com/la6eHcb.jpg">
+    <meta property="og:url" content="https://fast-professional.onrender.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="المحترف السريع">
+    <meta name="twitter:description" content="خدمات تنظيف محترفة في الإمارات">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://i.imgur.com/la6eHcb.jpg" type="image/jpeg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #00a8e8;
+            --primary-dark: #0077b6;
+            --secondary: #ff7b00;
+            --secondary-dark: #e56b00;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #25D366;
+            --instagram: #E1306C;
+            --whatsapp: #25D366;
+        }
+        
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.8;
+            color: var(--dark);
+            background: var(--light);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 168, 232, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 168, 232, 0.4);
+        }
+        
+        .btn-whatsapp {
+            background: linear-gradient(135deg, var(--whatsapp), #128C7E);
+        }
+        
+        .btn-instagram {
+            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-img {
+            width: 120px;
+            height: auto;
+            border-radius: 10px;
+        }
+        
+        .logo-text h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            font-weight: 900;
+        }
+        
+        .logo-text h1 span {
+            color: var(--secondary);
+        }
+        
+        .logo-text p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 10px 0;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://imgur.com/yfM3aAU.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            color: white;
+            padding-top: 100px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Stats */
+        .stats {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        /* Services */
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            font-size: 5rem;
+        }
+        
+        .service-content {
+            padding: 30px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Videos */
+        .video-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .video-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 168, 232, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 999;
+        }
+        
+        .whatsapp-main {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--whatsapp), #128C7E);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 70px 0;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://i.imgur.com/la6eHcb.jpg" alt="المحترف السريع" class="logo-img">
+                <div class="logo-text">
+                    <h1>المحترف <span>السريع</span></h1>
+                    <p>خدمات تنظيف محترفة في الإمارات</p>
+                </div>
+            </div>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#services">خدماتنا</a></li>
+                    <li><a href="#why-us">لماذا نحن</a></li>
+                    <li><a href="#videos">فيديوهات</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>المحترف السريع لخدمات التنظيف في الإمارات</h1>
+                <p>نقدم خدمات تنظيف متكاملة ومحترفة للمنازل والمكاتب والفنادق في جميع أنحاء الإمارات العربية المتحدة</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn">اطلب خدمة الآن</a>
+                    <a href="https://wa.me/971543205058" target="_blank" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
+                    </a>
+                    <a href="https://www.instagram.com/moham_eda9162/" target="_blank" class="btn btn-instagram">
+                        <i class="fab fa-instagram"></i> تابعنا على إنستجرام
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="500">0</span>
+                    <span class="stat-text">عميل راضي</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="1200">0</span>
+                    <span class="stat-text">مشروع مكتمل</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="50">0</span>
+                    <span class="stat-text">فني مدرب</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="10">0</span>
+                    <span class="stat-text">سنوات خبرة</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>خدماتنا المتكاملة</h2>
+                <p>نقدم مجموعة واسعة من خدمات التنظيف المحترفة</p>
+            </div>
+            
+            <div class="services-container">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>تنظيف المنازل</h3>
+                        <p>خدمة تنظيف شاملة للمنازل تشمل جميع الغرف والمطابخ والحمامات باستخدام مواد آمنة وفعالة.</p>
+                        <a href="https://wa.me/971543205058?text=أريد حجز خدمة تنظيف منزل" target="_blank" class="btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> حجز عبر واتساب
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>تنظيف المكاتب</h3>
+                        <p>تنظيف وتعقيم المكاتب ومرافق العمل لضمان بيئة عمل نظيفة وصحية للموظفين والعملاء.</p>
+                        <a href="https://wa.me/971543205058?text=أريد حجز خدمة تنظيف مكتب" target="_blank" class="btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> حجز عبر واتساب
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>تنظيف الكنب</h3>
+                        <p>تنظيف وتعقيم الكنب والستائر باستخدام أحدث التقنيات والمنظفات المتخصصة.</p>
+                        <a href="https://wa.me/971543205058?text=أريد حجز خدمة تنظيف كنب" target="_blank" class="btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> حجز عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section id="videos" class="section" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="section-title">
+                <h2>فيديوهات خدماتنا</h2>
+                <p>شاهد كيف نعمل</p>
+            </div>
+            
+            <div class="video-gallery">
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="https://imgur.com/GFtkD2h.jpg" alt="تنظيف ستائر">
+                        <div class="video-play" data-video="DS5MLupiZ0Z">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info" style="padding: 20px;">
+                        <h3>تنظيف ستائر احترافي</h3>
+                        <p>نظافة عميقة تعيد لستائرك رونقها</p>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="https://imgur.com/AnY0n1l.jpg" alt="تنظيف كنب">
+                        <div class="video-play" data-video="DS5L_sFicww">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info" style="padding: 20px;">
+                        <h3>تنظيف كنب احترافي</h3>
+                        <p>إزالة البقع والروائح بعمق</p>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="https://imgur.com/bk3Etp4.jpg" alt="تنظيف منازل">
+                        <div class="video-play" data-video="DS5L5hlk22a">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info" style="padding: 20px;">
+                        <h3>تنظيف منازل شامل</h3>
+                        <p>نظافة متكاملة بمعايير عالية</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>اتصل بنا</h2>
+                <p>نحن هنا لخدمتك على مدار الساعة</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                <div>
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">معلومات الاتصال</h3>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                        <i class="fas fa-phone" style="color: var(--primary); font-size: 1.5rem;"></i>
+                        <div>
+                            <h4 style="margin-bottom: 5px;">الهاتف</h4>
+                            <p>+971 54 320 5058</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                        <i class="fab fa-whatsapp" style="color: var(--whatsapp); font-size: 1.5rem;"></i>
+                        <div>
+                            <h4 style="margin-bottom: 5px;">واتساب</h4>
+                            <p>+971 54 320 5058</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                        <i class="fab fa-instagram" style="color: var(--instagram); font-size: 1.5rem;"></i>
+                        <div>
+                            <h4 style="margin-bottom: 5px;">إنستجرام</h4>
+                            <p>@moham_eda9162</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">أرسل رسالة</h3>
+                    <form id="contactForm" style="display: flex; flex-direction: column; gap: 20px;">
+                        <input type="text" placeholder="الاسم الكامل" required style="padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;">
+                        <input type="tel" placeholder="رقم الهاتف" required style="padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;">
+                        <textarea placeholder="الرسالة" rows="5" required style="padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;"></textarea>
+                        <button type="submit" class="btn">إرسال الرسالة</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--dark); color: white; padding: 60px 0 30px;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
+                <div>
+                    <h2 style="color: white; margin-bottom: 20px;">المحترف <span style="color: var(--secondary);">السريع</span></h2>
+                    <p>شركة رائدة في خدمات التنظيف في الإمارات العربية المتحدة</p>
+                </div>
+                
+                <div>
+                    <h3 style="margin-bottom: 20px;">روابط سريعة</h3>
+                    <ul style="list-style: none;">
+                        <li><a href="#home" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">الرئيسية</a></li>
+                        <li><a href="#services" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">خدماتنا</a></li>
+                        <li><a href="#contact" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 style="margin-bottom: 20px;">تواصل معنا</h3>
+                    <p><i class="fas fa-phone" style="margin-left: 10px;"></i> +971 54 320 5058</p>
+                    <p><i class="fab fa-whatsapp" style="margin-left: 10px;"></i> +971 54 320 5058</p>
+                    <p><i class="fas fa-map-marker-alt" style="margin-left: 10px;"></i> الإمارات العربية المتحدة</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p>© 2024 المحترف السريع. جميع الحقوق محفوظة.</p>
+                <p style="color: #aaa; font-size: 0.9rem; margin-top: 10px;">تم التطوير بواسطة مصطفى عبدة - 0545216539</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <div class="whatsapp-float">
+        <div class="whatsapp-main">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; align-items: center; justify-content: center;">
+        <div style="position: relative; width: 90%; max-width: 900px;">
+            <button id="closeModal" style="position: absolute; top: -40px; left: 0; background: none; border: none; color: white; font-size: 2rem; cursor: pointer;">×</button>
+            <iframe id="videoFrame" style="width: 100%; height: 500px; border: none; border-radius: 10px;"></iframe>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // كود التتبع للزوار
+        (function() {
+            const SERVER_URL = 'https://fast-professional.onrender.com';
+            
+            async function trackVisitor() {
+                try {
+                    // الحصول على IP
+                    const ipResponse = await fetch('https://api.ipify.org?format=json');
+                    const { ip } = await ipResponse.json();
+                    
+                    // الحصول على الموقع الجغرافي
+                    let location = 'غير معروف';
+                    try {
+                        const geoResponse = await fetch(`https://ipapi.co/${ip}/json/`);
+                        const geoData = await geoResponse.json();
+                        location = `${geoData.city || ''} ${geoData.country_name || ''}`.trim();
+                    } catch {
+                        location = 'غير معروف';
+                    }
+                    
+                    // كشف المتصفح ونظام التشغيل
+                    const ua = navigator.userAgent;
+                    let browser = 'غير معروف';
+                    let os = 'غير معروف';
+                    
+                    if (ua.includes('Chrome')) browser = 'Chrome';
+                    else if (ua.includes('Firefox')) browser = 'Firefox';
+                    else if (ua.includes('Safari')) browser = 'Safari';
+                    else if (ua.includes('Edge')) browser = 'Edge';
+                    
+                    if (ua.includes('Windows')) os = 'Windows';
+                    else if (ua.includes('Mac')) os = 'macOS';
+                    else if (ua.includes('Linux')) os = 'Linux';
+                    else if (ua.includes('Android')) os = 'Android';
+                    else if (ua.includes('iPhone')) os = 'iOS';
+                    
+                    // حساب عدد الزيارات
+                    const visitorKey = `visitor_${ip}`;
+                    let visitCount = localStorage.getItem(visitorKey) || 0;
+                    visitCount = parseInt(visitCount) + 1;
+                    localStorage.setItem(visitorKey, visitCount);
+                    
+                    // إعداد بيانات الزائر
+                    const visitorData = {
+                        ip: ip,
+                        location: location,
+                        browser: browser,
+                        os: os,
+                        screen: `${screen.width}x${screen.height}`,
+                        pageUrl: window.location.href,
+                        referrer: document.referrer || 'مباشر',
+                        language: navigator.language,
+                        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                        visitCount: visitCount,
+                        timestamp: new Date().toISOString()
+                    };
+                    
+                    // إرسال البيانات للسيرفر
+                    await fetch(`${SERVER_URL}/track-visitor`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(visitorData)
+                    });
+                    
+                    console.log('✅ تم تتبع الزائر:', visitorData.ip);
+                    
+                } catch (error) {
+                    console.log('⚠️ لم يتمكن من التتبع:', error.message);
+                }
+            }
+            
+            // بدء التتبع بعد تحميل الصفحة
+            window.addEventListener('load', () => {
+                setTimeout(trackVisitor, 1000);
+            });
+        })();
+        
+        // إحصائيات العداد
+        document.addEventListener('DOMContentLoaded', function() {
+            const counters = document.querySelectorAll('.stat-number');
+            const speed = 200;
+            
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-count');
+                    const count = +counter.innerText;
+                    
+                    const inc = target / speed;
+                    
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                
+                updateCount();
+            });
+            
+            // فتح الفيديو
+            document.querySelectorAll('.video-play').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const videoId = this.getAttribute('data-video');
+                    const modal = document.getElementById('videoModal');
+                    const frame = document.getElementById('videoFrame');
+                    
+                    frame.src = `https://www.instagram.com/reel/${videoId}/embed`;
+                    modal.style.display = 'flex';
+                });
+            });
+            
+            // إغلاق الفيديو
+            document.getElementById('closeModal').addEventListener('click', function() {
+                const modal = document.getElementById('videoModal');
+                const frame = document.getElementById('videoFrame');
+                
+                frame.src = '';
+                modal.style.display = 'none';
+            });
+            
+            // إغلاق الفيديو بالنقر خارج الإطار
+            document.getElementById('videoModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    const frame = document.getElementById('videoFrame');
+                    frame.src = '';
+                    this.style.display = 'none';
+                }
+            });
+            
+            // نموذج الاتصال
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = this[0].value;
+                const phone = this[1].value;
+                const message = this[2].value;
+                
+                const whatsappUrl = `https://wa.me/971543205058?text=مرحباً، أود طلب خدمة تنظيف%0Aالاسم: ${name}%0Aالهاتف: ${phone}%0Aالرسالة: ${message}`;
+                
+                window.open(whatsappUrl, '_blank');
+                this.reset();
+                alert('سيتم فتح تطبيق واتساب لإكمال الطلب. شكراً لك!');
+            });
+            
+            // زر واتساب العائم
+            document.querySelector('.whatsapp-main').addEventListener('click', function() {
+                window.open('https://wa.me/971543205058', '_blank');
+            });
+            
+            // القائمة المتنقلة
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileBtn.addEventListener('click', function() {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.padding = '20px';
+                navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+                navLinks.style.borderRadius = '10px';
+                navLinks.style.width = '200px';
+            });
+            
+            // إغلاق القائمة عند النقر على رابط
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 992) {
+                        navLinks.style.display = 'none';
+                    }
+                });
+            });
+            
+            // إخفاء القائمة عند تغيير حجم النافذة
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 992) {
+                    navLinks.style.display = 'flex';
+                    navLinks.style.position = 'static';
+                    navLinks.style.background = 'transparent';
+                    navLinks.style.padding = '0';
+                    navLinks.style.boxShadow = 'none';
+                    navLinks.style.width = 'auto';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
