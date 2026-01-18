@@ -36,7 +36,6 @@
     
     <!-- Styles -->
     <style>
-        /* CSS Variables */
         :root {
             --primary: #00a8e8;
             --primary-dark: #0077b6;
@@ -46,13 +45,10 @@
             --dark: #212529;
             --gray: #6c757d;
             --success: #25D366;
-            --instagram: #E1306C;
-            --whatsapp: #25D366;
             --danger: #dc3545;
             --vip: #9c27b0;
         }
         
-        /* Reset & Base */
         * {
             margin: 0;
             padding: 0;
@@ -68,7 +64,6 @@
             line-height: 1.8;
             color: var(--dark);
             background: var(--light);
-            overflow-x: hidden;
         }
         
         .container {
@@ -79,23 +74,23 @@
         }
         
         .section {
-            padding: 100px 0;
+            padding: 80px 0;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
         
         .section-title h2 {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             color: var(--primary);
             margin-bottom: 15px;
             font-weight: 800;
         }
         
         .section-title p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--gray);
             max-width: 600px;
             margin: 0 auto;
@@ -103,12 +98,12 @@
         
         .btn {
             display: inline-block;
-            padding: 15px 35px;
+            padding: 12px 30px;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border: none;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             text-decoration: none;
             cursor: pointer;
@@ -122,27 +117,19 @@
         }
         
         .btn-whatsapp {
-            background: linear-gradient(135deg, var(--whatsapp), #128C7E);
+            background: linear-gradient(135deg, var(--success), #128C7E);
         }
         
         .btn-phone {
             background: linear-gradient(135deg, #4CAF50, #2E7D32);
         }
         
-        .btn-instagram {
-            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+        .btn-vip {
+            background: linear-gradient(135deg, var(--vip), #7b1fa2);
         }
         
         .btn-danger {
             background: linear-gradient(135deg, var(--danger), #c82333);
-        }
-        
-        .btn-success {
-            background: linear-gradient(135deg, #28a745, #218838);
-        }
-        
-        .btn-vip {
-            background: linear-gradient(135deg, var(--vip), #7b1fa2);
         }
         
         /* Header */
@@ -155,14 +142,13 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
+            padding: 15px 0;
         }
         
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
         }
         
         .logo {
@@ -172,13 +158,13 @@
         }
         
         .logo-img {
-            width: 120px;
+            width: 100px;
             height: auto;
             border-radius: 10px;
         }
         
         .logo-text h1 {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: var(--primary);
             font-weight: 900;
         }
@@ -187,23 +173,18 @@
             color: var(--secondary);
         }
         
-        .logo-text p {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-        
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 25px;
             list-style: none;
         }
         
         .nav-links a {
             text-decoration: none;
             color: var(--dark);
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
-            padding: 10px 0;
+            padding: 8px 0;
             position: relative;
         }
         
@@ -226,7 +207,7 @@
             display: none;
             background: none;
             border: none;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: var(--primary);
             cursor: pointer;
         }
@@ -237,11 +218,10 @@
             background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://imgur.com/yfM3aAU.png');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             display: flex;
             align-items: center;
             color: white;
-            padding-top: 100px;
+            padding-top: 80px;
         }
         
         .hero-content {
@@ -251,116 +231,147 @@
         }
         
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3rem;
             margin-bottom: 20px;
             font-weight: 900;
             line-height: 1.2;
         }
         
         .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 40px;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
             opacity: 0.9;
         }
         
         .hero-buttons {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
+        }
+        
+        /* Services */
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            font-size: 4rem;
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
         }
         
         /* Stats */
         .stats {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            padding: 80px 0;
+            padding: 60px 0;
         }
         
         .stats-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
         }
         
         .stat-item {
             text-align: center;
-            padding: 30px;
+            padding: 25px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             backdrop-filter: blur(10px);
         }
         
         .stat-number {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 800;
             margin-bottom: 10px;
             display: block;
         }
         
-        /* Services */
-        .services-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        
-        .service-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-        
-        .service-icon {
-            height: 250px;
+        /* Contact */
+        .contact-form {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
             color: white;
-            font-size: 5rem;
+            padding: 50px 0 20px;
         }
         
-        .service-content {
-            padding: 30px;
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
         }
         
-        .service-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-        
-        /* Login Modal */
-        .login-modal {
+        /* Modals */
+        .modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 99999;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
         
-        .login-content {
+        .modal-content {
             background: white;
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 400px;
-            width: 90%;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
             position: relative;
             animation: modalSlide 0.3s ease;
-            text-align: center;
         }
         
         @keyframes modalSlide {
@@ -380,7 +391,7 @@
             left: 15px;
             background: none;
             border: none;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--gray);
             cursor: pointer;
             line-height: 1;
@@ -388,99 +399,46 @@
         
         /* Admin Panel */
         .admin-panel {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            overflow-y: auto;
-        }
-        
-        .admin-content {
             background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            max-height: 90vh;
+            overflow-y: auto;
             width: 95%;
             max-width: 1400px;
-            max-height: 95vh;
-            overflow-y: auto;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         }
         
         .admin-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #eee;
         }
         
         .admin-stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
-            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
         }
         
         .admin-stat-box {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 15px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
             text-align: center;
             border: 1px solid #e9ecef;
-            transition: all 0.3s;
-        }
-        
-        .admin-stat-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
         .admin-stat-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 800;
             color: var(--primary);
-            margin: 10px 0;
+            margin: 5px 0;
             display: block;
-        }
-        
-        .filter-bar {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .filter-input {
-            padding: 12px 15px;
-            border-radius: 10px;
-            border: 2px solid #e0e0e0;
-            background: white;
-            font-family: 'Cairo', sans-serif;
-            font-size: 1rem;
-            min-width: 200px;
-            transition: all 0.3s;
-        }
-        
-        .filter-input:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 168, 232, 0.2);
-        }
-        
-        .visitors-table-container {
-            background: #f8f9fa;
-            border-radius: 15px;
-            overflow: hidden;
-            margin-bottom: 30px;
-            border: 1px solid #e9ecef;
         }
         
         .visitors-table {
@@ -489,31 +447,94 @@
         }
         
         .visitors-table th {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 15px;
+            background: #f8f9fa;
+            color: var(--dark);
+            padding: 12px;
             text-align: right;
             font-weight: 600;
-            position: sticky;
-            top: 0;
+            border-bottom: 2px solid #dee2e6;
         }
         
         .visitors-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #e9ecef;
+            padding: 10px 12px;
+            border-bottom: 1px solid #dee2e6;
         }
         
         .visitors-table tbody tr:hover {
-            background: rgba(0, 168, 232, 0.05);
+            background: #f8f9fa;
         }
         
-        .chart-container {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            border: 1px solid #e9ecef;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .badge-success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .badge-primary {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .badge-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        /* Floating Buttons */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 999;
+        }
+        
+        .whatsapp-main {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--success), #128C7E);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        .phone-float {
+            position: fixed;
+            bottom: 90px;
+            left: 20px;
+            z-index: 999;
+        }
+        
+        .phone-main {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
         }
         
         /* Responsive */
@@ -527,25 +548,21 @@
             }
             
             .hero h1 {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
             
             .section-title h2 {
-                font-size: 2.2rem;
-            }
-            
-            .admin-stats-grid {
-                grid-template-columns: repeat(2, 1fr);
+                font-size: 2rem;
             }
         }
         
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             
             .section {
-                padding: 70px 0;
+                padding: 60px 0;
             }
             
             .hero-buttons {
@@ -554,174 +571,14 @@
             }
             
             .admin-stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .admin-stats-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .filter-bar {
-                flex-direction: column;
-            }
-            
-            .filter-input {
-                width: 100%;
-                min-width: auto;
-            }
-            
-            .visitors-table {
-                display: block;
-                overflow-x: auto;
-            }
-        }
-        
-        /* Loading */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Badge */
-        .badge {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-right: 5px;
-        }
-        
-        .badge-success {
-            background: #d4edda;
-            color: #155724;
-        }
-        
-        .badge-warning {
-            background: #fff3cd;
-            color: #856404;
-        }
-        
-        .badge-danger {
-            background: #f8d7da;
-            color: #721c24;
-        }
-        
-        .badge-primary {
-            background: #d1ecf1;
-            color: #0c5460;
-        }
-        
-        .badge-vip {
-            background: #e1bee7;
-            color: #4a148c;
-        }
-        
-        /* Toast */
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            z-index: 10000;
-            animation: toastSlide 0.3s ease;
-            max-width: 400px;
-        }
-        
-        @keyframes toastSlide {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        .toast-success {
-            border-right: 5px solid var(--success);
-        }
-        
-        .toast-error {
-            border-right: 5px solid var(--danger);
-        }
-        
-        .toast-info {
-            border-right: 5px solid var(--primary);
-        }
-        
-        /* Call Now Button */
-        .call-now-button {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 999;
-        }
-        
-        .call-now-main {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: linear-gradient(135deg, #4CAF50, #2E7D32);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .call-now-main:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.6);
-        }
-        
-        .call-now-main i {
-            font-size: 1.3rem;
-        }
-        
-        /* WhatsApp Float */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            z-index: 999;
-        }
-        
-        .whatsapp-main {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--whatsapp), #128C7E);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.2rem;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
     </style>
 </head>
@@ -733,7 +590,6 @@
                 <img src="https://i.imgur.com/la6eHcb.jpg" alt="المحترف السريع" class="logo-img">
                 <div class="logo-text">
                     <h1>المحترف <span>السريع</span></h1>
-                    <p>خدمات تنظيف محترفة في الإمارات</p>
                 </div>
             </div>
             
@@ -741,9 +597,8 @@
                 <ul class="nav-links">
                     <li><a href="#home">الرئيسية</a></li>
                     <li><a href="#services">خدماتنا</a></li>
-                    <li><a href="#why-us">لماذا نحن</a></li>
                     <li><a href="#contact">اتصل بنا</a></li>
-                    <li><a href="#" onclick="showAdminLogin()" class="btn-vip" style="padding: 10px 20px; border-radius: 25px;">
+                    <li><a href="#" onclick="showAdminLogin()" class="btn-vip" style="padding: 8px 15px; border-radius: 20px;">
                         <i class="fas fa-chart-line"></i> لوحة التحكم
                     </a></li>
                 </ul>
@@ -780,19 +635,19 @@
             <div class="stats-container">
                 <div class="stat-item">
                     <span class="stat-number" data-count="500">0</span>
-                    <span class="stat-text">عميل راضي</span>
+                    <span>عميل راضي</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number" data-count="1200">0</span>
-                    <span class="stat-text">مشروع مكتمل</span>
+                    <span>مشروع مكتمل</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number" data-count="50">0</span>
-                    <span class="stat-text">فني مدرب</span>
+                    <span>فني مدرب</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number" data-count="10">0</span>
-                    <span class="stat-text">سنوات خبرة</span>
+                    <span>سنوات خبرة</span>
                 </div>
             </div>
         </div>
@@ -813,8 +668,8 @@
                     </div>
                     <div class="service-content">
                         <h3>تنظيف المنازل</h3>
-                        <p>خدمة تنظيف شاملة للمنازل تشمل جميع الغرف والمطابخ والحمامات باستخدام مواد آمنة وفعالة.</p>
-                        <a href="tel:+971543205058" class="btn btn-phone">
+                        <p>خدمة تنظيف شاملة للمنازل تشمل جميع الغرف والمطابخ والحمامات.</p>
+                        <a href="tel:+971543205058" class="btn btn-phone" style="margin-top: 10px;">
                             <i class="fas fa-phone"></i> اتصل للطلب
                         </a>
                     </div>
@@ -826,8 +681,8 @@
                     </div>
                     <div class="service-content">
                         <h3>تنظيف المكاتب</h3>
-                        <p>تنظيف وتعقيم المكاتب ومرافق العمل لضمان بيئة عمل نظيفة وصحية للموظفين والعملاء.</p>
-                        <a href="tel:+971543205058" class="btn btn-phone">
+                        <p>تنظيف وتعقيم المكاتب ومرافق العمل بمعايير صحية عالية.</p>
+                        <a href="tel:+971543205058" class="btn btn-phone" style="margin-top: 10px;">
                             <i class="fas fa-phone"></i> اتصل للطلب
                         </a>
                     </div>
@@ -839,8 +694,8 @@
                     </div>
                     <div class="service-content">
                         <h3>تنظيف الكنب</h3>
-                        <p>تنظيف وتعقيم الكنب والستائر باستخدام أحدث التقنيات والمنظفات المتخصصة.</p>
-                        <a href="tel:+971543205058" class="btn btn-phone">
+                        <p>تنظيف وتعقيم الكنب والستائر بأحدث التقنيات والمنظفات.</p>
+                        <a href="tel:+971543205058" class="btn btn-phone" style="margin-top: 10px;">
                             <i class="fas fa-phone"></i> اتصل للطلب
                         </a>
                     </div>
@@ -862,26 +717,26 @@
                     <h3 style="color: var(--primary); margin-bottom: 20px;">معلومات الاتصال</h3>
                     
                     <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #4CAF50, #2E7D32); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-phone" style="color: white; font-size: 1.5rem;"></i>
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #4CAF50, #2E7D32); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-phone" style="color: white; font-size: 1.3rem;"></i>
                         </div>
                         <div>
                             <h4 style="margin-bottom: 5px;">الاتصال المباشر</h4>
-                            <p style="font-size: 1.3rem; font-weight: bold;">+971 54 320 5058</p>
-                            <a href="tel:+971543205058" class="btn btn-phone" style="padding: 10px 20px; margin-top: 10px;">
+                            <p style="font-size: 1.2rem; font-weight: bold;">+971 54 320 5058</p>
+                            <a href="tel:+971543205058" class="btn btn-phone" style="padding: 8px 15px; margin-top: 5px;">
                                 <i class="fas fa-phone"></i> اتصل الآن
                             </a>
                         </div>
                     </div>
                     
-                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--whatsapp), #128C7E); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                            <i class="fab fa-whatsapp" style="color: white; font-size: 1.5rem;"></i>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--success), #128C7E); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fab fa-whatsapp" style="color: white; font-size: 1.3rem;"></i>
                         </div>
                         <div>
                             <h4 style="margin-bottom: 5px;">واتساب</h4>
-                            <p style="font-size: 1.3rem; font-weight: bold;">+971 54 320 5058</p>
-                            <a href="https://wa.me/971543205058" target="_blank" class="btn btn-whatsapp" style="padding: 10px 20px; margin-top: 10px;">
+                            <p style="font-size: 1.2rem; font-weight: bold;">+971 54 320 5058</p>
+                            <a href="https://wa.me/971543205058" target="_blank" class="btn btn-whatsapp" style="padding: 8px 15px; margin-top: 5px;">
                                 <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
                             </a>
                         </div>
@@ -890,19 +745,17 @@
                 
                 <div>
                     <h3 style="color: var(--primary); margin-bottom: 20px;">أرسل رسالة</h3>
-                    <form id="contactForm" style="display: flex; flex-direction: column; gap: 20px;">
-                        <input type="text" id="name" placeholder="الاسم الكامل" required style="padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;">
-                        <input type="tel" id="phone" placeholder="رقم الهاتف" required style="padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;">
-                        <select id="service" style="padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;">
+                    <form id="contactForm" class="contact-form">
+                        <input type="text" id="name" placeholder="الاسم الكامل" required>
+                        <input type="tel" id="phone" placeholder="رقم الهاتف" required>
+                        <select id="service" required>
                             <option value="">اختر الخدمة المطلوبة</option>
                             <option value="تنظيف منازل">تنظيف منازل</option>
                             <option value="تنظيف مكاتب">تنظيف مكاتب</option>
                             <option value="تنظيف كنب">تنظيف كنب</option>
-                            <option value="تنظيف ستائر">تنظيف الستائر</option>
-                            <option value="تنظيف خزانات">تنظيف الخزانات</option>
                             <option value="استشارة مجانية">استشارة مجانية</option>
                         </select>
-                        <textarea id="message" placeholder="الرسالة" rows="5" required style="padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;"></textarea>
+                        <textarea id="message" placeholder="الرسالة" rows="4" required></textarea>
                         <button type="submit" class="btn">
                             <i class="fas fa-paper-plane"></i> إرسال الرسالة
                         </button>
@@ -913,31 +766,31 @@
     </section>
 
     <!-- Footer -->
-    <footer style="background: var(--dark); color: white; padding: 60px 0 30px;">
+    <footer>
         <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
+            <div class="footer-content">
                 <div>
-                    <h2 style="color: white; margin-bottom: 20px;">المحترف <span style="color: var(--secondary);">السريع</span></h2>
-                    <p>شركة رائدة في خدمات التنظيف في الإمارات العربية المتحدة، نقدم حلول تنظيف متكاملة بجودة عالية وأسعار مناسبة.</p>
+                    <h2 style="color: white; margin-bottom: 15px;">المحترف <span style="color: var(--secondary);">السريع</span></h2>
+                    <p>شركة رائدة في خدمات التنظيف في الإمارات العربية المتحدة</p>
                 </div>
                 
                 <div>
-                    <h3 style="margin-bottom: 20px;">تواصل معنا</h3>
+                    <h3 style="margin-bottom: 15px;">تواصل معنا</h3>
                     <p><i class="fas fa-phone" style="margin-left: 10px;"></i> +971 54 320 5058</p>
                     <p><i class="fab fa-whatsapp" style="margin-left: 10px;"></i> +971 54 320 5058</p>
                     <p><i class="fas fa-map-marker-alt" style="margin-left: 10px;"></i> دبي، الإمارات العربية المتحدة</p>
                 </div>
                 
                 <div>
-                    <h3 style="margin-bottom: 20px;">لوحة التحكم</h3>
+                    <h3 style="margin-bottom: 15px;">لوحة التحكم</h3>
                     <p>للوصول إلى لوحة التحكم المتقدمة:</p>
-                    <a href="#" onclick="showAdminLogin()" class="btn-vip" style="padding: 10px 20px; display: inline-block; margin-top: 10px;">
+                    <a href="#" onclick="showAdminLogin()" class="btn-vip" style="padding: 8px 15px; display: inline-block; margin-top: 10px;">
                         <i class="fas fa-chart-line"></i> دخول لوحة التحكم
                     </a>
                 </div>
             </div>
             
-            <div style="text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <div style="text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
                 <p>© <span id="currentYear"></span> المحترف السريع. جميع الحقوق محفوظة.</p>
                 <p style="color: #aaa; font-size: 0.9rem; margin-top: 10px;">نظام تتبع الزوار المتقدم | الرقم السري: 332004</p>
             </div>
@@ -945,25 +798,25 @@
     </footer>
 
     <!-- Login Modal -->
-    <div id="loginModal" class="login-modal">
-        <div class="login-content">
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
             <button class="close-btn" onclick="closeModal('loginModal')">×</button>
-            <div style="margin-bottom: 30px;">
-                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
-                    <i class="fas fa-chart-line" style="color: white; font-size: 2.5rem;"></i>
+            <div style="margin-bottom: 25px;">
+                <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                    <i class="fas fa-chart-line" style="color: white; font-size: 2rem;"></i>
                 </div>
-                <h2 style="color: var(--primary); margin-bottom: 10px;">لوحة التحكم المتقدمة</h2>
-                <p style="color: var(--gray);">أدخل الرقم السري للوصول إلى إحصائيات الزوار</p>
+                <h2 style="color: var(--primary); margin-bottom: 10px; text-align: center;">لوحة التحكم المتقدمة</h2>
+                <p style="color: var(--gray); text-align: center;">أدخل الرقم السري للوصول إلى إحصائيات الزوار</p>
             </div>
             
-            <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
                 <div style="position: relative;">
                     <i class="fas fa-lock" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--gray);"></i>
                     <input type="password" id="adminPassword" placeholder="الرقم السري" 
-                           style="width: 100%; padding: 15px 15px 15px 45px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; font-family: 'Cairo', sans-serif;">
+                           style="width: 100%; padding: 12px 12px 12px 40px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; font-family: 'Cairo', sans-serif;">
                 </div>
                 
-                <button onclick="checkAdminPassword()" class="btn" style="width: 100%; padding: 15px;">
+                <button onclick="checkAdminPassword()" class="btn" style="width: 100%; padding: 12px;">
                     <i class="fas fa-sign-in-alt"></i> دخول إلى لوحة التحكم
                 </button>
                 
@@ -975,95 +828,59 @@
     </div>
 
     <!-- Admin Panel -->
-    <div id="adminPanel" class="admin-panel">
-        <div class="admin-content">
+    <div id="adminPanel" class="modal">
+        <div class="admin-panel">
             <div class="admin-header">
                 <div>
-                    <h2 style="color: var(--primary); margin: 0;"><i class="fas fa-chart-line"></i> لوحة تحكم تتبع الزوار</h2>
-                    <p style="color: var(--gray); margin-top: 5px;" id="adminSubtitle">إحصائيات الزوار في الوقت الحقيقي</p>
+                    <h2 style="margin: 0; color: white;"><i class="fas fa-chart-line"></i> لوحة تحكم تتبع الزوار</h2>
+                    <p style="margin: 5px 0 0; color: rgba(255,255,255,0.8);" id="adminSubtitle">إحصائيات الزوار في الوقت الحقيقي</p>
                 </div>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    <span id="adminStatus" class="badge badge-success"><i class="fas fa-circle"></i> النظام نشط</span>
-                    <button onclick="refreshVisitorData()" class="btn" style="padding: 10px 20px;">
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="refreshVisitorData()" class="btn" style="padding: 8px 15px; background: rgba(255,255,255,0.2);">
                         <i class="fas fa-redo"></i> تحديث
                     </button>
-                    <button onclick="closeAdminPanel()" class="btn btn-danger" style="padding: 10px 20px;">
+                    <button onclick="closeAdminPanel()" class="btn btn-danger" style="padding: 8px 15px;">
                         <i class="fas fa-times"></i> إغلاق
                     </button>
                 </div>
             </div>
             
-            <!-- Statistics Grid -->
             <div class="admin-stats-grid">
                 <div class="admin-stat-box">
                     <div><i class="fas fa-users"></i> إجمالي الزوار</div>
                     <div class="admin-stat-number" id="totalVisitors">0</div>
-                    <div style="font-size: 0.9rem; color: var(--gray);">زائر فريد</div>
+                    <div style="font-size: 0.85rem; color: var(--gray);">زائر فريد</div>
                 </div>
                 <div class="admin-stat-box">
                     <div><i class="fas fa-eye"></i> إجمالي الزيارات</div>
                     <div class="admin-stat-number" id="totalVisits">0</div>
-                    <div style="font-size: 0.9rem; color: var(--gray);">عدد الزيارات</div>
+                    <div style="font-size: 0.85rem; color: var(--gray);">عدد الزيارات</div>
                 </div>
                 <div class="admin-stat-box">
                     <div><i class="fas fa-calendar-day"></i> زيارات اليوم</div>
                     <div class="admin-stat-number" id="todayVisits">0</div>
-                    <div style="font-size: 0.9rem; color: var(--gray);">هذا اليوم</div>
+                    <div style="font-size: 0.85rem; color: var(--gray);">هذا اليوم</div>
                 </div>
                 <div class="admin-stat-box">
                     <div><i class="fas fa-clock"></i> زيارات الساعة</div>
                     <div class="admin-stat-number" id="hourlyVisits">0</div>
-                    <div style="font-size: 0.9rem; color: var(--gray);">آخر ساعة</div>
-                </div>
-                <div class="admin-stat-box">
-                    <div><i class="fas fa-user-clock"></i> متوسط الزيارات</div>
-                    <div class="admin-stat-number" id="avgVisits">0.00</div>
-                    <div style="font-size: 0.9rem; color: var(--gray);">لكل زائر</div>
-                </div>
-                <div class="admin-stat-box">
-                    <div><i class="fas fa-sync"></i> آخر تحديث</div>
-                    <div class="admin-stat-number" style="font-size: 1.8rem;" id="lastUpdate">-</div>
-                    <div style="font-size: 0.9rem; color: var(--gray);">التوقيت المحلي</div>
+                    <div style="font-size: 0.85rem; color: var(--gray);">آخر ساعة</div>
                 </div>
             </div>
             
-            <!-- Filter Bar -->
-            <div class="filter-bar">
-                <input type="text" id="searchIP" class="filter-input" placeholder="🔍 البحث بعنوان IP...">
-                <select id="filterVisits" class="filter-input">
-                    <option value="">📊 جميع الزيارات</option>
-                    <option value="1">زيارة واحدة</option>
-                    <option value="2">مرتين أو أكثر</option>
-                    <option value="5">5 مرات أو أكثر</option>
-                    <option value="10">10 مرات أو أكثر</option>
-                </select>
-                <select id="filterTime" class="filter-input">
-                    <option value="">🕒 جميع الأوقات</option>
-                    <option value="today">اليوم</option>
-                    <option value="yesterday">أمس</option>
-                    <option value="week">هذا الأسبوع</option>
-                    <option value="month">هذا الشهر</option>
-                </select>
-                <button onclick="applyFilters()" class="btn"><i class="fas fa-filter"></i> تطبيق التصفية</button>
-                <button onclick="resetFilters()" class="btn" style="background: var(--gray);">إعادة تعيين</button>
-                <button onclick="exportData()" class="btn btn-success">
-                    <i class="fas fa-download"></i> تصدير البيانات
-                </button>
-            </div>
-            
-            <!-- Visitors Table -->
-            <div class="visitors-table-container">
-                <div style="padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e9ecef;">
-                    <h3 style="margin: 0; color: var(--primary);"><i class="fas fa-list"></i> قائمة الزوار</h3>
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        <span id="visitorsCount" style="color: var(--gray);">0 زائر</span>
-                        <label style="display: flex; align-items: center; gap: 5px;">
-                            <input type="checkbox" id="autoRefresh" checked style="width: 18px; height: 18px;">
-                            <span style="font-size: 0.9rem; color: var(--gray);">تحديث تلقائي</span>
-                        </label>
-                    </div>
+            <div style="padding: 20px;">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                    <input type="text" id="searchIP" placeholder="🔍 البحث بعنوان IP" 
+                           style="padding: 10px; border: 2px solid #ddd; border-radius: 8px; flex: 1; min-width: 200px;">
+                    <button onclick="applyFilters()" class="btn" style="padding: 10px 20px;">
+                        <i class="fas fa-search"></i> بحث
+                    </button>
+                    <button onclick="exportData()" class="btn btn-success" style="padding: 10px 20px;">
+                        <i class="fas fa-download"></i> تصدير
+                    </button>
                 </div>
-                <div style="max-height: 500px; overflow-y: auto;">
+                
+                <div style="overflow-x: auto;">
                     <table class="visitors-table">
                         <thead>
                             <tr>
@@ -1073,91 +890,33 @@
                                 <th>أول زيارة</th>
                                 <th>آخر زيارة</th>
                                 <th>المتصفح</th>
-                                <th>نظام التشغيل</th>
                                 <th>الجهاز</th>
                                 <th>تفاصيل</th>
                             </tr>
                         </thead>
                         <tbody id="visitorsTableBody">
                             <tr>
-                                <td colspan="9" style="text-align: center; padding: 50px;">
-                                    <div class="loading" style="margin: 0 auto 20px;"></div>
+                                <td colspan="8" style="text-align: center; padding: 30px;">
                                     <p>جاري تحميل بيانات الزوار...</p>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
-            
-            <!-- Charts Section -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
-                <div class="chart-container">
-                    <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-chart-bar"></i> توزيع الزيارات</h3>
-                    <div id="visitsChart"></div>
-                </div>
-                <div class="chart-container">
-                    <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-chart-pie"></i> الزوار النشطين</h3>
-                    <div id="activeChart"></div>
-                </div>
-                <div class="chart-container">
-                    <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-calendar"></i> نشاط الأسبوع</h3>
-                    <div id="weeklyChart"></div>
-                </div>
-            </div>
-            
-            <!-- Real-time Stats -->
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 15px; margin-bottom: 30px; border: 1px solid #e9ecef;">
-                <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-bolt"></i> إحصائيات لحظية</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
-                    <div style="text-align: center; padding: 15px; background: white; border-radius: 10px;">
-                        <div style="font-size: 1.2rem; color: var(--gray); margin-bottom: 5px;">الزيارات الآن</div>
-                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary);" id="visitsNow">0</div>
-                    </div>
-                    <div style="text-align: center; padding: 15px; background: white; border-radius: 10px;">
-                        <div style="font-size: 1.2rem; color: var(--gray); margin-bottom: 5px;">الزوار الجدد</div>
-                        <div style="font-size: 2rem; font-weight: bold; color: var(--secondary);" id="newVisitors">0</div>
-                    </div>
-                    <div style="text-align: center; padding: 15px; background: white; border-radius: 10px;">
-                        <div style="font-size: 1.2rem; color: var(--gray); margin-bottom: 5px;">أعلى زائر</div>
-                        <div style="font-size: 2rem; font-weight: bold; color: var(--success);" id="topVisitor">0</div>
-                    </div>
-                    <div style="text-align: center; padding: 15px; background: white; border-radius: 10px;">
-                        <div style="font-size: 1.2rem; color: var(--gray); margin-bottom: 5px;">متوسط الوقت</div>
-                        <div style="font-size: 2rem; font-weight: bold; color: var(--vip);" id="avgTime">0s</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- System Info -->
-            <div style="margin-top: 30px; padding: 15px; background: #f8f9fa; border-radius: 10px; border: 1px solid #e9ecef;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                    <div>
-                        <p style="margin: 0; color: var(--gray); font-size: 0.9rem;">
-                            <i class="fas fa-info-circle"></i> نظام تتبع الزوار المتقدم | الإصدار 2.0 | الرقم السري: 332004
-                        </p>
-                    </div>
-                    <div style="display: flex; gap: 20px;">
-                        <span class="badge badge-success">
-                            <i class="fas fa-database"></i> التخزين: <span id="storageUsed">0KB</span>
-                        </span>
-                        <span class="badge badge-primary">
-                            <i class="fas fa-memory"></i> الذاكرة: <span id="memoryUsed">0KB</span>
-                        </span>
-                        <span class="badge badge-vip">
-                            <i class="fas fa-clock"></i> التشغيل: <span id="uptime">0s</span>
-                        </span>
-                    </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                    <p style="margin: 0; color: var(--gray); font-size: 0.9rem;">
+                        <i class="fas fa-info-circle"></i> نظام تتبع الزوار المتقدم | الإصدار 2.0 | الرقم السري: 332004
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Call Now Button -->
-    <div class="call-now-button">
-        <div class="call-now-main" onclick="makePhoneCall()">
+    <!-- Phone Float -->
+    <div class="phone-float">
+        <div class="phone-main" onclick="makePhoneCall()">
             <i class="fas fa-phone"></i>
-            <span>اتصل الآن</span>
         </div>
     </div>
 
@@ -1168,228 +927,217 @@
         </div>
     </div>
 
-    <!-- Toast Container -->
-    <div id="toastContainer"></div>
-
     <!-- JavaScript -->
     <script>
         // ============================================
-        // نظام تتبع الزوار المتقدم
+        // نظام تتبع الزوار المتطور
         // ============================================
         
         const ADMIN_PASSWORD = "332004";
         let isAdminLoggedIn = false;
-        let autoRefreshInterval = null;
-        let visitorData = [];
-        let startTime = Date.now();
+        let visitorTracker = null;
         
-        class VisitorTracker {
+        class AdvancedVisitorTracker {
             constructor() {
                 this.visitors = this.loadVisitors();
-                this.currentVisitor = null;
-                this.initTracking();
+                this.currentSessionId = this.generateSessionId();
+                this.init();
             }
             
-            initTracking() {
+            init() {
                 // تتبع الزائر الحالي
                 this.trackCurrentVisitor();
                 
-                // تتبع الأحداث
-                this.trackEvents();
+                // تحديث البيانات كل 30 ثانية
+                setInterval(() => this.updateSession(), 30000);
                 
-                // تتبع وقت الجلسة
-                this.trackSessionTime();
+                // حفظ البيانات قبل إغلاق الصفحة
+                window.addEventListener('beforeunload', () => this.saveData());
             }
             
             async trackCurrentVisitor() {
                 try {
-                    // الحصول على IP الزائر
-                    const ipResponse = await fetch('https://api.ipify.org?format=json');
-                    const ipData = await ipResponse.json();
-                    const ip = ipData.ip;
+                    // إنشاء معرف فريد للزائر
+                    const visitorId = this.generateVisitorId();
                     
-                    // الحصول على معلومات المتصفح
+                    // محاولة الحصول على IP حقيقي
+                    let ip = 'غير معروف';
+                    let location = 'غير معروف';
+                    
+                    try {
+                        // محاولة الحصول على IP من خدمة ipify
+                        const ipResponse = await fetch('https://api.ipify.org?format=json', { 
+                            timeout: 5000 
+                        });
+                        const ipData = await ipResponse.json();
+                        ip = ipData.ip;
+                        
+                        // محاولة الحصول على الموقع من ipapi
+                        try {
+                            const locationResponse = await fetch(`https://ipapi.co/${ip}/json/`, { 
+                                timeout: 3000 
+                            });
+                            const locationData = await locationResponse.json();
+                            location = `${locationData.city || ''}, ${locationData.country_name || ''}`;
+                        } catch (locationError) {
+                            // استخدام ipinfo كبديل
+                            try {
+                                const backupResponse = await fetch(`https://ipinfo.io/${ip}/json`, { 
+                                    timeout: 3000 
+                                });
+                                const backupData = await backupResponse.json();
+                                location = `${backupData.city || ''}, ${backupData.country || ''}`;
+                            } catch {
+                                location = 'غير معروف';
+                            }
+                        }
+                    } catch (ipError) {
+                        console.log('⚠️ استخدام IP افتراضي');
+                        ip = this.generateFallbackIP();
+                    }
+                    
+                    // جمع معلومات الجهاز
+                    const deviceInfo = this.collectDeviceInfo();
                     const browserInfo = this.getBrowserInfo();
-                    const osInfo = this.getOSInfo();
-                    const deviceInfo = this.getDeviceInfo();
+                    const screenInfo = this.getScreenInfo();
+                    const networkInfo = this.getNetworkInfo();
                     
-                    // تحضير بيانات الزائر
-                    this.currentVisitor = {
+                    // إنشاء بيانات الزائر
+                    const visitorData = {
+                        id: visitorId,
+                        sessionId: this.currentSessionId,
                         ip: ip,
-                        timestamp: new Date().toISOString(),
-                        date: new Date().toLocaleDateString('ar-EG'),
-                        time: new Date().toLocaleTimeString('ar-EG'),
-                        browser: browserInfo.name,
-                        browserVersion: browserInfo.version,
-                        os: osInfo,
-                        device: deviceInfo.type,
-                        deviceModel: deviceInfo.model,
-                        screen: `${window.screen.width}x${window.screen.height}`,
+                        location: location,
+                        firstVisit: new Date().toISOString(),
+                        lastVisit: new Date().toISOString(),
+                        visitCount: 1,
+                        device: deviceInfo,
+                        browser: browserInfo,
+                        screen: screenInfo,
+                        network: networkInfo,
+                        userAgent: navigator.userAgent.substring(0, 200),
                         language: navigator.language,
+                        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
                         referrer: document.referrer || 'مباشر',
-                        userAgent: navigator.userAgent.substring(0, 200)
+                        currentPage: window.location.href,
+                        sessions: [{
+                            id: this.currentSessionId,
+                            startTime: new Date().toISOString(),
+                            lastActivity: new Date().toISOString()
+                        }]
                     };
                     
-                    // حفظ بيانات الزائر
-                    this.saveVisitor(this.currentVisitor);
-                    
-                    console.log('✅ تم تتبع الزائر:', this.currentVisitor.ip);
-                    
-                } catch (error) {
-                    console.error('❌ خطأ في تتبع الزائر:', error);
-                    // استخدام IP افتراضي في حالة الخطأ
-                    this.currentVisitor = {
-                        ip: 'غير معروف',
-                        timestamp: new Date().toISOString(),
-                        date: new Date().toLocaleDateString('ar-EG'),
-                        time: new Date().toLocaleTimeString('ar-EG'),
-                        browser: this.getBrowserInfo().name,
-                        os: this.getOSInfo(),
-                        device: this.getDeviceInfo().type,
-                        screen: `${window.screen.width}x${window.screen.height}`,
-                        language: navigator.language,
-                        referrer: document.referrer || 'مباشر'
-                    };
-                    this.saveVisitor(this.currentVisitor);
-                }
-            }
-            
-            saveVisitor(visitorData) {
-                try {
-                    // تحميل الزوار الحاليين
-                    let visitors = JSON.parse(localStorage.getItem('visitors') || '[]');
-                    
-                    // البحث عن الزائر الحالي
-                    const existingVisitorIndex = visitors.findIndex(v => v.ip === visitorData.ip);
+                    // البحث عن الزائر الموجود
+                    const existingVisitorIndex = this.visitors.findIndex(v => v.id === visitorId);
                     
                     if (existingVisitorIndex !== -1) {
                         // تحديث الزائر الموجود
-                        const existingVisitor = visitors[existingVisitorIndex];
-                        existingVisitor.visitCount = (existingVisitor.visitCount || 1) + 1;
-                        existingVisitor.lastVisit = visitorData.timestamp;
-                        existingVisitor.lastVisitDate = visitorData.date;
-                        existingVisitor.lastVisitTime = visitorData.time;
-                        existingVisitor.browser = visitorData.browser;
-                        existingVisitor.os = visitorData.os;
-                        existingVisitor.device = visitorData.device;
+                        const existingVisitor = this.visitors[existingVisitorIndex];
+                        existingVisitor.visitCount += 1;
+                        existingVisitor.lastVisit = visitorData.lastVisit;
+                        existingVisitor.lastIP = ip;
+                        existingVisitor.lastLocation = location;
                         
-                        // إضافة زيارة جديدة للسجل
-                        if (!existingVisitor.visits) {
-                            existingVisitor.visits = [];
-                        }
-                        existingVisitor.visits.push({
-                            timestamp: visitorData.timestamp,
-                            date: visitorData.date,
-                            time: visitorData.time,
-                            referrer: visitorData.referrer
-                        });
-                        
-                        // حفظ فقط آخر 20 زيارة
-                        if (existingVisitor.visits.length > 20) {
-                            existingVisitor.visits = existingVisitor.visits.slice(-20);
+                        // إضافة جلسة جديدة إذا كانت مختلفة
+                        const existingSession = existingVisitor.sessions.find(s => s.id === this.currentSessionId);
+                        if (!existingSession) {
+                            existingVisitor.sessions.push({
+                                id: this.currentSessionId,
+                                startTime: new Date().toISOString(),
+                                lastActivity: new Date().toISOString()
+                            });
                         }
                         
-                        visitors[existingVisitorIndex] = existingVisitor;
+                        this.visitors[existingVisitorIndex] = existingVisitor;
                     } else {
                         // إضافة زائر جديد
-                        const newVisitor = {
-                            id: Date.now(),
-                            ip: visitorData.ip,
-                            firstVisit: visitorData.timestamp,
-                            firstVisitDate: visitorData.date,
-                            firstVisitTime: visitorData.time,
-                            lastVisit: visitorData.timestamp,
-                            lastVisitDate: visitorData.date,
-                            lastVisitTime: visitorData.time,
-                            visitCount: 1,
-                            browser: visitorData.browser,
-                            browserVersion: visitorData.browserVersion,
-                            os: visitorData.os,
-                            device: visitorData.device,
-                            deviceModel: visitorData.deviceModel,
-                            screen: visitorData.screen,
-                            language: visitorData.language,
-                            userAgent: visitorData.userAgent,
-                            visits: [{
-                                timestamp: visitorData.timestamp,
-                                date: visitorData.date,
-                                time: visitorData.time,
-                                referrer: visitorData.referrer
-                            }]
-                        };
-                        visitors.unshift(newVisitor);
+                        this.visitors.unshift(visitorData);
                     }
                     
-                    // حفظ فقط آخر 1000 زائر
-                    if (visitors.length > 1000) {
-                        visitors = visitors.slice(0, 1000);
-                    }
+                    // حفظ البيانات
+                    this.saveVisitors();
                     
-                    // حفظ في LocalStorage
-                    localStorage.setItem('visitors', JSON.stringify(visitors));
-                    localStorage.setItem('lastVisit', new Date().toISOString());
-                    
-                    this.visitors = visitors;
+                    console.log('✅ تم تتبع الزائر:', { ip, device: deviceInfo.type });
                     
                 } catch (error) {
-                    console.error('❌ خطأ في حفظ بيانات الزائر:', error);
+                    console.error('❌ خطأ في تتبع الزائر:', error);
+                    this.trackWithFallback();
                 }
             }
             
-            loadVisitors() {
-                try {
-                    return JSON.parse(localStorage.getItem('visitors') || '[]');
-                } catch (error) {
-                    return [];
+            trackWithFallback() {
+                // تتبع بديل عند فشل الحصول على IP
+                const visitorId = this.generateVisitorId();
+                const deviceInfo = this.collectDeviceInfo();
+                
+                const fallbackData = {
+                    id: visitorId,
+                    sessionId: this.currentSessionId,
+                    ip: 'مجهول',
+                    location: 'غير معروف',
+                    firstVisit: new Date().toISOString(),
+                    lastVisit: new Date().toISOString(),
+                    visitCount: 1,
+                    device: deviceInfo,
+                    browser: this.getBrowserInfo(),
+                    screen: this.getScreenInfo(),
+                    userAgent: navigator.userAgent.substring(0, 100),
+                    language: navigator.language,
+                    referrer: document.referrer || 'مباشر'
+                };
+                
+                const existingIndex = this.visitors.findIndex(v => v.id === visitorId);
+                if (existingIndex !== -1) {
+                    this.visitors[existingIndex].visitCount += 1;
+                    this.visitors[existingIndex].lastVisit = fallbackData.lastVisit;
+                } else {
+                    this.visitors.unshift(fallbackData);
                 }
+                
+                this.saveVisitors();
             }
             
-            getVisitorStats() {
-                const visitors = this.visitors;
-                const now = new Date();
-                const today = now.toLocaleDateString('ar-EG');
-                const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
+            collectDeviceInfo() {
+                const ua = navigator.userAgent;
+                let type = 'كمبيوتر';
+                let model = 'غير معروف';
+                let platform = 'غير معروف';
                 
-                // زيارات اليوم
-                const todayVisits = visitors.reduce((total, visitor) => {
-                    if (visitor.lastVisitDate === today) {
-                        return total + visitor.visitCount;
-                    }
-                    return total;
-                }, 0);
+                // تحديد نوع الجهاز
+                if (/Mobi|Android/i.test(ua)) type = 'موبايل';
+                if (/Tablet|iPad/i.test(ua)) type = 'تابلت';
                 
-                // زيارات آخر ساعة
-                const hourlyVisits = visitors.reduce((total, visitor) => {
-                    const lastVisit = new Date(visitor.lastVisit);
-                    if (lastVisit > oneHourAgo) {
-                        return total + 1;
-                    }
-                    return total;
-                }, 0);
+                // تحديد الموديل
+                if (ua.match(/iPhone/i)) model = 'iPhone';
+                else if (ua.match(/iPad/i)) model = 'iPad';
+                else if (ua.match(/Android/i)) model = 'Android';
+                else if (ua.match(/Windows/i)) model = 'Windows';
+                else if (ua.match(/Mac/i)) model = 'Mac';
+                else if (ua.match(/Linux/i)) model = 'Linux';
                 
-                // الزوار النشطين الآن (آخر 5 دقائق)
-                const activeVisitors = visitors.filter(visitor => {
-                    const lastVisit = new Date(visitor.lastVisit);
-                    const fiveMinutesAgo = new Date(now.getTime() - 5 * 60 * 1000);
-                    return lastVisit > fiveMinutesAgo;
-                }).length;
+                // تحديد المنصة
+                if (ua.match(/Windows/i)) platform = 'Windows';
+                else if (ua.match(/Mac/i)) platform = 'macOS';
+                else if (ua.match(/Linux/i)) platform = 'Linux';
+                else if (ua.match(/Android/i)) platform = 'Android';
+                else if (ua.match(/iPhone|iPad/i)) platform = 'iOS';
                 
-                // أعلى زائر
-                const topVisitor = visitors.reduce((max, visitor) => {
-                    return visitor.visitCount > max.visitCount ? visitor : max;
-                }, { visitCount: 0 });
+                // تحديد المعالج
+                const cores = navigator.hardwareConcurrency || 'غير معروف';
+                
+                // تحديد الذاكرة
+                const memory = performance.memory ? 
+                    Math.round(performance.memory.totalJSHeapSize / 1024 / 1024) + 'MB' : 
+                    'غير معروف';
                 
                 return {
-                    totalVisitors: visitors.length,
-                    totalVisits: visitors.reduce((sum, v) => sum + v.visitCount, 0),
-                    todayVisits: todayVisits,
-                    hourlyVisits: hourlyVisits,
-                    activeVisitors: activeVisitors,
-                    topVisitor: topVisitor.visitCount || 0,
-                    avgVisits: visitors.length > 0 
-                        ? (visitors.reduce((sum, v) => sum + v.visitCount, 0) / visitors.length).toFixed(2)
-                        : 0,
-                    lastUpdated: now.toLocaleString('ar-EG')
+                    type: type,
+                    model: model,
+                    platform: platform,
+                    cores: cores,
+                    memory: memory,
+                    touch: 'ontouchstart' in window ? 'نعم' : 'لا',
+                    online: navigator.onLine ? 'نعم' : 'لا'
                 };
             }
             
@@ -1397,218 +1145,174 @@
                 const ua = navigator.userAgent;
                 let name = 'غير معروف';
                 let version = '';
+                let engine = 'غير معروف';
                 
-                if (ua.includes('Chrome')) name = 'Chrome';
+                // تحديد المتصفح
+                if (ua.includes('Chrome') && !ua.includes('Edg')) name = 'Chrome';
                 else if (ua.includes('Firefox')) name = 'Firefox';
                 else if (ua.includes('Safari') && !ua.includes('Chrome')) name = 'Safari';
                 else if (ua.includes('Edg')) name = 'Edge';
-                else if (ua.includes('Trident')) name = 'IE';
+                else if (ua.includes('Trident') || ua.includes('MSIE')) name = 'Internet Explorer';
+                else if (ua.includes('Opera') || ua.includes('OPR')) name = 'Opera';
                 
-                // استخراج الإصدار
-                const match = ua.match(/(chrome|firefox|safari|edge|msie|trident(?=\/))\/?\s*(\d+)/i);
-                if (match && match[2]) {
-                    version = match[2];
+                // تحديد الإصدار
+                const versionMatch = ua.match(/(chrome|firefox|safari|edge|msie|trident(?=\/))\/?\s*(\d+)/i);
+                if (versionMatch && versionMatch[2]) {
+                    version = versionMatch[2];
                 }
                 
-                return { name, version };
+                // تحديد محرك التصميم
+                if (ua.includes('AppleWebKit')) engine = 'WebKit';
+                else if (ua.includes('Gecko')) engine = 'Gecko';
+                else if (ua.includes('Trident')) engine = 'Trident';
+                
+                return {
+                    name: name,
+                    version: version,
+                    engine: engine,
+                    cookies: navigator.cookieEnabled ? 'مفعل' : 'معطل',
+                    javascript: 'مفعل',
+                    cookiesSize: document.cookie.length + ' bytes'
+                };
             }
             
-            getOSInfo() {
-                const ua = navigator.userAgent;
-                let os = 'غير معروف';
-                
-                if (ua.includes('Windows')) os = 'Windows';
-                else if (ua.includes('Mac')) os = 'macOS';
-                else if (ua.includes('Linux')) os = 'Linux';
-                else if (ua.includes('Android')) os = 'Android';
-                else if (ua.includes('iPhone') || ua.includes('iPad')) os = 'iOS';
-                
-                return os;
+            getScreenInfo() {
+                return {
+                    width: screen.width,
+                    height: screen.height,
+                    availWidth: screen.availWidth,
+                    availHeight: screen.availHeight,
+                    colorDepth: screen.colorDepth + ' بت',
+                    pixelDepth: screen.pixelDepth + ' بت',
+                    orientation: screen.orientation ? screen.orientation.type : 'غير معروف'
+                };
             }
             
-            getDeviceInfo() {
-                const ua = navigator.userAgent;
-                let type = 'Desktop';
-                let model = 'غير معروف';
-                
-                if (/Mobi|Android/i.test(ua)) type = 'Mobile';
-                if (/Tablet|iPad/i.test(ua)) type = 'Tablet';
-                
-                // محاولة تحديد الموديل
-                if (ua.includes('iPhone')) model = 'iPhone';
-                else if (ua.includes('iPad')) model = 'iPad';
-                else if (ua.includes('Android')) model = 'Android';
-                else if (ua.includes('Windows')) model = 'Windows PC';
-                else if (ua.includes('Mac')) model = 'Mac';
-                
-                return { type, model };
+            getNetworkInfo() {
+                return {
+                    connection: navigator.connection ? 
+                        (navigator.connection.effectiveType || 'غير معروف') : 
+                        'غير معروف',
+                    downlink: navigator.connection ? 
+                        (navigator.connection.downlink + ' Mbps') : 
+                        'غير معروف',
+                    rtt: navigator.connection ? 
+                        (navigator.connection.rtt + ' ms') : 
+                        'غير معروف'
+                };
             }
             
-            trackEvents() {
-                // تتبع النقر على الروابط
-                document.addEventListener('click', (e) => {
-                    if (e.target.tagName === 'A' || e.target.closest('a')) {
-                        this.trackClick(e.target);
+            generateVisitorId() {
+                // إنشاء معرف فريد يعتمد على خصائص الجهاز
+                const components = [
+                    navigator.userAgent,
+                    navigator.language,
+                    screen.width,
+                    screen.height,
+                    screen.colorDepth,
+                    new Date().getTimezoneOffset(),
+                    !!navigator.cookieEnabled,
+                    !!navigator.javaEnabled()
+                ].join('|');
+                
+                // استخدام hash بسيط
+                let hash = 0;
+                for (let i = 0; i < components.length; i++) {
+                    const char = components.charCodeAt(i);
+                    hash = ((hash << 5) - hash) + char;
+                    hash = hash & hash;
+                }
+                
+                return 'visitor_' + Math.abs(hash).toString(16);
+            }
+            
+            generateSessionId() {
+                return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            }
+            
+            generateFallbackIP() {
+                // إنشاء IP افتراضي يعتمد على الوقت والبيانات المحلية
+                const timestamp = Date.now();
+                const random = Math.floor(Math.random() * 1000);
+                return `192.168.${(timestamp % 256)}.${random % 256}`;
+            }
+            
+            updateSession() {
+                const now = new Date().toISOString();
+                this.visitors.forEach(visitor => {
+                    const session = visitor.sessions?.find(s => s.id === this.currentSessionId);
+                    if (session) {
+                        session.lastActivity = now;
                     }
                 });
-                
-                // تتبع إرسال النماذج
-                document.addEventListener('submit', (e) => {
-                    this.trackFormSubmit(e.target);
-                });
-                
-                // تتبع التمرير
-                let scrollTimeout;
-                window.addEventListener('scroll', () => {
-                    clearTimeout(scrollTimeout);
-                    scrollTimeout = setTimeout(() => {
-                        this.trackScroll();
-                    }, 100);
-                });
-                
-                // تتبع وقت التركيز على الصفحة
-                document.addEventListener('visibilitychange', () => {
-                    if (document.visibilityState === 'visible') {
-                        this.trackPageFocus();
-                    } else {
-                        this.trackPageBlur();
-                    }
-                });
+                this.saveVisitors();
             }
             
-            trackClick(element) {
-                const clickData = {
-                    type: 'click',
-                    element: element.tagName,
-                    text: element.textContent?.substring(0, 50) || '',
-                    timestamp: new Date().toISOString()
-                };
-                this.saveEvent(clickData);
-            }
-            
-            trackFormSubmit(form) {
-                const formData = {
-                    type: 'form_submit',
-                    formId: form.id || 'unknown',
-                    timestamp: new Date().toISOString()
-                };
-                this.saveEvent(formData);
-            }
-            
-            trackScroll() {
-                const scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
-                const scrollData = {
-                    type: 'scroll',
-                    percent: scrollPercent,
-                    timestamp: new Date().toISOString()
-                };
-                this.saveEvent(scrollData);
-            }
-            
-            trackPageFocus() {
-                const focusData = {
-                    type: 'page_focus',
-                    timestamp: new Date().toISOString()
-                };
-                this.saveEvent(focusData);
-            }
-            
-            trackPageBlur() {
-                const blurData = {
-                    type: 'page_blur',
-                    timestamp: new Date().toISOString()
-                };
-                this.saveEvent(blurData);
-            }
-            
-            trackSessionTime() {
-                setInterval(() => {
-                    const sessionTime = Math.floor((Date.now() - startTime) / 1000);
-                    const sessionData = {
-                        type: 'session_time',
-                        seconds: sessionTime,
-                        timestamp: new Date().toISOString()
-                    };
-                    this.saveEvent(sessionData);
-                }, 30000); // كل 30 ثانية
-            }
-            
-            saveEvent(eventData) {
+            loadVisitors() {
                 try {
-                    let events = JSON.parse(localStorage.getItem('visitor_events') || '[]');
-                    events.push(eventData);
-                    
-                    // حفظ فقط آخر 1000 حدث
-                    if (events.length > 1000) {
-                        events = events.slice(-1000);
-                    }
-                    
-                    localStorage.setItem('visitor_events', JSON.stringify(events));
+                    return JSON.parse(localStorage.getItem('advanced_visitors') || '[]');
                 } catch (error) {
-                    console.error('❌ خطأ في حفظ الحدث:', error);
+                    console.error('❌ خطأ في تحميل الزوار:', error);
+                    return [];
                 }
+            }
+            
+            saveVisitors() {
+                try {
+                    // حفظ فقط آخر 500 زائر
+                    if (this.visitors.length > 500) {
+                        this.visitors = this.visitors.slice(0, 500);
+                    }
+                    localStorage.setItem('advanced_visitors', JSON.stringify(this.visitors));
+                } catch (error) {
+                    console.error('❌ خطأ في حفظ الزوار:', error);
+                }
+            }
+            
+            saveData() {
+                this.saveVisitors();
+            }
+            
+            getVisitorStats() {
+                const now = new Date();
+                const today = now.toLocaleDateString('ar-EG');
+                const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
+                
+                const totalVisitors = this.visitors.length;
+                const totalVisits = this.visitors.reduce((sum, v) => sum + v.visitCount, 0);
+                
+                const todayVisits = this.visitors.filter(v => {
+                    const lastVisit = new Date(v.lastVisit);
+                    return lastVisit.toLocaleDateString('ar-EG') === today;
+                }).reduce((sum, v) => sum + v.visitCount, 0);
+                
+                const hourlyVisits = this.visitors.filter(v => {
+                    const lastVisit = new Date(v.lastVisit);
+                    return lastVisit > oneHourAgo;
+                }).length;
+                
+                const uniqueIPs = [...new Set(this.visitors.map(v => v.ip).filter(ip => ip && ip !== 'مجهول'))];
+                
+                return {
+                    totalVisitors: totalVisitors,
+                    totalVisits: totalVisits,
+                    todayVisits: todayVisits,
+                    hourlyVisits: hourlyVisits,
+                    uniqueIPs: uniqueIPs.length,
+                    lastUpdated: now.toLocaleString('ar-EG')
+                };
             }
             
             getFilteredVisitors(filters = {}) {
                 let filtered = [...this.visitors];
                 
-                // تصفية حسب IP
                 if (filters.ip) {
-                    filtered = filtered.filter(v => v.ip.includes(filters.ip));
-                }
-                
-                // تصفية حسب عدد الزيارات
-                if (filters.visits) {
-                    const minVisits = parseInt(filters.visits);
-                    filtered = filtered.filter(v => v.visitCount >= minVisits);
-                }
-                
-                // تصفية حسب الوقت
-                if (filters.time) {
-                    const now = new Date();
-                    let cutoffDate;
-                    
-                    switch(filters.time) {
-                        case 'today':
-                            cutoffDate = new Date(now.setHours(0, 0, 0, 0));
-                            break;
-                        case 'yesterday':
-                            cutoffDate = new Date(now.setDate(now.getDate() - 1));
-                            cutoffDate.setHours(0, 0, 0, 0);
-                            break;
-                        case 'week':
-                            cutoffDate = new Date(now.setDate(now.getDate() - 7));
-                            break;
-                        case 'month':
-                            cutoffDate = new Date(now.setMonth(now.getMonth() - 1));
-                            break;
-                    }
-                    
-                    if (cutoffDate) {
-                        filtered = filtered.filter(v => new Date(v.lastVisit) >= cutoffDate);
-                    }
+                    filtered = filtered.filter(v => 
+                        v.ip && v.ip.includes(filters.ip)
+                    );
                 }
                 
                 return filtered;
-            }
-            
-            clearOldData(days = 30) {
-                try {
-                    const cutoffDate = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
-                    const oldVisitors = this.visitors.filter(v => new Date(v.lastVisit) < cutoffDate);
-                    const remainingVisitors = this.visitors.filter(v => new Date(v.lastVisit) >= cutoffDate);
-                    
-                    localStorage.setItem('visitors', JSON.stringify(remainingVisitors));
-                    this.visitors = remainingVisitors;
-                    
-                    return {
-                        deleted: oldVisitors.length,
-                        remaining: remainingVisitors.length
-                    };
-                } catch (error) {
-                    console.error('❌ خطأ في حذف البيانات القديمة:', error);
-                    return null;
-                }
             }
             
             exportData() {
@@ -1639,22 +1343,23 @@
                 }
             }
             
-            getStorageInfo() {
-                try {
-                    const visitorsStr = JSON.stringify(this.visitors);
-                    const eventsStr = localStorage.getItem('visitor_events') || '[]';
-                    
-                    const visitorsSize = visitorsStr.length / 1024; // KB
-                    const eventsSize = eventsStr.length / 1024; // KB
-                    const totalSize = visitorsSize + eventsSize;
-                    
-                    return {
-                        visitors: visitorsSize.toFixed(2),
-                        events: eventsSize.toFixed(2),
-                        total: totalSize.toFixed(2)
-                    };
-                } catch (error) {
-                    return { visitors: '0', events: '0', total: '0' };
+            getDeviceIcon(deviceType) {
+                switch(deviceType) {
+                    case 'موبايل': return 'mobile-alt';
+                    case 'تابلت': return 'tablet-alt';
+                    default: return 'desktop';
+                }
+            }
+            
+            getBrowserIcon(browserName) {
+                switch(browserName.toLowerCase()) {
+                    case 'chrome': return 'chrome';
+                    case 'firefox': return 'firefox';
+                    case 'safari': return 'safari';
+                    case 'edge': return 'edge';
+                    case 'opera': return 'opera';
+                    case 'internet explorer': return 'internet-explorer';
+                    default: return 'globe';
                 }
             }
         }
@@ -1663,18 +1368,18 @@
         // تهيئة التطبيق
         // ============================================
         
-        const tracker = new VisitorTracker();
-        let currentFilters = {};
-        
         document.addEventListener('DOMContentLoaded', function() {
-            // 1. تعيين السنة الحالية في الفوتر
+            // 1. تعيين السنة الحالية
             document.getElementById('currentYear').textContent = new Date().getFullYear();
             
-            // 2. تحديث إحصائيات العداد
+            // 2. بدء تتبع الزوار
+            visitorTracker = new AdvancedVisitorTracker();
+            
+            // 3. تحديث العدادات المتحركة
             const counters = document.querySelectorAll('.stat-number');
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-count');
-                const increment = target / 200;
+                const increment = target / 100;
                 let current = 0;
                 
                 const updateCounter = () => {
@@ -1690,7 +1395,7 @@
                 updateCounter();
             });
             
-            // 3. نموذج الاتصال
+            // 4. نموذج الاتصال
             document.getElementById('contactForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
@@ -1701,17 +1406,14 @@
                     message: document.getElementById('message').value
                 };
                 
-                // إرسال عبر واتساب
                 const whatsappMessage = `مرحباً، أود طلب خدمة تنظيف%0A%0Aالاسم: ${encodeURIComponent(formData.name)}%0Aالهاتف: ${encodeURIComponent(formData.phone)}%0Aالخدمة: ${encodeURIComponent(formData.service)}%0Aالرسالة: ${encodeURIComponent(formData.message)}`;
                 window.open(`https://wa.me/971543205058?text=${whatsappMessage}`, '_blank');
                 
-                // إعادة تعيين النموذج
                 this.reset();
-                
                 showToast('تم إرسال طلبك بنجاح! سيتم فتح واتساب لإكمال الطلب.', 'success');
             });
             
-            // 4. القائمة المتنقلة
+            // 5. القائمة المتنقلة
             const mobileBtn = document.querySelector('.mobile-menu-btn');
             const navLinks = document.querySelector('.nav-links');
             
@@ -1722,13 +1424,13 @@
                 navLinks.style.top = '100%';
                 navLinks.style.right = '0';
                 navLinks.style.background = 'white';
-                navLinks.style.padding = '20px';
-                navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+                navLinks.style.padding = '15px';
+                navLinks.style.boxShadow = '0 8px 20px rgba(0,0,0,0.1)';
                 navLinks.style.borderRadius = '10px';
-                navLinks.style.width = '200px';
+                navLinks.style.width = '180px';
             });
             
-            // 5. إغلاق القائمة عند النقر على رابط
+            // 6. إغلاق القائمة عند النقر على رابط
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', () => {
                     if (window.innerWidth <= 992) {
@@ -1737,7 +1439,7 @@
                 });
             });
             
-            // 6. إخفاء القائمة عند تغيير حجم النافذة
+            // 7. إخفاء القائمة عند تغيير حجم النافذة
             window.addEventListener('resize', () => {
                 if (window.innerWidth > 992) {
                     navLinks.style.display = 'flex';
@@ -1749,15 +1451,12 @@
                 }
             });
             
-            // 7. تعيين التركيز على حقل الرقم السري
+            // 8. التركيز على حقل الرقم السري
             document.getElementById('adminPassword')?.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     checkAdminPassword();
                 }
             });
-            
-            // 8. تحديث وقت التشغيل
-            setInterval(updateUptime, 1000);
         });
         
         // ============================================
@@ -1777,7 +1476,6 @@
                 closeModal('loginModal');
                 document.getElementById('adminPanel').style.display = 'flex';
                 refreshVisitorData();
-                startAutoRefresh();
                 showToast('مرحباً بك في لوحة تحكم تتبع الزوار!', 'success');
             } else {
                 showToast('الرقم السري غير صحيح. الرقم السري هو: 332004', 'error');
@@ -1789,56 +1487,37 @@
         function closeAdminPanel() {
             isAdminLoggedIn = false;
             document.getElementById('adminPanel').style.display = 'none';
-            stopAutoRefresh();
             showToast('تم تسجيل الخروج من لوحة التحكم', 'info');
         }
         
         function refreshVisitorData() {
-            const stats = tracker.getVisitorStats();
-            const storageInfo = tracker.getStorageInfo();
-            const visitors = tracker.getFilteredVisitors(currentFilters);
+            if (!visitorTracker) return;
+            
+            const stats = visitorTracker.getVisitorStats();
+            const visitors = visitorTracker.getFilteredVisitors({
+                ip: document.getElementById('searchIP').value
+            });
             
             // تحديث الإحصائيات
             document.getElementById('totalVisitors').textContent = stats.totalVisitors;
             document.getElementById('totalVisits').textContent = stats.totalVisits;
             document.getElementById('todayVisits').textContent = stats.todayVisits;
             document.getElementById('hourlyVisits').textContent = stats.hourlyVisits;
-            document.getElementById('avgVisits').textContent = stats.avgVisits;
-            document.getElementById('lastUpdate').textContent = stats.lastUpdated;
-            
-            // تحديث الإحصائيات اللحظية
-            document.getElementById('visitsNow').textContent = stats.activeVisitors;
-            document.getElementById('newVisitors').textContent = tracker.visitors.filter(v => {
-                const visitDate = new Date(v.firstVisit);
-                const today = new Date();
-                return visitDate.toDateString() === today.toDateString();
-            }).length;
-            document.getElementById('topVisitor').textContent = stats.topVisitor;
-            document.getElementById('avgTime').textContent = '30s'; // يمكن تحسينه لاحقاً
-            
-            // تحديث معلومات التخزين
-            document.getElementById('storageUsed').textContent = `${storageInfo.total}KB`;
-            document.getElementById('memoryUsed').textContent = `${Math.round(performance.memory?.usedJSHeapSize / 1024 / 1024) || 0}MB`;
+            document.getElementById('adminSubtitle').textContent = `آخر تحديث: ${stats.lastUpdated}`;
             
             // تحديث الجدول
             updateVisitorsTable(visitors);
-            
-            // تحديث الرسوم البيانية
-            updateCharts(stats, visitors);
-            
-            document.getElementById('adminSubtitle').textContent = `آخر تحديث: ${stats.lastUpdated}`;
-            document.getElementById('visitorsCount').textContent = `${visitors.length} زائر`;
         }
         
         function updateVisitorsTable(visitors) {
             const tbody = document.getElementById('visitorsTableBody');
             
-            if (visitors.length === 0) {
+            if (!visitors || visitors.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="9" style="text-align: center; padding: 50px;">
-                            <i class="fas fa-search" style="font-size: 3rem; color: #ddd; margin-bottom: 20px;"></i>
-                            <p>لا توجد بيانات تطابق معايير البحث</p>
+                        <td colspan="8" style="text-align: center; padding: 30px;">
+                            <i class="fas fa-search" style="font-size: 2rem; color: #ddd; margin-bottom: 10px;"></i>
+                            <p>لا توجد بيانات للزوار</p>
                         </td>
                     </tr>
                 `;
@@ -1846,7 +1525,7 @@
             }
             
             let html = '';
-            visitors.slice(0, 100).forEach((visitor, index) => {
+            visitors.slice(0, 50).forEach((visitor, index) => {
                 const firstVisit = new Date(visitor.firstVisit);
                 const lastVisit = new Date(visitor.lastVisit);
                 const now = new Date();
@@ -1865,45 +1544,44 @@
                 if (visitor.visitCount === 1) {
                     visitsBadge = '<span class="badge badge-success">جديد</span>';
                 } else if (visitor.visitCount >= 10) {
-                    visitsBadge = '<span class="badge badge-vip">نشط</span>';
+                    visitsBadge = '<span class="badge badge-warning">نشط جداً</span>';
                 } else if (visitor.visitCount >= 5) {
                     visitsBadge = '<span class="badge badge-primary">مكرر</span>';
                 }
+                
+                const deviceIcon = visitorTracker.getDeviceIcon(visitor.device?.type || 'كمبيوتر');
+                const browserIcon = visitorTracker.getBrowserIcon(visitor.browser?.name || 'غير معروف');
                 
                 html += `
                     <tr>
                         <td style="font-weight: bold;">${index + 1}</td>
                         <td>
-                            <code style="background: #f8f9fa; padding: 2px 5px; border-radius: 3px;">${visitor.ip}</code>
+                            <code style="background: #f8f9fa; padding: 2px 5px; border-radius: 3px; font-size: 0.85rem;">${visitor.ip || 'غير معروف'}</code>
                             ${visitsBadge}
                         </td>
                         <td style="text-align: center;">
-                            <span style="font-weight: bold; font-size: 1.2rem; color: var(--primary);">${visitor.visitCount}</span>
+                            <span style="font-weight: bold; color: var(--primary);">${visitor.visitCount || 1}</span>
                         </td>
                         <td>
-                            ${visitor.firstVisitDate}<br>
-                            <small style="color: var(--gray);">${visitor.firstVisitTime}</small>
+                            ${firstVisit.toLocaleDateString('ar-EG')}<br>
+                            <small style="color: var(--gray); font-size: 0.8rem;">${firstVisit.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })}</small>
                         </td>
                         <td>
-                            ${visitor.lastVisitDate}<br>
-                            <small style="color: var(--gray);">${visitor.lastVisitTime}</small>
+                            ${lastVisit.toLocaleDateString('ar-EG')}<br>
+                            <small style="color: var(--gray); font-size: 0.8rem;">${lastVisit.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })}</small>
                             ${timeBadge}
                         </td>
                         <td>
-                            <i class="fab fa-${getBrowserIcon(visitor.browser)}"></i>
-                            ${visitor.browser} ${visitor.browserVersion || ''}
+                            <i class="fab fa-${browserIcon}" style="margin-left: 5px;"></i>
+                            <span style="font-size: 0.9rem;">${visitor.browser?.name || 'غير معروف'}</span>
                         </td>
                         <td>
-                            <i class="fab fa-${getOSIcon(visitor.os)}"></i>
-                            ${visitor.os}
+                            <i class="fas fa-${deviceIcon}" style="margin-left: 5px;"></i>
+                            <span style="font-size: 0.9rem;">${visitor.device?.type || 'غير معروف'}</span>
                         </td>
                         <td>
-                            <i class="fas fa-${getDeviceIcon(visitor.device)}"></i>
-                            ${visitor.device}
-                        </td>
-                        <td>
-                            <button onclick="viewVisitorDetails('${visitor.ip}')" class="btn" style="padding: 5px 10px; font-size: 0.8rem;">
-                                <i class="fas fa-eye"></i> تفاصيل
+                            <button onclick="viewVisitorDetails(${index})" class="btn" style="padding: 5px 10px; font-size: 0.8rem;">
+                                <i class="fas fa-eye"></i> عرض
                             </button>
                         </td>
                     </tr>
@@ -1913,266 +1591,119 @@
             tbody.innerHTML = html;
         }
         
-        function updateCharts(stats, visitors) {
-            // مخطط توزيع الزيارات
-            const visitsDistribution = {
-                '1 زيارة': visitors.filter(v => v.visitCount === 1).length,
-                '2-5 زيارات': visitors.filter(v => v.visitCount >= 2 && v.visitCount <= 5).length,
-                '6-10 زيارات': visitors.filter(v => v.visitCount >= 6 && v.visitCount <= 10).length,
-                '10+ زيارات': visitors.filter(v => v.visitCount > 10).length
-            };
-            
-            let visitsHtml = '';
-            Object.entries(visitsDistribution).forEach(([label, count]) => {
-                const percentage = visitors.length > 0 ? Math.round((count / visitors.length) * 100) : 0;
-                visitsHtml += `
-                    <div style="margin-bottom: 10px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                            <span>${label}</span>
-                            <span>${count} (${percentage}%)</span>
-                        </div>
-                        <div style="height: 8px; background: #e9ecef; border-radius: 4px; overflow: hidden;">
-                            <div style="height: 100%; width: ${percentage}%; background: var(--primary); border-radius: 4px;"></div>
-                        </div>
-                    </div>
-                `;
-            });
-            document.getElementById('visitsChart').innerHTML = visitsHtml;
-            
-            // مخطط الزوار النشطين
-            const now = new Date();
-            const activeVisitors = visitors.filter(v => {
-                const lastVisit = new Date(v.lastVisit);
-                const fiveMinutesAgo = new Date(now.getTime() - 5 * 60 * 1000);
-                return lastVisit > fiveMinutesAgo;
-            }).length;
-            
-            const inactiveVisitors = visitors.length - activeVisitors;
-            
-            let activeHtml = `
-                <div style="display: flex; flex-direction: column; align-items: center; padding: 20px;">
-                    <div style="width: 150px; height: 150px; position: relative; margin-bottom: 20px;">
-                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; 
-                             background: conic-gradient(var(--primary) 0% ${(activeVisitors/visitors.length)*100}%, #e9ecef ${(activeVisitors/visitors.length)*100}% 100%);">
-                        </div>
-                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-                             width: 100px; height: 100px; background: white; border-radius: 50%; display: flex; 
-                             align-items: center; justify-content: center; flex-direction: column;">
-                            <span style="font-size: 1.8rem; font-weight: bold; color: var(--primary);">${activeVisitors}</span>
-                            <span style="font-size: 0.9rem; color: var(--gray);">نشط</span>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 20px;">
-                        <div style="text-align: center;">
-                            <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary);">${activeVisitors}</div>
-                            <div style="font-size: 0.9rem; color: var(--gray);">نشط الآن</div>
-                        </div>
-                        <div style="text-align: center;">
-                            <div style="font-size: 1.2rem; font-weight: bold; color: var(--gray);">${inactiveVisitors}</div>
-                            <div style="font-size: 0.9rem; color: var(--gray);">غير نشط</div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            document.getElementById('activeChart').innerHTML = visitors.length > 0 ? activeHtml : '<p style="color: #666; text-align: center;">لا توجد بيانات</p>';
-            
-            // مخطط نشاط الأسبوع
-            const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
-            const today = new Date();
-            const weeklyData = {};
-            
-            days.forEach((day, i) => {
-                const date = new Date(today);
-                date.setDate(today.getDate() - i);
-                const dateStr = date.toLocaleDateString('ar-EG');
-                
-                const dayVisits = visitors.filter(v => v.lastVisitDate === dateStr).reduce((sum, v) => sum + v.visitCount, 0);
-                weeklyData[day] = dayVisits;
-            });
-            
-            const maxVisits = Math.max(...Object.values(weeklyData), 1);
-            
-            let weeklyHtml = '';
-            Object.entries(weeklyData).reverse().forEach(([day, visits]) => {
-                const height = (visits / maxVisits) * 100;
-                weeklyHtml += `
-                    <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
-                        <div style="font-size: 0.8rem; margin-bottom: 5px;">${day}</div>
-                        <div style="width: 30px; background: var(--secondary); border-radius: 5px 5px 0 0; 
-                             height: ${height}%; min-height: 5px;"></div>
-                        <div style="font-size: 0.9rem; font-weight: bold; margin-top: 5px;">${visits}</div>
-                    </div>
-                `;
-            });
-            
-            document.getElementById('weeklyChart').innerHTML = `
-                <div style="display: flex; height: 150px; align-items: flex-end; gap: 10px; padding: 20px 0;">
-                    ${weeklyHtml}
-                </div>
-            `;
-        }
-        
-        function getBrowserIcon(browser) {
-            switch(browser.toLowerCase()) {
-                case 'chrome': return 'chrome';
-                case 'firefox': return 'firefox';
-                case 'safari': return 'safari';
-                case 'edge': return 'edge';
-                case 'ie': return 'internet-explorer';
-                default: return 'globe';
-            }
-        }
-        
-        function getOSIcon(os) {
-            switch(os.toLowerCase()) {
-                case 'windows': return 'windows';
-                case 'macos': return 'apple';
-                case 'linux': return 'linux';
-                case 'android': return 'android';
-                case 'ios': return 'mobile-alt';
-                default: return 'desktop';
-            }
-        }
-        
-        function getDeviceIcon(device) {
-            switch(device.toLowerCase()) {
-                case 'mobile': return 'mobile-alt';
-                case 'tablet': return 'tablet-alt';
-                default: return 'desktop';
-            }
-        }
-        
         function applyFilters() {
-            currentFilters = {
-                ip: document.getElementById('searchIP').value,
-                visits: document.getElementById('filterVisits').value,
-                time: document.getElementById('filterTime').value
-            };
-            
             refreshVisitorData();
-            showToast('تم تطبيق التصفية', 'info');
-        }
-        
-        function resetFilters() {
-            document.getElementById('searchIP').value = '';
-            document.getElementById('filterVisits').value = '';
-            document.getElementById('filterTime').value = '';
-            
-            currentFilters = {};
-            refreshVisitorData();
-            showToast('تم إعادة تعيين التصفية', 'info');
         }
         
         function exportData() {
-            if (tracker.exportData()) {
+            if (visitorTracker.exportData()) {
                 showToast('تم تصدير البيانات بنجاح', 'success');
             } else {
                 showToast('حدث خطأ أثناء التصدير', 'error');
             }
         }
         
-        function viewVisitorDetails(ip) {
-            const visitor = tracker.visitors.find(v => v.ip === ip);
-            if (visitor) {
-                const details = `
-                    <div style="background: white; padding: 30px; border-radius: 15px; max-width: 600px; margin: 0 auto;">
-                        <h3 style="color: var(--primary); margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;">
-                            <i class="fas fa-user-circle"></i> تفاصيل الزائر
-                        </h3>
-                        
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
-                            <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-                                <div style="font-weight: bold; color: var(--gray); margin-bottom: 5px;">عنوان IP</div>
-                                <div style="font-family: monospace; font-size: 1.1rem;">${visitor.ip}</div>
-                            </div>
-                            <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-                                <div style="font-weight: bold; color: var(--gray); margin-bottom: 5px;">عدد الزيارات</div>
-                                <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">${visitor.visitCount}</div>
+        function viewVisitorDetails(index) {
+            if (!visitorTracker || !visitorTracker.visitors[index]) return;
+            
+            const visitor = visitorTracker.visitors[index];
+            const device = visitor.device || {};
+            const browser = visitor.browser || {};
+            const screen = visitor.screen || {};
+            
+            const details = `
+                <div style="background: white; padding: 25px; border-radius: 15px; max-width: 500px; width: 100%;">
+                    <button class="close-btn" onclick="closeModal('detailsModal')">×</button>
+                    <h3 style="color: var(--primary); margin-bottom: 20px; text-align: center;">
+                        <i class="fas fa-user-circle"></i> تفاصيل الزائر
+                    </h3>
+                    
+                    <div style="display: grid; gap: 15px;">
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+                            <div style="font-weight: bold; color: var(--gray); margin-bottom: 5px;">المعلومات الأساسية</div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div>
+                                    <div style="font-size: 0.9rem; color: var(--gray);">عنوان IP</div>
+                                    <div style="font-weight: bold;">${visitor.ip || 'غير معروف'}</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.9rem; color: var(--gray);">عدد الزيارات</div>
+                                    <div style="font-weight: bold; color: var(--primary);">${visitor.visitCount || 1}</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.9rem; color: var(--gray);">الموقع</div>
+                                    <div>${visitor.location || 'غير معروف'}</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.9rem; color: var(--gray);">اللغة</div>
+                                    <div>${visitor.language || 'غير معروف'}</div>
+                                </div>
                             </div>
                         </div>
                         
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
-                            <div>
-                                <div style="font-weight: bold; color: var(--gray);">أول زيارة</div>
-                                <div>${visitor.firstVisitDate}</div>
-                                <div style="font-size: 0.9rem; color: var(--gray);">${visitor.firstVisitTime}</div>
-                            </div>
-                            <div>
-                                <div style="font-weight: bold; color: var(--gray);">آخر زيارة</div>
-                                <div>${visitor.lastVisitDate}</div>
-                                <div style="font-size: 0.9rem; color: var(--gray);">${visitor.lastVisitTime}</div>
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+                            <div style="font-weight: bold; color: var(--gray); margin-bottom: 5px;">معلومات الجهاز</div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div>
+                                    <div style="font-size: 0.9rem; color: var(--gray);">نوع الجهاز</div>
+                                    <div><i class="fas fa-${visitorTracker.getDeviceIcon(device.type)}"></i> ${device.type || 'غير معروف'}</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.9rem; color: var(--gray);">النظام</div>
+                                    <div>${device.platform || 'غير معروف'}</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.9rem; color: var(--gray);">المعالج</div>
+                                    <div>${device.cores || 'غير معروف'} نواة</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.9rem; color: var(--gray);">الذاكرة</div>
+                                    <div>${device.memory || 'غير معروف'}</div>
+                                </div>
                             </div>
                         </div>
                         
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
-                            <div style="font-weight: bold; color: var(--gray); margin-bottom: 10px;">معلومات الجهاز</div>
-                            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+                            <div style="font-weight: bold; color: var(--gray); margin-bottom: 5px;">معلومات المتصفح</div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                                 <div>
                                     <div style="font-size: 0.9rem; color: var(--gray);">المتصفح</div>
-                                    <div><i class="fab fa-${getBrowserIcon(visitor.browser)}"></i> ${visitor.browser}</div>
+                                    <div><i class="fab fa-${visitorTracker.getBrowserIcon(browser.name)}"></i> ${browser.name || 'غير معروف'} ${browser.version || ''}</div>
                                 </div>
                                 <div>
-                                    <div style="font-size: 0.9rem; color: var(--gray);">نظام التشغيل</div>
-                                    <div><i class="fab fa-${getOSIcon(visitor.os)}"></i> ${visitor.os}</div>
-                                </div>
-                                <div>
-                                    <div style="font-size: 0.9rem; color: var(--gray);">الجهاز</div>
-                                    <div><i class="fas fa-${getDeviceIcon(visitor.device)}"></i> ${visitor.device}</div>
-                                </div>
-                                <div>
-                                    <div style="font-size: 0.9rem; color: var(--gray);">الدقة</div>
-                                    <div>${visitor.screen}</div>
+                                    <div style="font-size: 0.9rem; color: var(--gray);">محرك التصميم</div>
+                                    <div>${browser.engine || 'غير معروف'}</div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div style="text-align: center; margin-top: 30px;">
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+                            <div style="font-weight: bold; color: var(--gray); margin-bottom: 5px;">الشاشة</div>
+                            <div>الدقة: ${screen.width || 0} × ${screen.height || 0}</div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 10px;">
                             <button onclick="closeModal('detailsModal')" class="btn" style="padding: 10px 30px;">
                                 <i class="fas fa-times"></i> إغلاق
                             </button>
                         </div>
                     </div>
-                `;
-                
-                // إنشاء modal جديد
-                const modal = document.createElement('div');
-                modal.id = 'detailsModal';
-                modal.className = 'login-modal';
-                modal.style.display = 'flex';
-                modal.innerHTML = details;
-                document.body.appendChild(modal);
-                
-                // إضافة event listener للإغلاق
-                modal.addEventListener('click', function(e) {
-                    if (e.target === this) {
-                        this.remove();
-                    }
-                });
-            }
+                </div>
+            `;
+            
+            const modal = document.createElement('div');
+            modal.id = 'detailsModal';
+            modal.className = 'modal';
+            modal.style.display = 'flex';
+            modal.innerHTML = details;
+            document.body.appendChild(modal);
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.remove();
+                }
+            });
         }
-        
-        function startAutoRefresh() {
-            const autoRefresh = document.getElementById('autoRefresh');
-            if (autoRefresh?.checked) {
-                autoRefreshInterval = setInterval(refreshVisitorData, 10000); // كل 10 ثواني
-            }
-        }
-        
-        function stopAutoRefresh() {
-            if (autoRefreshInterval) {
-                clearInterval(autoRefreshInterval);
-                autoRefreshInterval = null;
-            }
-        }
-        
-        // تحديث التحديث التلقائي عند تغيير الإعداد
-        document.getElementById('autoRefresh')?.addEventListener('change', function() {
-            if (this.checked && isAdminLoggedIn) {
-                startAutoRefresh();
-            } else {
-                stopAutoRefresh();
-            }
-        });
         
         // ============================================
         // وظائف مساعدة
@@ -2189,13 +1720,33 @@
         }
         
         function showToast(message, type = 'info') {
+            // إنشاء عنصر التوست
             const toast = document.createElement('div');
-            toast.className = `toast toast-${type}`;
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                z-index: 10000;
+                animation: toastSlide 0.3s ease;
+                max-width: 400px;
+                border-right: 5px solid ${type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--danger)' : 'var(--primary)'};
+            `;
+            
+            const icon = type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle';
+            const iconColor = type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--danger)' : 'var(--primary)';
+            const title = type === 'success' ? 'نجاح' : type === 'error' ? 'خطأ' : 'معلومة';
+            
             toast.innerHTML = `
-                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}" 
-                   style="color: ${type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--danger)' : 'var(--primary)'}; font-size: 1.5rem;"></i>
+                <i class="fas fa-${icon}" style="color: ${iconColor}; font-size: 1.5rem;"></i>
                 <div style="flex: 1;">
-                    <strong>${type === 'success' ? 'نجاح' : type === 'error' ? 'خطأ' : 'معلومة'}</strong>
+                    <strong>${title}</strong>
                     <p style="margin: 5px 0 0; font-size: 0.9rem;">${message}</p>
                 </div>
                 <button onclick="this.parentElement.remove()" style="background: none; border: none; color: var(--gray); cursor: pointer;">
@@ -2203,41 +1754,46 @@
                 </button>
             `;
             
-            document.getElementById('toastContainer').appendChild(toast);
+            document.body.appendChild(toast);
             
             setTimeout(() => {
                 if (toast.parentElement) {
                     toast.remove();
                 }
             }, 5000);
+            
+            // إضافة أنميشن
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes toastSlide {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
         }
         
         function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-        
-        function updateUptime() {
-            const uptimeSeconds = Math.floor((Date.now() - startTime) / 1000);
-            const hours = Math.floor(uptimeSeconds / 3600);
-            const minutes = Math.floor((uptimeSeconds % 3600) / 60);
-            const seconds = uptimeSeconds % 60;
-            
-            let uptimeText = '';
-            if (hours > 0) {
-                uptimeText = `${hours}س ${minutes}د`;
-            } else if (minutes > 0) {
-                uptimeText = `${minutes}د ${seconds}ث`;
-            } else {
-                uptimeText = `${seconds}ث`;
-            }
-            
-            if (document.getElementById('uptime')) {
-                document.getElementById('uptime').textContent = uptimeText;
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
             }
         }
         
-        // تحديث وقت التشغيل أول مرة
-        updateUptime();
+        // إغلاق المودال عند النقر خارج المحتوى
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
 </html>
