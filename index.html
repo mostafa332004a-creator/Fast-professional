@@ -48,6 +48,7 @@
             --success: #25D366;
             --instagram: #E1306C;
             --whatsapp: #25D366;
+            --danger: #dc3545;
         }
         
         /* Reset & Base */
@@ -125,6 +126,14 @@
         
         .btn-instagram {
             background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger), #c82333);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #28a745, #218838);
         }
         
         /* Header */
@@ -392,6 +401,183 @@
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
         
+        /* Admin Panel */
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .admin-content {
+            background: white;
+            width: 95%;
+            max-width: 1400px;
+            max-height: 95vh;
+            overflow-y: auto;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .admin-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .admin-stat-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s;
+        }
+        
+        .admin-stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .admin-stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 10px 0;
+            display: block;
+        }
+        
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-input {
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            min-width: 200px;
+            transition: all 0.3s;
+        }
+        
+        .filter-input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 168, 232, 0.2);
+        }
+        
+        .visitors-table-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .visitors-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .visitors-table th {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 15px;
+            text-align: right;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+        
+        .visitors-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .visitors-table tbody tr:hover {
+            background: rgba(0, 168, 232, 0.05);
+        }
+        
+        .chart-container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: modalSlide 0.3s ease;
+        }
+        
+        @keyframes modalSlide {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--gray);
+            cursor: pointer;
+            line-height: 1;
+        }
+        
         /* Responsive */
         @media (max-width: 992px) {
             .nav-links {
@@ -409,6 +595,10 @@
             .section-title h2 {
                 font-size: 2.2rem;
             }
+            
+            .admin-stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         @media (max-width: 768px) {
@@ -424,6 +614,156 @@
                 flex-direction: column;
                 align-items: center;
             }
+            
+            .admin-stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-bar {
+                flex-direction: column;
+            }
+            
+            .filter-input {
+                width: 100%;
+                min-width: auto;
+            }
+            
+            .visitors-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
+        /* Loading */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: var(--success);
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(30px);
+        }
+        
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        
+        .badge-success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .badge-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .badge-danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .badge-primary {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 10000;
+            animation: toastSlide 0.3s ease;
+            max-width: 400px;
+        }
+        
+        @keyframes toastSlide {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .toast-success {
+            border-right: 5px solid var(--success);
+        }
+        
+        .toast-error {
+            border-right: 5px solid var(--danger);
+        }
+        
+        .toast-info {
+            border-right: 5px solid var(--primary);
         }
     </style>
 </head>
@@ -446,6 +786,7 @@
                     <li><a href="#why-us">لماذا نحن</a></li>
                     <li><a href="#videos">فيديوهات</a></li>
                     <li><a href="#contact">اتصل بنا</a></li>
+                    <li><a href="#" onclick="openAdminPanel()">لوحة التحكم</a></li>
                 </ul>
             </nav>
             
@@ -664,6 +1005,7 @@
                         <li><a href="#home" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">الرئيسية</a></li>
                         <li><a href="#services" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">خدماتنا</a></li>
                         <li><a href="#contact" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">اتصل بنا</a></li>
+                        <li><a href="#" onclick="openAdminPanel()" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">لوحة التحكم</a></li>
                     </ul>
                 </div>
                 
@@ -682,104 +1024,831 @@
         </div>
     </footer>
 
-    <!-- WhatsApp Float -->
-    <div class="whatsapp-float">
-        <div class="whatsapp-main">
-            <i class="fab fa-whatsapp"></i>
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="admin-panel">
+        <div class="admin-content">
+            <div class="admin-header">
+                <div>
+                    <h2 style="color: var(--primary); margin: 0;"><i class="fas fa-chart-line"></i> لوحة تحكم تتبع الزوار</h2>
+                    <p style="color: var(--gray); margin-top: 5px;" id="adminSubtitle">جاري تحميل البيانات...</p>
+                </div>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <span id="adminStatus" class="badge badge-success">🟢 متصل</span>
+                    <button onclick="refreshAdminData()" class="btn" style="padding: 10px 20px;">
+                        <i class="fas fa-redo"></i> تحديث
+                    </button>
+                    <button onclick="closeAdminPanel()" class="btn btn-danger" style="padding: 10px 20px;">
+                        <i class="fas fa-times"></i> إغلاق
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Statistics Grid -->
+            <div class="admin-stats-grid">
+                <div class="admin-stat-box">
+                    <div><i class="fas fa-users"></i> إجمالي الزوار</div>
+                    <div class="admin-stat-number" id="totalVisitors">0</div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">زائر فريد</div>
+                </div>
+                <div class="admin-stat-box">
+                    <div><i class="fas fa-eye"></i> إجمالي الزيارات</div>
+                    <div class="admin-stat-number" id="totalVisits">0</div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">عدد الزيارات</div>
+                </div>
+                <div class="admin-stat-box">
+                    <div><i class="fas fa-calendar-day"></i> زيارات اليوم</div>
+                    <div class="admin-stat-number" id="todayVisits">0</div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">زيارات اليوم</div>
+                </div>
+                <div class="admin-stat-box">
+                    <div><i class="fas fa-clock"></i> زيارات الـ24 ساعة</div>
+                    <div class="admin-stat-number" id="last24Visits">0</div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">آخر يوم</div>
+                </div>
+                <div class="admin-stat-box">
+                    <div><i class="fas fa-user-clock"></i> متوسط الزيارات</div>
+                    <div class="admin-stat-number" id="avgVisits">0.00</div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">لكل زائر</div>
+                </div>
+                <div class="admin-stat-box">
+                    <div><i class="fas fa-sync"></i> آخر تحديث</div>
+                    <div class="admin-stat-number" style="font-size: 1.8rem;" id="lastUpdate">-</div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">التوقيت المحلي</div>
+                </div>
+            </div>
+            
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+                <input type="text" id="searchIP" class="filter-input" placeholder="🔍 البحث بعنوان IP...">
+                <input type="text" id="searchLocation" class="filter-input" placeholder="📍 البحث بالموقع...">
+                <select id="filterBrowser" class="filter-input">
+                    <option value="">🌐 جميع المتصفحات</option>
+                    <option value="Chrome">Chrome</option>
+                    <option value="Firefox">Firefox</option>
+                    <option value="Safari">Safari</option>
+                    <option value="Edge">Edge</option>
+                    <option value="غير معروف">غير معروف</option>
+                </select>
+                <select id="filterOS" class="filter-input">
+                    <option value="">💻 جميع أنظمة التشغيل</option>
+                    <option value="Windows">Windows</option>
+                    <option value="macOS">macOS</option>
+                    <option value="Linux">Linux</option>
+                    <option value="Android">Android</option>
+                    <option value="iOS">iOS</option>
+                    <option value="غير معروف">غير معروف</option>
+                </select>
+                <button onclick="applyFilters()" class="btn"><i class="fas fa-filter"></i> تطبيق التصفية</button>
+                <button onclick="resetFilters()" class="btn" style="background: var(--gray);">إعادة تعيين</button>
+            </div>
+            
+            <!-- Visitors Table -->
+            <div class="visitors-table-container">
+                <div style="padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e9ecef;">
+                    <h3 style="margin: 0; color: var(--primary);"><i class="fas fa-list"></i> قائمة الزوار</h3>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <span id="visitorsCount" style="color: var(--gray);">0 زائر</span>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="autoRefresh" checked>
+                            <label for="autoRefresh" class="toggle-slider"></label>
+                        </div>
+                        <label for="autoRefresh" style="font-size: 0.9rem; color: var(--gray);">تحديث تلقائي</label>
+                    </div>
+                </div>
+                <div style="max-height: 500px; overflow-y: auto;">
+                    <table class="visitors-table">
+                        <thead>
+                            <tr>
+                                <th>IP</th>
+                                <th>الزيارات</th>
+                                <th>آخر زيارة</th>
+                                <th>المتصفح</th>
+                                <th>نظام التشغيل</th>
+                                <th>الموقع</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="visitorsTableBody">
+                            <tr>
+                                <td colspan="7" style="text-align: center; padding: 50px;">
+                                    <div class="loading" style="margin: 0 auto 20px;"></div>
+                                    <p>جاري تحميل بيانات الزوار...</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Charts Section -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                <div class="chart-container">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-globe"></i> المتصفحات الشائعة</h3>
+                    <div id="browsersChart"></div>
+                </div>
+                <div class="chart-container">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-laptop"></i> أنظمة التشغيل</h3>
+                    <div id="osChart"></div>
+                </div>
+                <div class="chart-container">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-map-marker-alt"></i> المواقع الجغرافية</h3>
+                    <div id="locationsChart"></div>
+                </div>
+            </div>
+            
+            <!-- Export & Actions -->
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 30px;">
+                <button onclick="exportData('json')" class="btn btn-success">
+                    <i class="fas fa-file-export"></i> تصدير JSON
+                </button>
+                <button onclick="exportData('csv')" class="btn btn-success">
+                    <i class="fas fa-file-csv"></i> تصدير CSV
+                </button>
+                <button onclick="exportVisitsLog()" class="btn" style="background: #6f42c1;">
+                    <i class="fas fa-history"></i> تصدير سجل الزيارات
+                </button>
+                <button onclick="clearOldData()" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> مسح البيانات القديمة
+                </button>
+                <button onclick="sendTestEmail()" class="btn" style="background: #17a2b8;">
+                    <i class="fas fa-envelope"></i> اختبار البريد
+                </button>
+                <button onclick="showSettings()" class="btn" style="background: #6c757d;">
+                    <i class="fas fa-cog"></i> الإعدادات
+                </button>
+            </div>
+            
+            <!-- System Info -->
+            <div style="margin-top: 30px; padding: 15px; background: #f8f9fa; border-radius: 10px; border: 1px solid #e9ecef;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <p style="margin: 0; color: var(--gray); font-size: 0.9rem;">
+                            <i class="fas fa-info-circle"></i> نظام تتبع الزوار | الإصدار 2.0.0
+                        </p>
+                    </div>
+                    <div style="display: flex; gap: 20px;">
+                        <span id="systemStatus" class="badge badge-success">
+                            <i class="fas fa-check-circle"></i> النظام يعمل
+                        </span>
+                        <span id="emailStatus" class="badge badge-primary">
+                            <i class="fas fa-envelope"></i> البريد نشط
+                        </span>
+                        <span id="storageStatus" class="badge badge-warning">
+                            <i class="fas fa-database"></i> جاري التحقق...
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Video Modal -->
     <div id="videoModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; align-items: center; justify-content: center;">
         <div style="position: relative; width: 90%; max-width: 900px;">
-            <button id="closeModal" style="position: absolute; top: -40px; left: 0; background: none; border: none; color: white; font-size: 2rem; cursor: pointer;">×</button>
+            <button onclick="closeVideoModal()" style="position: absolute; top: -40px; left: 0; background: none; border: none; color: white; font-size: 2rem; cursor: pointer;">×</button>
             <iframe id="videoFrame" style="width: 100%; height: 500px; border: none; border-radius: 10px;"></iframe>
         </div>
     </div>
 
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('settingsModal')">×</button>
+            <h2 style="color: var(--primary); margin-bottom: 20px;"><i class="fas fa-cog"></i> إعدادات النظام</h2>
+            
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div>
+                    <h4 style="margin-bottom: 10px; color: var(--dark);">إعدادات التتبع</h4>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <span>تفعيل التتبع</span>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="trackingEnabled" checked>
+                            <label for="trackingEnabled" class="toggle-slider"></label>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <span>إرسال بريد للزيارات الجديدة</span>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="emailNotifications" checked>
+                            <label for="emailNotifications" class="toggle-slider"></label>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span>تخزين البيانات محلياً</span>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="localStorage" checked>
+                            <label for="localStorage" class="toggle-slider"></label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 style="margin-bottom: 10px; color: var(--dark);">إعدادات البريد الإلكتروني</h4>
+                    <input type="email" id="emailInput" placeholder="البريد الإلكتروني" 
+                           style="width: 100%; padding: 12px; margin-bottom: 10px; border: 2px solid #ddd; border-radius: 10px;">
+                    <input type="password" id="emailPassword" placeholder="كلمة مرور التطبيق" 
+                           style="width: 100%; padding: 12px; margin-bottom: 10px; border: 2px solid #ddd; border-radius: 10px;">
+                    <button onclick="saveEmailSettings()" class="btn" style="width: 100%;">
+                        <i class="fas fa-save"></i> حفظ إعدادات البريد
+                    </button>
+                </div>
+                
+                <div>
+                    <h4 style="margin-bottom: 10px; color: var(--dark);">تنظيف البيانات</h4>
+                    <div style="display: flex; gap: 10px;">
+                        <select id="cleanupDays" style="flex: 1; padding: 12px; border: 2px solid #ddd; border-radius: 10px;">
+                            <option value="7">حذف بيانات أقدم من أسبوع</option>
+                            <option value="30" selected>حذف بيانات أقدم من 30 يوم</option>
+                            <option value="90">حذف بيانات أقدم من 3 أشهر</option>
+                            <option value="180">حذف بيانات أقدم من 6 أشهر</option>
+                            <option value="365">حذف بيانات أقدم من سنة</option>
+                        </select>
+                        <button onclick="cleanupData()" class="btn btn-danger">
+                            <i class="fas fa-broom"></i> تنظيف
+                        </button>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button onclick="resetSettings()" class="btn" style="flex: 1; background: var(--gray);">
+                        <i class="fas fa-undo"></i> إعادة تعيين
+                    </button>
+                    <button onclick="closeModal('settingsModal')" class="btn" style="flex: 1;">
+                        <i class="fas fa-times"></i> إغلاق
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Float -->
+    <div class="whatsapp-float">
+        <div class="whatsapp-main" onclick="window.open('https://wa.me/971543205058', '_blank')">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
     <!-- JavaScript -->
     <script>
-        // كود التتبع للزوار
-        (function() {
-            const SERVER_URL = 'https://fast-professional.onrender.com';
+        // ============================================
+        // نظام التتبع المتكامل
+        // ============================================
+        
+        class VisitorTracker {
+            constructor() {
+                this.serverUrl = 'https://fast-professional.onrender.com';
+                this.visitorData = null;
+                this.localVisitors = [];
+                this.visitsLog = [];
+                this.settings = this.loadSettings();
+                this.autoRefreshInterval = null;
+                this.isTracking = true;
+            }
             
-            async function trackVisitor() {
+            loadSettings() {
+                const defaultSettings = {
+                    trackingEnabled: true,
+                    emailNotifications: true,
+                    localStorage: true,
+                    autoRefresh: true,
+                    emailUser: '',
+                    emailPass: '',
+                    cleanupDays: 30
+                };
+                
                 try {
+                    const saved = JSON.parse(localStorage.getItem('tracker_settings') || '{}');
+                    return { ...defaultSettings, ...saved };
+                } catch {
+                    return defaultSettings;
+                }
+            }
+            
+            saveSettings() {
+                localStorage.setItem('tracker_settings', JSON.stringify(this.settings));
+            }
+            
+            async trackVisitor() {
+                if (!this.settings.trackingEnabled) return;
+                
+                try {
+                    console.log('🔍 بدء تتبع الزائر...');
+                    
                     // الحصول على IP
-                    const ipResponse = await fetch('https://api.ipify.org?format=json');
-                    const { ip } = await ipResponse.json();
+                    let ip = 'غير معروف';
+                    try {
+                        const ipResponse = await fetch('https://api.ipify.org?format=json');
+                        const data = await ipResponse.json();
+                        ip = data.ip;
+                    } catch (error) {
+                        console.log('⚠️ لم يتمكن من الحصول على IP');
+                    }
                     
                     // الحصول على الموقع الجغرافي
                     let location = 'غير معروف';
                     try {
-                        const geoResponse = await fetch(`https://ipapi.co/${ip}/json/`);
-                        const geoData = await geoResponse.json();
-                        location = `${geoData.city || ''} ${geoData.country_name || ''}`.trim();
-                    } catch {
-                        location = 'غير معروف';
+                        if (ip && ip !== 'غير معروف') {
+                            const geoResponse = await fetch(`https://ipapi.co/${ip}/json/`);
+                            const geoData = await geoResponse.json();
+                            location = `${geoData.city || ''} ${geoData.country_name || ''}`.trim();
+                        }
+                    } catch (error) {
+                        // استخدام خدمة احتياطية
+                        try {
+                            const backupResponse = await fetch(`https://ipinfo.io/${ip}/json`);
+                            const backupData = await backupResponse.json();
+                            location = `${backupData.city}, ${backupData.country}`;
+                        } catch (e) {
+                            location = 'غير معروف';
+                        }
                     }
                     
-                    // كشف المتصفح ونظام التشغيل
+                    // جمع معلومات المتصفح
                     const ua = navigator.userAgent;
                     let browser = 'غير معروف';
                     let os = 'غير معروف';
+                    let device = 'Desktop';
                     
                     if (ua.includes('Chrome')) browser = 'Chrome';
                     else if (ua.includes('Firefox')) browser = 'Firefox';
-                    else if (ua.includes('Safari')) browser = 'Safari';
-                    else if (ua.includes('Edge')) browser = 'Edge';
+                    else if (ua.includes('Safari') && !ua.includes('Chrome')) browser = 'Safari';
+                    else if (ua.includes('Edg')) browser = 'Edge';
                     
                     if (ua.includes('Windows')) os = 'Windows';
                     else if (ua.includes('Mac')) os = 'macOS';
                     else if (ua.includes('Linux')) os = 'Linux';
                     else if (ua.includes('Android')) os = 'Android';
-                    else if (ua.includes('iPhone')) os = 'iOS';
+                    else if (ua.includes('iPhone') || ua.includes('iPad')) os = 'iOS';
+                    
+                    if (/Mobi|Android/i.test(ua)) device = 'Mobile';
+                    if (/Tablet|iPad/i.test(ua)) device = 'Tablet';
                     
                     // حساب عدد الزيارات
-                    const visitorKey = `visitor_${ip}`;
-                    let visitCount = localStorage.getItem(visitorKey) || 0;
-                    visitCount = parseInt(visitCount) + 1;
-                    localStorage.setItem(visitorKey, visitCount);
+                    const storageKey = `visitor_${ip}`;
+                    let visitData = JSON.parse(localStorage.getItem(storageKey) || '{"count": 0, "firstVisit": ""}');
+                    const isFirstVisit = visitData.count === 0;
+                    visitData.count++;
                     
-                    // إعداد بيانات الزائر
-                    const visitorData = {
+                    if (!visitData.firstVisit) {
+                        visitData.firstVisit = new Date().toISOString();
+                    }
+                    visitData.lastVisit = new Date().toISOString();
+                    localStorage.setItem(storageKey, JSON.stringify(visitData));
+                    
+                    // تحضير البيانات
+                    this.visitorData = {
                         ip: ip,
                         location: location,
                         browser: browser,
                         os: os,
+                        device: device,
                         screen: `${screen.width}x${screen.height}`,
-                        pageUrl: window.location.href,
-                        referrer: document.referrer || 'مباشر',
+                        colorDepth: screen.colorDepth,
                         language: navigator.language,
                         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                        visitCount: visitCount,
-                        timestamp: new Date().toISOString()
+                        pageUrl: window.location.href,
+                        referrer: document.referrer || 'مباشر',
+                        visitCount: visitData.count,
+                        firstVisit: visitData.firstVisit,
+                        lastVisit: visitData.lastVisit,
+                        sessionStart: new Date().toISOString(),
+                        userAgent: ua,
+                        timestamp: new Date().toISOString(),
+                        isFirstVisit: isFirstVisit
                     };
                     
+                    // حفظ البيانات محلياً
+                    if (this.settings.localStorage) {
+                        this.saveVisitorLocally();
+                    }
+                    
                     // إرسال البيانات للسيرفر
-                    await fetch(`${SERVER_URL}/track-visitor`, {
+                    const serverSuccess = await this.sendToServer();
+                    
+                    if (serverSuccess && isFirstVisit && this.settings.emailNotifications) {
+                        this.sendWelcomeEmail();
+                    }
+                    
+                    console.log('✅ تم تتبع الزائر:', this.visitorData.ip);
+                    this.showToast('تم تسجيل زيارتك بنجاح', 'success');
+                    
+                } catch (error) {
+                    console.error('❌ خطأ في التتبع:', error);
+                    this.showToast('حدث خطأ في التتبع', 'error');
+                }
+            }
+            
+            saveVisitorLocally() {
+                try {
+                    let visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
+                    let visitsLog = JSON.parse(localStorage.getItem('visitsLog') || '[]');
+                    
+                    // تحديث الزوار
+                    const existingIndex = visitors.findIndex(v => v.ip === this.visitorData.ip);
+                    
+                    if (existingIndex !== -1) {
+                        visitors[existingIndex].visitCount++;
+                        visitors[existingIndex].lastVisit = this.visitorData.timestamp;
+                        visitors[existingIndex].location = this.visitorData.location;
+                        visitors[existingIndex].browser = this.visitorData.browser;
+                        visitors[existingIndex].os = this.visitorData.os;
+                        visitors[existingIndex].device = this.visitorData.device;
+                    } else {
+                        visitors.unshift({
+                            id: Date.now(),
+                            ip: this.visitorData.ip,
+                            location: this.visitorData.location,
+                            firstVisit: this.visitorData.timestamp,
+                            lastVisit: this.visitorData.timestamp,
+                            visitCount: 1,
+                            browser: this.visitorData.browser,
+                            os: this.visitorData.os,
+                            device: this.visitorData.device,
+                            screen: this.visitorData.screen,
+                            language: this.visitorData.language
+                        });
+                    }
+                    
+                    // حفظ فقط آخر 1000 زائر
+                    if (visitors.length > 1000) {
+                        visitors = visitors.slice(0, 1000);
+                    }
+                    
+                    // تحديث سجل الزيارات
+                    visitsLog.unshift({
+                        id: Date.now(),
+                        ip: this.visitorData.ip,
+                        timestamp: this.visitorData.timestamp,
+                        page: this.visitorData.pageUrl,
+                        referrer: this.visitorData.referrer,
+                        browser: this.visitorData.browser,
+                        os: this.visitorData.os
+                    });
+                    
+                    // حفظ فقط آخر 5000 زيارة
+                    if (visitsLog.length > 5000) {
+                        visitsLog = visitsLog.slice(0, 5000);
+                    }
+                    
+                    localStorage.setItem('localVisitors', JSON.stringify(visitors));
+                    localStorage.setItem('visitsLog', JSON.stringify(visitsLog));
+                    
+                    this.localVisitors = visitors;
+                    this.visitsLog = visitsLog;
+                    
+                } catch (error) {
+                    console.error('❌ خطأ في حفظ البيانات محلياً:', error);
+                }
+            }
+            
+            async sendToServer() {
+                try {
+                    const response = await fetch(`${this.serverUrl}/track-visitor`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(visitorData)
+                        body: JSON.stringify(this.visitorData)
                     });
                     
-                    console.log('✅ تم تتبع الزائر:', visitorData.ip);
+                    return response.ok;
                     
                 } catch (error) {
-                    console.log('⚠️ لم يتمكن من التتبع:', error.message);
+                    console.log('⚠️ لم يتمكن من الاتصال بالسيرفر:', error.message);
+                    return false;
                 }
             }
             
-            // بدء التتبع بعد تحميل الصفحة
-            window.addEventListener('load', () => {
-                setTimeout(trackVisitor, 1000);
-            });
-        })();
+            async sendWelcomeEmail() {
+                try {
+                    const emailData = {
+                        to: this.settings.emailUser || 'mostafa332004a@gmail.com',
+                        subject: `👤 زائر جديد - ${this.visitorData.location}`,
+                        visitor: this.visitorData
+                    };
+                    
+                    const response = await fetch(`${this.serverUrl}/send-email`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(emailData)
+                    });
+                    
+                    return response.ok;
+                    
+                } catch (error) {
+                    console.log('⚠️ خطأ في إرسال البريد:', error);
+                    return false;
+                }
+            }
+            
+            getLocalStats() {
+                try {
+                    const visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
+                    const visitsLog = JSON.parse(localStorage.getItem('visitsLog') || '[]');
+                    
+                    const today = new Date().toDateString();
+                    const last24Hours = new Date(Date.now() - 24 * 60 * 60 * 1000);
+                    
+                    const todayVisits = visitsLog.filter(v => 
+                        new Date(v.timestamp).toDateString() === today
+                    ).length;
+                    
+                    const last24Visits = visitsLog.filter(v => 
+                        new Date(v.timestamp) > last24Hours
+                    ).length;
+                    
+                    const totalVisits = visitors.reduce((sum, v) => sum + v.visitCount, 0);
+                    const avgVisits = visitors.length > 0 ? (totalVisits / visitors.length).toFixed(2) : 0;
+                    
+                    return {
+                        totalVisitors: visitors.length,
+                        totalVisits: totalVisits,
+                        todayVisits: todayVisits,
+                        last24Visits: last24Visits,
+                        avgVisits: avgVisits,
+                        lastUpdated: new Date().toLocaleString('ar-EG'),
+                        visitors: visitors,
+                        visitsLog: visitsLog
+                    };
+                    
+                } catch (error) {
+                    return {
+                        totalVisitors: 0,
+                        totalVisits: 0,
+                        todayVisits: 0,
+                        last24Visits: 0,
+                        avgVisits: 0,
+                        lastUpdated: 'لا توجد بيانات',
+                        visitors: [],
+                        visitsLog: []
+                    };
+                }
+            }
+            
+            getFilteredVisitors(filters = {}) {
+                try {
+                    let visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
+                    
+                    if (filters.ip) {
+                        visitors = visitors.filter(v => v.ip.includes(filters.ip));
+                    }
+                    
+                    if (filters.location) {
+                        visitors = visitors.filter(v => 
+                            v.location.toLowerCase().includes(filters.location.toLowerCase())
+                        );
+                    }
+                    
+                    if (filters.browser && filters.browser !== '') {
+                        visitors = visitors.filter(v => v.browser === filters.browser);
+                    }
+                    
+                    if (filters.os && filters.os !== '') {
+                        visitors = visitors.filter(v => v.os === filters.os);
+                    }
+                    
+                    return visitors;
+                    
+                } catch (error) {
+                    return [];
+                }
+            }
+            
+            getBrowsersStats() {
+                try {
+                    const visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
+                    const browsers = {};
+                    
+                    visitors.forEach(v => {
+                        browsers[v.browser] = (browsers[v.browser] || 0) + 1;
+                    });
+                    
+                    return browsers;
+                    
+                } catch (error) {
+                    return {};
+                }
+            }
+            
+            getOSStats() {
+                try {
+                    const visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
+                    const os = {};
+                    
+                    visitors.forEach(v => {
+                        os[v.os] = (os[v.os] || 0) + 1;
+                    });
+                    
+                    return os;
+                    
+                } catch (error) {
+                    return {};
+                }
+            }
+            
+            getLocationsStats() {
+                try {
+                    const visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
+                    const locations = {};
+                    
+                    visitors.forEach(v => {
+                        if (v.location && v.location !== 'غير معروف') {
+                            locations[v.location] = (locations[v.location] || 0) + 1;
+                        }
+                    });
+                    
+                    return locations;
+                    
+                } catch (error) {
+                    return {};
+                }
+            }
+            
+            exportData(format = 'json') {
+                try {
+                    const visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
+                    const visitsLog = JSON.parse(localStorage.getItem('visitsLog') || '[]');
+                    
+                    let dataStr, fileName, mimeType;
+                    
+                    if (format === 'json') {
+                        dataStr = JSON.stringify({
+                            visitors: visitors,
+                            visitsLog: visitsLog,
+                            exportedAt: new Date().toISOString(),
+                            totalVisitors: visitors.length,
+                            totalVisits: visitors.reduce((sum, v) => sum + v.visitCount, 0)
+                        }, null, 2);
+                        fileName = `visitors_${new Date().toISOString().split('T')[0]}.json`;
+                        mimeType = 'application/json';
+                    } else if (format === 'csv') {
+                        // CSV للزوار
+                        let csv = 'IP,الموقع,أول زيارة,آخر زيارة,عدد الزيارات,المتصفح,نظام التشغيل,الجهاز,الدقة,اللغة\n';
+                        visitors.forEach(v => {
+                            csv += `"${v.ip}","${v.location}","${v.firstVisit}","${v.lastVisit}",${v.visitCount},"${v.browser}","${v.os}","${v.device}","${v.screen}","${v.language}"\n`;
+                        });
+                        dataStr = csv;
+                        fileName = `visitors_${new Date().toISOString().split('T')[0]}.csv`;
+                        mimeType = 'text/csv';
+                    }
+                    
+                    const blob = new Blob([dataStr], { type: mimeType });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = fileName;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    
+                    return true;
+                    
+                } catch (error) {
+                    console.error('❌ خطأ في تصدير البيانات:', error);
+                    return false;
+                }
+            }
+            
+            exportVisitsLog() {
+                try {
+                    const visitsLog = JSON.parse(localStorage.getItem('visitsLog') || '[]');
+                    const dataStr = JSON.stringify(visitsLog, null, 2);
+                    const fileName = `visits_log_${new Date().toISOString().split('T')[0]}.json`;
+                    
+                    const blob = new Blob([dataStr], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = fileName;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    
+                    return true;
+                    
+                } catch (error) {
+                    console.error('❌ خطأ في تصدير سجل الزيارات:', error);
+                    return false;
+                }
+            }
+            
+            clearOldData(days = 30) {
+                try {
+                    const cutoffDate = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+                    
+                    let visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
+                    let visitsLog = JSON.parse(localStorage.getItem('visitsLog') || '[]');
+                    
+                    const initialVisitors = visitors.length;
+                    const initialVisits = visitsLog.length;
+                    
+                    // تنظيف الزوار الذين لم يزوروا منذ فترة
+                    visitors = visitors.filter(v => new Date(v.lastVisit) > cutoffDate);
+                    
+                    // تنظيف سجل الزيارات
+                    visitsLog = visitsLog.filter(v => new Date(v.timestamp) > cutoffDate);
+                    
+                    localStorage.setItem('localVisitors', JSON.stringify(visitors));
+                    localStorage.setItem('visitsLog', JSON.stringify(visitsLog));
+                    
+                    return {
+                        removedVisitors: initialVisitors - visitors.length,
+                        removedVisits: initialVisits - visitsLog.length,
+                        remainingVisitors: visitors.length,
+                        remainingVisits: visitsLog.length
+                    };
+                    
+                } catch (error) {
+                    console.error('❌ خطأ في تنظيف البيانات:', error);
+                    return null;
+                }
+            }
+            
+            async sendTestEmail() {
+                try {
+                    const testData = {
+                        to: this.settings.emailUser || 'mostafa332004a@gmail.com',
+                        subject: '📧 اختبار نظام البريد - المحترف السريع',
+                        message: 'هذا بريد اختبار من نظام تتبع الزوار. إذا وصلتك هذه الرسالة، فالنظام يعمل بشكل صحيح.',
+                        timestamp: new Date().toLocaleString('ar-EG')
+                    };
+                    
+                    const response = await fetch(`${this.serverUrl}/test-email`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(testData)
+                    });
+                    
+                    return response.ok;
+                    
+                } catch (error) {
+                    console.error('❌ خطأ في إرسال بريد الاختبار:', error);
+                    return false;
+                }
+            }
+            
+            showToast(message, type = 'info') {
+                const toast = document.createElement('div');
+                toast.className = `toast toast-${type}`;
+                toast.innerHTML = `
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}" 
+                       style="color: ${type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--danger)' : 'var(--primary)'}; font-size: 1.5rem;"></i>
+                    <div style="flex: 1;">
+                        <strong>${type === 'success' ? 'نجاح' : type === 'error' ? 'خطأ' : 'معلومة'}</strong>
+                        <p style="margin: 5px 0 0; font-size: 0.9rem;">${message}</p>
+                    </div>
+                    <button onclick="this.parentElement.remove()" style="background: none; border: none; color: var(--gray); cursor: pointer;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                
+                document.getElementById('toastContainer').appendChild(toast);
+                
+                setTimeout(() => {
+                    if (toast.parentElement) {
+                        toast.remove();
+                    }
+                }, 5000);
+            }
+            
+            checkSystemStatus() {
+                const visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
+                const visitsLog = JSON.parse(localStorage.getItem('visitsLog') || '[]');
+                
+                const storageUsed = (JSON.stringify(visitors).length + JSON.stringify(visitsLog).length) / 1024; // KB
+                
+                return {
+                    system: '🟢 نشط',
+                    email: this.settings.emailUser ? '🟢 مُهيأ' : '🟡 غير مهيأ',
+                    storage: storageUsed > 1000 ? '🔴 كبير' : storageUsed > 500 ? '🟡 متوسط' : '🟢 جيد',
+                    tracking: this.settings.trackingEnabled ? '🟢 مفعل' : '🔴 معطل',
+                    visitorsCount: visitors.length,
+                    visitsCount: visitsLog.length
+                };
+            }
+        }
         
-        // إحصائيات العداد
+        // ============================================
+        // تهيئة التطبيق
+        // ============================================
+        
+        const tracker = new VisitorTracker();
+        let currentFilters = {};
+        
         document.addEventListener('DOMContentLoaded', function() {
+            // 1. بدء تتبع الزائر
+            setTimeout(() => tracker.trackVisitor(), 2000);
+            
+            // 2. تحديث إحصائيات العداد
             const counters = document.querySelectorAll('.stat-number');
             const speed = 200;
             
@@ -801,37 +1870,17 @@
                 updateCount();
             });
             
-            // فتح الفيديو
+            // 3. فتح الفيديو
             document.querySelectorAll('.video-play').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const videoId = this.getAttribute('data-video');
-                    const modal = document.getElementById('videoModal');
                     const frame = document.getElementById('videoFrame');
-                    
                     frame.src = `https://www.instagram.com/reel/${videoId}/embed`;
-                    modal.style.display = 'flex';
+                    document.getElementById('videoModal').style.display = 'flex';
                 });
             });
             
-            // إغلاق الفيديو
-            document.getElementById('closeModal').addEventListener('click', function() {
-                const modal = document.getElementById('videoModal');
-                const frame = document.getElementById('videoFrame');
-                
-                frame.src = '';
-                modal.style.display = 'none';
-            });
-            
-            // إغلاق الفيديو بالنقر خارج الإطار
-            document.getElementById('videoModal').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    const frame = document.getElementById('videoFrame');
-                    frame.src = '';
-                    this.style.display = 'none';
-                }
-            });
-            
-            // نموذج الاتصال
+            // 4. نموذج الاتصال
             document.getElementById('contactForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
@@ -839,19 +1888,14 @@
                 const phone = this[1].value;
                 const message = this[2].value;
                 
-                const whatsappUrl = `https://wa.me/971543205058?text=مرحباً، أود طلب خدمة تنظيف%0Aالاسم: ${name}%0Aالهاتف: ${phone}%0Aالرسالة: ${message}`;
+                const whatsappUrl = `https://wa.me/971543205058?text=مرحباً، أود طلب خدمة تنظيف%0Aالاسم: ${encodeURIComponent(name)}%0Aالهاتف: ${encodeURIComponent(phone)}%0Aالرسالة: ${encodeURIComponent(message)}`;
                 
                 window.open(whatsappUrl, '_blank');
                 this.reset();
-                alert('سيتم فتح تطبيق واتساب لإكمال الطلب. شكراً لك!');
+                tracker.showToast('سيتم فتح تطبيق واتساب لإكمال الطلب. شكراً لك!', 'success');
             });
             
-            // زر واتساب العائم
-            document.querySelector('.whatsapp-main').addEventListener('click', function() {
-                window.open('https://wa.me/971543205058', '_blank');
-            });
-            
-            // القائمة المتنقلة
+            // 5. القائمة المتنقلة
             const mobileBtn = document.querySelector('.mobile-menu-btn');
             const navLinks = document.querySelector('.nav-links');
             
@@ -868,7 +1912,7 @@
                 navLinks.style.width = '200px';
             });
             
-            // إغلاق القائمة عند النقر على رابط
+            // 6. إغلاق القائمة عند النقر على رابط
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', () => {
                     if (window.innerWidth <= 992) {
@@ -877,7 +1921,7 @@
                 });
             });
             
-            // إخفاء القائمة عند تغيير حجم النافذة
+            // 7. إخفاء القائمة عند تغيير حجم النافذة
             window.addEventListener('resize', () => {
                 if (window.innerWidth > 992) {
                     navLinks.style.display = 'flex';
@@ -888,7 +1932,433 @@
                     navLinks.style.width = 'auto';
                 }
             });
+            
+            // 8. بدء التحديث التلقائي للوحة التحكم
+            startAutoRefresh();
+            
+            // 9. تحديث حالة النظام
+            updateSystemStatus();
         });
+        
+        // ============================================
+        // وظائف لوحة التحكم
+        // ============================================
+        
+        function openAdminPanel() {
+            document.getElementById('adminPanel').style.display = 'flex';
+            refreshAdminData();
+            tracker.showToast('تم فتح لوحة التحكم', 'info');
+        }
+        
+        function closeAdminPanel() {
+            document.getElementById('adminPanel').style.display = 'none';
+            stopAutoRefresh();
+        }
+        
+        function refreshAdminData() {
+            const stats = tracker.getLocalStats();
+            const filteredVisitors = tracker.getFilteredVisitors(currentFilters);
+            
+            // تحديث الإحصائيات
+            document.getElementById('totalVisitors').textContent = stats.totalVisitors;
+            document.getElementById('totalVisits').textContent = stats.totalVisits;
+            document.getElementById('todayVisits').textContent = stats.todayVisits;
+            document.getElementById('last24Visits').textContent = stats.last24Visits;
+            document.getElementById('avgVisits').textContent = stats.avgVisits;
+            document.getElementById('lastUpdate').textContent = stats.lastUpdated;
+            document.getElementById('adminSubtitle').textContent = `آخر تحديث: ${stats.lastUpdated}`;
+            document.getElementById('visitorsCount').textContent = `${filteredVisitors.length} زائر`;
+            
+            // تحديث الجداول
+            updateVisitorsTable(filteredVisitors);
+            updateCharts();
+            
+            // تحديث حالة النظام
+            updateSystemStatus();
+            
+            tracker.showToast('تم تحديث البيانات', 'success');
+        }
+        
+        function updateVisitorsTable(visitors) {
+            const tbody = document.getElementById('visitorsTableBody');
+            
+            if (visitors.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" style="text-align: center; padding: 50px;">
+                            <i class="fas fa-search" style="font-size: 3rem; color: #ddd; margin-bottom: 20px;"></i>
+                            <p>لا توجد بيانات تطابق معايير البحث</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            let html = '';
+            visitors.slice(0, 50).forEach(visitor => {
+                const lastVisit = new Date(visitor.lastVisit);
+                const now = new Date();
+                const diffHours = Math.floor((now - lastVisit) / (1000 * 60 * 60));
+                
+                let timeBadge = '';
+                if (diffHours < 1) {
+                    timeBadge = '<span class="badge badge-success">الآن</span>';
+                } else if (diffHours < 24) {
+                    timeBadge = `<span class="badge badge-primary">${diffHours} ساعة</span>`;
+                } else {
+                    timeBadge = `<span class="badge badge-warning">${Math.floor(diffHours/24)} يوم</span>`;
+                }
+                
+                html += `
+                    <tr>
+                        <td>
+                            <code>${visitor.ip}</code>
+                            ${visitor.visitCount === 1 ? '<span class="badge badge-success">جديد</span>' : ''}
+                        </td>
+                        <td style="text-align: center;">
+                            <span style="font-weight: bold; font-size: 1.2rem;">${visitor.visitCount}</span>
+                        </td>
+                        <td>
+                            ${lastVisit.toLocaleString('ar-EG')}
+                            ${timeBadge}
+                        </td>
+                        <td>
+                            <i class="fab fa-${getBrowserIcon(visitor.browser)}"></i>
+                            ${visitor.browser}
+                        </td>
+                        <td>
+                            <i class="fab fa-${getOSIcon(visitor.os)}"></i>
+                            ${visitor.os}
+                        </td>
+                        <td>${visitor.location}</td>
+                        <td>
+                            <button onclick="viewVisitorDetails('${visitor.ip}')" class="btn" style="padding: 5px 10px; font-size: 0.8rem;">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            tbody.innerHTML = html;
+        }
+        
+        function getBrowserIcon(browser) {
+            switch(browser) {
+                case 'Chrome': return 'chrome';
+                case 'Firefox': return 'firefox';
+                case 'Safari': return 'safari';
+                case 'Edge': return 'edge';
+                default: return 'internet-explorer';
+            }
+        }
+        
+        function getOSIcon(os) {
+            switch(os) {
+                case 'Windows': return 'windows';
+                case 'macOS': return 'apple';
+                case 'Linux': return 'linux';
+                case 'Android': return 'android';
+                case 'iOS': return 'mobile-alt';
+                default: return 'desktop';
+            }
+        }
+        
+        function updateCharts() {
+            const browsers = tracker.getBrowsersStats();
+            const os = tracker.getOSStats();
+            const locations = tracker.getLocationsStats();
+            
+            // رسم مخطط المتصفحات
+            let browsersHtml = '';
+            Object.entries(browsers).slice(0, 10).forEach(([browser, count]) => {
+                const percentage = (count / Object.values(browsers).reduce((a, b) => a + b, 0) * 100).toFixed(1);
+                browsersHtml += `
+                    <div style="margin-bottom: 10px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span><i class="fab fa-${getBrowserIcon(browser)}"></i> ${browser}</span>
+                            <span>${count} (${percentage}%)</span>
+                        </div>
+                        <div style="height: 8px; background: #e9ecef; border-radius: 4px; overflow: hidden;">
+                            <div style="height: 100%; width: ${percentage}%; background: var(--primary); border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('browsersChart').innerHTML = browsersHtml || '<p style="color: #666; text-align: center;">لا توجد بيانات</p>';
+            
+            // رسم مخطط أنظمة التشغيل
+            let osHtml = '';
+            Object.entries(os).slice(0, 10).forEach(([osName, count]) => {
+                const percentage = (count / Object.values(os).reduce((a, b) => a + b, 0) * 100).toFixed(1);
+                osHtml += `
+                    <div style="margin-bottom: 10px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span><i class="fab fa-${getOSIcon(osName)}"></i> ${osName}</span>
+                            <span>${count} (${percentage}%)</span>
+                        </div>
+                        <div style="height: 8px; background: #e9ecef; border-radius: 4px; overflow: hidden;">
+                            <div style="height: 100%; width: ${percentage}%; background: var(--secondary); border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('osChart').innerHTML = osHtml || '<p style="color: #666; text-align: center;">لا توجد بيانات</p>';
+            
+            // رسم مخطط المواقع
+            let locationsHtml = '';
+            Object.entries(locations).slice(0, 10).forEach(([location, count]) => {
+                locationsHtml += `
+                    <div style="display: flex; justify-content: space-between; padding: 8px; margin-bottom: 5px; background: #f8f9fa; border-radius: 8px;">
+                        <span><i class="fas fa-map-marker-alt"></i> ${location}</span>
+                        <span><strong>${count}</strong> زائر</span>
+                    </div>
+                `;
+            });
+            document.getElementById('locationsChart').innerHTML = locationsHtml || '<p style="color: #666; text-align: center;">لا توجد بيانات</p>';
+        }
+        
+        function applyFilters() {
+            currentFilters = {
+                ip: document.getElementById('searchIP').value,
+                location: document.getElementById('searchLocation').value,
+                browser: document.getElementById('filterBrowser').value,
+                os: document.getElementById('filterOS').value
+            };
+            
+            refreshAdminData();
+            tracker.showToast('تم تطبيق التصفية', 'info');
+        }
+        
+        function resetFilters() {
+            document.getElementById('searchIP').value = '';
+            document.getElementById('searchLocation').value = '';
+            document.getElementById('filterBrowser').value = '';
+            document.getElementById('filterOS').value = '';
+            
+            currentFilters = {};
+            refreshAdminData();
+            tracker.showToast('تم إعادة تعيين التصفية', 'info');
+        }
+        
+        function exportData(format) {
+            if (tracker.exportData(format)) {
+                tracker.showToast(`تم تصدير البيانات بصيغة ${format.toUpperCase()}`, 'success');
+            } else {
+                tracker.showToast('حدث خطأ أثناء التصدير', 'error');
+            }
+        }
+        
+        function exportVisitsLog() {
+            if (tracker.exportVisitsLog()) {
+                tracker.showToast('تم تصدير سجل الزيارات', 'success');
+            } else {
+                tracker.showToast('حدث خطأ أثناء التصدير', 'error');
+            }
+        }
+        
+        function clearOldData() {
+            const days = parseInt(document.getElementById('cleanupDays')?.value || 30);
+            
+            if (confirm(`هل أنت متأكد من حذف البيانات الأقدم من ${days} يوم؟ هذا الإجراء لا يمكن التراجع عنه.`)) {
+                const result = tracker.clearOldData(days);
+                if (result) {
+                    tracker.showToast(
+                        `تم حذف ${result.removedVisitors} زائر و ${result.removedVisits} زيارة. تبقى ${result.remainingVisitors} زائر.`,
+                        'success'
+                    );
+                    refreshAdminData();
+                } else {
+                    tracker.showToast('حدث خطأ أثناء تنظيف البيانات', 'error');
+                }
+            }
+        }
+        
+        async function sendTestEmail() {
+            const success = await tracker.sendTestEmail();
+            if (success) {
+                tracker.showToast('تم إرسال بريد الاختبار. تحقق من صندوق الوارد.', 'success');
+            } else {
+                tracker.showToast('فشل إرسال بريد الاختبار. تحقق من إعدادات البريد.', 'error');
+            }
+        }
+        
+        function showSettings() {
+            document.getElementById('trackingEnabled').checked = tracker.settings.trackingEnabled;
+            document.getElementById('emailNotifications').checked = tracker.settings.emailNotifications;
+            document.getElementById('localStorage').checked = tracker.settings.localStorage;
+            document.getElementById('emailInput').value = tracker.settings.emailUser || '';
+            document.getElementById('emailPassword').value = tracker.settings.emailPass || '';
+            document.getElementById('cleanupDays').value = tracker.settings.cleanupDays;
+            
+            document.getElementById('settingsModal').style.display = 'flex';
+        }
+        
+        function saveEmailSettings() {
+            tracker.settings.emailUser = document.getElementById('emailInput').value;
+            tracker.settings.emailPass = document.getElementById('emailPassword').value;
+            tracker.saveSettings();
+            
+            tracker.showToast('تم حفظ إعدادات البريد', 'success');
+            closeModal('settingsModal');
+            updateSystemStatus();
+        }
+        
+        function cleanupData() {
+            const days = parseInt(document.getElementById('cleanupDays').value);
+            tracker.settings.cleanupDays = days;
+            tracker.saveSettings();
+            
+            clearOldData();
+        }
+        
+        function resetSettings() {
+            if (confirm('هل تريد إعادة تعيين جميع الإعدادات إلى القيم الافتراضية؟')) {
+                tracker.settings = tracker.loadSettings();
+                tracker.saveSettings();
+                tracker.showToast('تم إعادة تعيين الإعدادات', 'success');
+                showSettings();
+            }
+        }
+        
+        function updateSystemStatus() {
+            const status = tracker.checkSystemStatus();
+            
+            document.getElementById('systemStatus').innerHTML = `
+                <i class="fas fa-${status.system.includes('نشط') ? 'check-circle' : 'exclamation-circle'}"></i>
+                ${status.system}
+            `;
+            
+            document.getElementById('emailStatus').innerHTML = `
+                <i class="fas fa-${status.email.includes('مهيأ') ? 'envelope' : 'exclamation-circle'}"></i>
+                ${status.email}
+            `;
+            
+            document.getElementById('storageStatus').innerHTML = `
+                <i class="fas fa-database"></i>
+                التخزين: ${status.storage} (${status.visitorsCount} زائر)
+            `;
+        }
+        
+        function startAutoRefresh() {
+            const autoRefresh = document.getElementById('autoRefresh');
+            if (autoRefresh?.checked) {
+                tracker.autoRefreshInterval = setInterval(refreshAdminData, 30000); // كل 30 ثانية
+            }
+        }
+        
+        function stopAutoRefresh() {
+            if (tracker.autoRefreshInterval) {
+                clearInterval(tracker.autoRefreshInterval);
+                tracker.autoRefreshInterval = null;
+            }
+        }
+        
+        // تحديث التحديث التلقائي عند تغيير الإعداد
+        document.getElementById('autoRefresh')?.addEventListener('change', function() {
+            if (this.checked) {
+                startAutoRefresh();
+            } else {
+                stopAutoRefresh();
+            }
+        });
+        
+        // ============================================
+        // وظائف عامة
+        // ============================================
+        
+        function closeVideoModal() {
+            document.getElementById('videoFrame').src = '';
+            document.getElementById('videoModal').style.display = 'none';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        function viewVisitorDetails(ip) {
+            const visitors = JSON.parse(localStorage.getItem('localVisitors') || '[]');
+            const visitor = visitors.find(v => v.ip === ip);
+            
+            if (visitor) {
+                const details = `
+                    <div style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; margin: 0 auto;">
+                        <h3 style="color: var(--primary); margin-bottom: 20px;"><i class="fas fa-user"></i> تفاصيل الزائر</h3>
+                        <div style="display: grid; gap: 15px;">
+                            <div style="display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px;">
+                                <strong>IP:</strong>
+                                <code>${visitor.ip}</code>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px;">
+                                <strong>الموقع:</strong>
+                                <span>${visitor.location}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px;">
+                                <strong>عدد الزيارات:</strong>
+                                <span style="font-weight: bold;">${visitor.visitCount}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px;">
+                                <strong>أول زيارة:</strong>
+                                <span>${new Date(visitor.firstVisit).toLocaleString('ar-EG')}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px;">
+                                <strong>آخر زيارة:</strong>
+                                <span>${new Date(visitor.lastVisit).toLocaleString('ar-EG')}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px;">
+                                <strong>المتصفح:</strong>
+                                <span><i class="fab fa-${getBrowserIcon(visitor.browser)}"></i> ${visitor.browser}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px;">
+                                <strong>نظام التشغيل:</strong>
+                                <span><i class="fab fa-${getOSIcon(visitor.os)}"></i> ${visitor.os}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px;">
+                                <strong>الجهاز:</strong>
+                                <span>${visitor.device}</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 20px; text-align: center;">
+                            <button onclick="closeModal('detailsModal')" class="btn">إغلاق</button>
+                        </div>
+                    </div>
+                `;
+                
+                // إنشاء modal جديد للتفاصيل
+                const modal = document.createElement('div');
+                modal.id = 'detailsModal';
+                modal.className = 'modal';
+                modal.style.display = 'flex';
+                modal.innerHTML = details;
+                document.body.appendChild(modal);
+                
+                // إضافة event listener للإغلاق
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.remove();
+                    }
+                });
+            }
+        }
+        
+        // إغلاق modal بالنقر خارج المحتوى
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.style.display = 'none';
+                }
+            });
+        });
+        
+        // تحديث التتبع عند تغيير الصفحة (للتطبيقات ذات الصفحة الواحدة)
+        let lastUrl = location.href;
+        new MutationObserver(() => {
+            const url = location.href;
+            if (url !== lastUrl) {
+                lastUrl = url;
+                setTimeout(() => tracker.trackVisitor(), 1000);
+            }
+        }).observe(document, { subtree: true, childList: true });
     </script>
 </body>
 </html>
