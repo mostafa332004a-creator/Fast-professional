@@ -1,0 +1,4 @@
+EMAIL_USER=mostafa332004a@gmail.com
+EMAIL_PASS=your-app-password-here
+NODE_ENV=production
+PORT=3000

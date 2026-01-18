@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+Disallow: /visitors.json
+Disallow: /visits_log.json
+
+Sitemap: https://fast-professional.onrender.com/sitemap.xml

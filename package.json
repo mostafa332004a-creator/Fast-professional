@@ -1,0 +1,21 @@
+{
+  "name": "fast-professional",
+  "version": "1.0.0",
+  "description": "موقع المحترف السريع مع نظام تتبع الزوار",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": ["تنظيف", "الإمارات", "تتبع", "زوار"],
+  "author": "Mostafa Abada",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.7",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
