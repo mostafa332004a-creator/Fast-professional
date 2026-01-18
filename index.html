@@ -36,6 +36,7 @@
     
     <!-- Styles -->
     <style>
+        /* CSS Variables */
         :root {
             --primary: #00a8e8;
             --primary-dark: #0077b6;
@@ -45,10 +46,13 @@
             --dark: #212529;
             --gray: #6c757d;
             --success: #25D366;
+            --instagram: #E1306C;
+            --whatsapp: #25D366;
             --danger: #dc3545;
             --vip: #9c27b0;
         }
         
+        /* Reset & Base */
         * {
             margin: 0;
             padding: 0;
@@ -64,6 +68,7 @@
             line-height: 1.8;
             color: var(--dark);
             background: var(--light);
+            overflow-x: hidden;
         }
         
         .container {
@@ -74,23 +79,23 @@
         }
         
         .section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
         
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--primary);
             margin-bottom: 15px;
             font-weight: 800;
         }
         
         .section-title p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--gray);
             max-width: 600px;
             margin: 0 auto;
@@ -98,12 +103,12 @@
         
         .btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 15px 35px;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border: none;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
             text-decoration: none;
             cursor: pointer;
@@ -117,19 +122,27 @@
         }
         
         .btn-whatsapp {
-            background: linear-gradient(135deg, var(--success), #128C7E);
+            background: linear-gradient(135deg, var(--whatsapp), #128C7E);
         }
         
         .btn-phone {
             background: linear-gradient(135deg, #4CAF50, #2E7D32);
         }
         
-        .btn-vip {
-            background: linear-gradient(135deg, var(--vip), #7b1fa2);
+        .btn-instagram {
+            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
         }
         
         .btn-danger {
             background: linear-gradient(135deg, var(--danger), #c82333);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #28a745, #218838);
+        }
+        
+        .btn-vip {
+            background: linear-gradient(135deg, var(--vip), #7b1fa2);
         }
         
         /* Header */
@@ -142,13 +155,14 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            padding: 15px 0;
+            transition: all 0.3s;
         }
         
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 15px 0;
         }
         
         .logo {
@@ -158,13 +172,13 @@
         }
         
         .logo-img {
-            width: 100px;
+            width: 120px;
             height: auto;
             border-radius: 10px;
         }
         
         .logo-text h1 {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             color: var(--primary);
             font-weight: 900;
         }
@@ -173,18 +187,23 @@
             color: var(--secondary);
         }
         
+        .logo-text p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
         .nav-links {
             display: flex;
-            gap: 25px;
+            gap: 30px;
             list-style: none;
         }
         
         .nav-links a {
             text-decoration: none;
             color: var(--dark);
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            padding: 8px 0;
+            padding: 10px 0;
             position: relative;
         }
         
@@ -207,7 +226,7 @@
             display: none;
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--primary);
             cursor: pointer;
         }
@@ -218,10 +237,11 @@
             background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://imgur.com/yfM3aAU.png');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             display: flex;
             align-items: center;
             color: white;
-            padding-top: 80px;
+            padding-top: 100px;
         }
         
         .hero-content {
@@ -231,245 +251,299 @@
         }
         
         .hero h1 {
-            font-size: 3rem;
+            font-size: 4rem;
             margin-bottom: 20px;
             font-weight: 900;
             line-height: 1.2;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+            font-size: 1.4rem;
+            margin-bottom: 40px;
             opacity: 0.9;
         }
         
         .hero-buttons {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
-        }
-        
-        /* Services */
-        .services-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        
-        .service-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .service-icon {
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            font-size: 4rem;
-        }
-        
-        .service-content {
-            padding: 25px;
-        }
-        
-        .service-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--primary);
         }
         
         /* Stats */
         .stats {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            padding: 60px 0;
+            padding: 80px 0;
         }
         
         .stats-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
         }
         
         .stat-item {
             text-align: center;
-            padding: 25px;
+            padding: 30px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             backdrop-filter: blur(10px);
         }
         
         .stat-number {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 10px;
             display: block;
         }
         
-        /* Contact */
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .contact-form input,
-        .contact-form select,
-        .contact-form textarea {
-            padding: 12px 15px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-family: 'Cairo', sans-serif;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 50px 0 20px;
-        }
-        
-        .footer-content {
+        /* Services */
+        .services-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
-            margin-bottom: 30px;
         }
         
-        /* Modals */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 9999;
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            height: 250px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-        }
-        
-        .modal-content {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            max-width: 500px;
-            width: 100%;
-            position: relative;
-            animation: modalSlide 0.3s ease;
-        }
-        
-        @keyframes modalSlide {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            color: var(--gray);
-            cursor: pointer;
-            line-height: 1;
-        }
-        
-        /* Admin Panel */
-        .admin-panel {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            max-height: 90vh;
-            overflow-y: auto;
-            width: 95%;
-            max-width: 1400px;
-        }
-        
-        .admin-header {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            font-size: 5rem;
         }
         
-        .admin-stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            padding: 20px;
-            background: #f8f9fa;
+        .service-content {
+            padding: 30px;
         }
         
-        .admin-stat-box {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            border: 1px solid #e9ecef;
-        }
-        
-        .admin-stat-number {
-            font-size: 2rem;
-            font-weight: 800;
+        .service-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
             color: var(--primary);
-            margin: 5px 0;
-            display: block;
         }
         
-        .visitors-table {
+        /* Videos */
+        .video-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .video-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail img {
             width: 100%;
-            border-collapse: collapse;
+            height: 100%;
+            object-fit: cover;
         }
         
-        .visitors-table th {
-            background: #f8f9fa;
-            color: var(--dark);
-            padding: 12px;
-            text-align: right;
+        .video-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 168, 232, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 999;
+        }
+        
+        .whatsapp-main {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--whatsapp), #128C7E);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            animation: pulse 2s infinite;
+        }
+        
+        /* Phone Float */
+        .phone-float {
+            position: fixed;
+            bottom: 120px;
+            left: 30px;
+            z-index: 999;
+        }
+        
+        .phone-main {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+            animation: pulsePhone 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        @keyframes pulsePhone {
+            0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(76, 175, 80, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+        }
+        
+        /* Call Now Button */
+        .call-now-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .call-now-main {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
             font-weight: 600;
-            border-bottom: 2px solid #dee2e6;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
         }
         
-        .visitors-table td {
-            padding: 10px 12px;
-            border-bottom: 1px solid #dee2e6;
+        .call-now-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.6);
         }
         
-        .visitors-table tbody tr:hover {
-            background: #f8f9fa;
+        .call-now-main i {
+            font-size: 1.3rem;
         }
         
+        /* Loading */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: var(--success);
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(30px);
+        }
+        
+        /* Badge */
         .badge {
             display: inline-block;
-            padding: 4px 8px;
-            border-radius: 12px;
+            padding: 5px 10px;
+            border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
+            margin-right: 5px;
         }
         
         .badge-success {
@@ -477,64 +551,64 @@
             color: #155724;
         }
         
-        .badge-primary {
-            background: #d1ecf1;
-            color: #0c5460;
-        }
-        
         .badge-warning {
             background: #fff3cd;
             color: #856404;
         }
         
-        /* Floating Buttons */
-        .whatsapp-float {
+        .badge-danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .badge-primary {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .badge-vip {
+            background: #e1bee7;
+            color: #4a148c;
+        }
+        
+        /* Toast */
+        .toast {
             position: fixed;
             bottom: 20px;
-            left: 20px;
-            z-index: 999;
-        }
-        
-        .whatsapp-main {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--success), #128C7E);
-            color: white;
-            border-radius: 50%;
+            right: 20px;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-            animation: pulse 2s infinite;
+            gap: 15px;
+            z-index: 10000;
+            animation: toastSlide 0.3s ease;
+            max-width: 400px;
         }
         
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        @keyframes toastSlide {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
         
-        .phone-float {
-            position: fixed;
-            bottom: 90px;
-            left: 20px;
-            z-index: 999;
+        .toast-success {
+            border-right: 5px solid var(--success);
         }
         
-        .phone-main {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #4CAF50, #2E7D32);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+        .toast-error {
+            border-right: 5px solid var(--danger);
+        }
+        
+        .toast-info {
+            border-right: 5px solid var(--primary);
         }
         
         /* Responsive */
@@ -548,21 +622,21 @@
             }
             
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
             
             .section-title h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
         }
         
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
             .section {
-                padding: 60px 0;
+                padding: 70px 0;
             }
             
             .hero-buttons {
@@ -570,15 +644,143 @@
                 align-items: center;
             }
             
-            .admin-stats-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .phone-float {
+                bottom: 120px;
+                left: 20px;
+            }
+            
+            .whatsapp-float {
+                bottom: 30px;
+                left: 20px;
             }
         }
         
-        @media (max-width: 480px) {
-            .admin-stats-grid {
-                grid-template-columns: 1fr;
-            }
+        /* لوحة رفع الفيديوهات المخفية */
+        .video-upload-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .video-upload-content {
+            background: white;
+            width: 95%;
+            max-width: 500px;
+            max-height: 95vh;
+            overflow-y: auto;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .video-upload-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .video-upload-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .video-upload-form input,
+        .video-upload-form textarea {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: 'Cairo', sans-serif;
+            width: 100%;
+        }
+        
+        .video-upload-form textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .current-videos {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+        
+        .current-videos h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .video-list-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .video-list-item h4 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .video-list-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .video-delete-btn {
+            background: var(--danger);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        /* زر الدخول المخفي */
+        .admin-entry {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+        }
+        
+        .admin-entry-btn {
+            background: rgba(156, 39, 176, 0.8);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.3);
+        }
+        
+        .admin-entry-btn:hover {
+            background: rgba(156, 39, 176, 1);
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(156, 39, 176, 0.4);
         }
     </style>
 </head>
@@ -590,6 +792,7 @@
                 <img src="https://i.imgur.com/la6eHcb.jpg" alt="المحترف السريع" class="logo-img">
                 <div class="logo-text">
                     <h1>المحترف <span>السريع</span></h1>
+                    <p>خدمات تنظيف محترفة في الإمارات</p>
                 </div>
             </div>
             
@@ -597,10 +800,10 @@
                 <ul class="nav-links">
                     <li><a href="#home">الرئيسية</a></li>
                     <li><a href="#services">خدماتنا</a></li>
+                    <li><a href="#why-us">لماذا نحن</a></li>
+                    <li><a href="#videos">فيديوهات</a></li>
                     <li><a href="#contact">اتصل بنا</a></li>
-                    <li><a href="#" onclick="showAdminLogin()" class="btn-vip" style="padding: 8px 15px; border-radius: 20px;">
-                        <i class="fas fa-chart-line"></i> لوحة التحكم
-                    </a></li>
+                    <!-- تم إزالة زر لوحة التحكم -->
                 </ul>
             </nav>
             
@@ -609,6 +812,13 @@
             </button>
         </div>
     </header>
+
+    <!-- زر مخفي للوصول إلى لوحة رفع الفيديوهات -->
+    <div class="admin-entry">
+        <button class="admin-entry-btn" onclick="showVideoUploadPanel()" title="رفع فيديوهات">
+            <i class="fas fa-upload"></i>
+        </button>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -624,6 +834,9 @@
                     <a href="https://wa.me/971543205058" target="_blank" class="btn btn-whatsapp">
                         <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
                     </a>
+                    <a href="https://www.instagram.com/moham_eda9162/" target="_blank" class="btn btn-instagram">
+                        <i class="fab fa-instagram"></i> تابعنا على إنستجرام
+                    </a>
                 </div>
             </div>
         </div>
@@ -635,19 +848,61 @@
             <div class="stats-container">
                 <div class="stat-item">
                     <span class="stat-number" data-count="500">0</span>
-                    <span>عميل راضي</span>
+                    <span class="stat-text">عميل راضي</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number" data-count="1200">0</span>
-                    <span>مشروع مكتمل</span>
+                    <span class="stat-text">مشروع مكتمل</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number" data-count="50">0</span>
-                    <span>فني مدرب</span>
+                    <span class="stat-text">فني مدرب</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number" data-count="10">0</span>
-                    <span>سنوات خبرة</span>
+                    <span class="stat-text">سنوات خبرة</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section id="why-us" class="section" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="section-title">
+                <h2>لماذا تختار المحترف السريع؟</h2>
+                <p>نقدم خدمات استثنائية تجعلنا الاختيار الأول في الإمارات</p>
+            </div>
+            
+            <div class="services-container">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>خدمة 24/7</h3>
+                        <p>نحن متاحون على مدار الساعة، 7 أيام في الأسبوع لخدمتك في أي وقت تحتاجه.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>جودة مضمونة</h3>
+                        <p>نستخدم مواد تنظيف آمنة وفعالة مع ضمان جودة الخدمة ورضا العملاء.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>فريق محترف</h3>
+                        <p>فريقنا مدرب على أعلى مستوى مع خبرة طويلة في جميع أنواع التنظيف.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -668,9 +923,13 @@
                     </div>
                     <div class="service-content">
                         <h3>تنظيف المنازل</h3>
-                        <p>خدمة تنظيف شاملة للمنازل تشمل جميع الغرف والمطابخ والحمامات.</p>
-                        <a href="tel:+971543205058" class="btn btn-phone" style="margin-top: 10px;">
+                        <p>خدمة تنظيف شاملة للمنازل تشمل جميع الغرف والمطابخ والحمامات باستخدام مواد آمنة وفعالة.</p>
+                        <p><strong>الأسعار:</strong> من 150 درهم</p>
+                        <a href="tel:+971543205058" class="btn btn-phone">
                             <i class="fas fa-phone"></i> اتصل للطلب
+                        </a>
+                        <a href="https://wa.me/971543205058?text=أريد حجز خدمة تنظيف منزل" target="_blank" class="btn btn-whatsapp" style="margin-right: 10px;">
+                            <i class="fab fa-whatsapp"></i> واتساب
                         </a>
                     </div>
                 </div>
@@ -681,9 +940,13 @@
                     </div>
                     <div class="service-content">
                         <h3>تنظيف المكاتب</h3>
-                        <p>تنظيف وتعقيم المكاتب ومرافق العمل بمعايير صحية عالية.</p>
-                        <a href="tel:+971543205058" class="btn btn-phone" style="margin-top: 10px;">
+                        <p>تنظيف وتعقيم المكاتب ومرافق العمل لضمان بيئة عمل نظيفة وصحية للموظفين والعملاء.</p>
+                        <p><strong>الأسعار:</strong> من 300 درهم</p>
+                        <a href="tel:+971543205058" class="btn btn-phone">
                             <i class="fas fa-phone"></i> اتصل للطلب
+                        </a>
+                        <a href="https://wa.me/971543205058?text=أريد حجز خدمة تنظيف مكتب" target="_blank" class="btn btn-whatsapp" style="margin-right: 10px;">
+                            <i class="fab fa-whatsapp"></i> واتساب
                         </a>
                     </div>
                 </div>
@@ -694,10 +957,117 @@
                     </div>
                     <div class="service-content">
                         <h3>تنظيف الكنب</h3>
-                        <p>تنظيف وتعقيم الكنب والستائر بأحدث التقنيات والمنظفات.</p>
-                        <a href="tel:+971543205058" class="btn btn-phone" style="margin-top: 10px;">
+                        <p>تنظيف وتعقيم الكنب والستائر باستخدام أحدث التقنيات والمنظفات المتخصصة.</p>
+                        <p><strong>الأسعار:</strong> من 100 درهم</p>
+                        <a href="tel:+971543205058" class="btn btn-phone">
                             <i class="fas fa-phone"></i> اتصل للطلب
                         </a>
+                        <a href="https://wa.me/971543205058?text=أريد حجز خدمة تنظيف كنب" target="_blank" class="btn btn-whatsapp" style="margin-right: 10px;">
+                            <i class="fab fa-whatsapp"></i> واتساب
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>تنظيف الستائر</h3>
+                        <p>تنظيف عميق للستائر بجميع أنواعها باستخدام معدات متخصصة تعيد لستائرك رونقها.</p>
+                        <p><strong>الأسعار:</strong> من 80 درهم</p>
+                        <a href="tel:+971543205058" class="btn btn-phone">
+                            <i class="fas fa-phone"></i> اتصل للطلب
+                        </a>
+                        <a href="https://wa.me/971543205058?text=أريد حجز خدمة تنظيف ستائر" target="_blank" class="btn btn-whatsapp" style="margin-right: 10px;">
+                            <i class="fab fa-whatsapp"></i> واتساب
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>تنظيف الخزانات</h3>
+                        <p>تنظيف وتعقيم خزانات المياه للتأكد من سلامة وجودة المياه المستخدمة.</p>
+                        <p><strong>الأسعار:</strong> من 200 درهم</p>
+                        <a href="tel:+971543205058" class="btn btn-phone">
+                            <i class="fas fa-phone"></i> اتصل للطلب
+                        </a>
+                        <a href="https://wa.me/971543205058?text=أريد حجز خدمة تنظيف خزانات" target="_blank" class="btn btn-whatsapp" style="margin-right: 10px;">
+                            <i class="fab fa-whatsapp"></i> واتساب
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-snowflake"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>تنظيف المكيفات</h3>
+                        <p>صيانة وتنظيف مكيفات الهواء لتحسين كفاءتها وتوفير الطاقة.</p>
+                        <p><strong>الأسعار:</strong> من 120 درهم</p>
+                        <a href="tel:+971543205058" class="btn btn-phone">
+                            <i class="fas fa-phone"></i> اتصل للطلب
+                        </a>
+                        <a href="https://wa.me/971543205058?text=أريد حجز خدمة تنظيف مكيفات" target="_blank" class="btn btn-whatsapp" style="margin-right: 10px;">
+                            <i class="fab fa-whatsapp"></i> واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section id="videos" class="section" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="section-title">
+                <h2>فيديوهات خدماتنا</h2>
+                <p>شاهد كيف نعمل</p>
+            </div>
+            
+            <div id="videosContainer" class="video-gallery">
+                <!-- سيتم تحميل الفيديوهات هنا تلقائياً -->
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="https://imgur.com/GFtkD2h.jpg" alt="تنظيف ستائر">
+                        <div class="video-play" data-video="DS5MLupiZ0Z">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info" style="padding: 20px;">
+                        <h3>تنظيف ستائر احترافي</h3>
+                        <p>نظافة عميقة تعيد لستائرك رونقها</p>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="https://imgur.com/AnY0n1l.jpg" alt="تنظيف كنب">
+                        <div class="video-play" data-video="DS5L_sFicww">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info" style="padding: 20px;">
+                        <h3>تنظيف كنب احترافي</h3>
+                        <p>إزالة البقع والروائح بعمق</p>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="https://imgur.com/bk3Etp4.jpg" alt="تنظيف منازل">
+                        <div class="video-play" data-video="DS5L5hlk22a">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info" style="padding: 20px;">
+                        <h3>تنظيف منازل شامل</h3>
+                        <p>نظافة متكاملة بمعايير عالية</p>
                     </div>
                 </div>
             </div>
@@ -717,45 +1087,71 @@
                     <h3 style="color: var(--primary); margin-bottom: 20px;">معلومات الاتصال</h3>
                     
                     <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #4CAF50, #2E7D32); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-phone" style="color: white; font-size: 1.3rem;"></i>
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #4CAF50, #2E7D32); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-phone" style="color: white; font-size: 1.5rem;"></i>
                         </div>
                         <div>
                             <h4 style="margin-bottom: 5px;">الاتصال المباشر</h4>
-                            <p style="font-size: 1.2rem; font-weight: bold;">+971 54 320 5058</p>
-                            <a href="tel:+971543205058" class="btn btn-phone" style="padding: 8px 15px; margin-top: 5px;">
+                            <p style="font-size: 1.3rem; font-weight: bold;">+971 54 320 5058</p>
+                            <a href="tel:+971543205058" class="btn btn-phone" style="padding: 10px 20px; margin-top: 10px;">
                                 <i class="fas fa-phone"></i> اتصل الآن
                             </a>
                         </div>
                     </div>
                     
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--success), #128C7E); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                            <i class="fab fa-whatsapp" style="color: white; font-size: 1.3rem;"></i>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--whatsapp), #128C7E); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fab fa-whatsapp" style="color: white; font-size: 1.5rem;"></i>
                         </div>
                         <div>
                             <h4 style="margin-bottom: 5px;">واتساب</h4>
-                            <p style="font-size: 1.2rem; font-weight: bold;">+971 54 320 5058</p>
-                            <a href="https://wa.me/971543205058" target="_blank" class="btn btn-whatsapp" style="padding: 8px 15px; margin-top: 5px;">
+                            <p style="font-size: 1.3rem; font-weight: bold;">+971 54 320 5058</p>
+                            <a href="https://wa.me/971543205058" target="_blank" class="btn btn-whatsapp" style="padding: 10px 20px; margin-top: 10px;">
                                 <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
                             </a>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fab fa-instagram" style="color: white; font-size: 1.5rem;"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 5px;">إنستجرام</h4>
+                            <p style="font-size: 1.1rem;">@moham_eda9162</p>
+                            <a href="https://www.instagram.com/moham_eda9162/" target="_blank" class="btn btn-instagram" style="padding: 10px 20px; margin-top: 10px;">
+                                <i class="fab fa-instagram"></i> تابعنا
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--secondary), var(--secondary-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-envelope" style="color: white; font-size: 1.5rem;"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 5px;">البريد الإلكتروني</h4>
+                            <p style="font-size: 1.1rem;">mostafa332004a@gmail.com</p>
                         </div>
                     </div>
                 </div>
                 
                 <div>
                     <h3 style="color: var(--primary); margin-bottom: 20px;">أرسل رسالة</h3>
-                    <form id="contactForm" class="contact-form">
-                        <input type="text" id="name" placeholder="الاسم الكامل" required>
-                        <input type="tel" id="phone" placeholder="رقم الهاتف" required>
-                        <select id="service" required>
+                    <form id="contactForm" style="display: flex; flex-direction: column; gap: 20px;">
+                        <input type="text" id="name" placeholder="الاسم الكامل" required style="padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;">
+                        <input type="tel" id="phone" placeholder="رقم الهاتف" required style="padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;">
+                        <select id="service" style="padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;">
                             <option value="">اختر الخدمة المطلوبة</option>
                             <option value="تنظيف منازل">تنظيف منازل</option>
                             <option value="تنظيف مكاتب">تنظيف مكاتب</option>
                             <option value="تنظيف كنب">تنظيف كنب</option>
+                            <option value="تنظيف ستائر">تنظيف الستائر</option>
+                            <option value="تنظيف خزانات">تنظيف الخزانات</option>
+                            <option value="تنظيف مكيفات">تنظيف المكيفات</option>
                             <option value="استشارة مجانية">استشارة مجانية</option>
                         </select>
-                        <textarea id="message" placeholder="الرسالة" rows="4" required></textarea>
+                        <textarea id="message" placeholder="الرسالة" rows="5" required style="padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;"></textarea>
                         <button type="submit" class="btn">
                             <i class="fas fa-paper-plane"></i> إرسال الرسالة
                         </button>
@@ -766,157 +1162,155 @@
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer style="background: var(--dark); color: white; padding: 60px 0 30px;">
         <div class="container">
-            <div class="footer-content">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
                 <div>
-                    <h2 style="color: white; margin-bottom: 15px;">المحترف <span style="color: var(--secondary);">السريع</span></h2>
-                    <p>شركة رائدة في خدمات التنظيف في الإمارات العربية المتحدة</p>
+                    <h2 style="color: white; margin-bottom: 20px;">المحترف <span style="color: var(--secondary);">السريع</span></h2>
+                    <p>شركة رائدة في خدمات التنظيف في الإمارات العربية المتحدة، نقدم حلول تنظيف متكاملة بجودة عالية وأسعار مناسبة.</p>
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <a href="tel:+971543205058" style="color: white; font-size: 1.5rem;">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                        <a href="https://www.instagram.com/moham_eda9162/" target="_blank" style="color: white; font-size: 1.5rem;">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/971543205058" target="_blank" style="color: white; font-size: 1.5rem;">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
                 </div>
                 
                 <div>
-                    <h3 style="margin-bottom: 15px;">تواصل معنا</h3>
+                    <h3 style="margin-bottom: 20px;">روابط سريعة</h3>
+                    <ul style="list-style: none;">
+                        <li><a href="#home" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">الرئيسية</a></li>
+                        <li><a href="#services" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">خدماتنا</a></li>
+                        <li><a href="#why-us" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">لماذا نحن</a></li>
+                        <li><a href="#videos" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">فيديوهات</a></li>
+                        <li><a href="#contact" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 style="margin-bottom: 20px;">تواصل معنا</h3>
                     <p><i class="fas fa-phone" style="margin-left: 10px;"></i> +971 54 320 5058</p>
                     <p><i class="fab fa-whatsapp" style="margin-left: 10px;"></i> +971 54 320 5058</p>
+                    <p><i class="fas fa-envelope" style="margin-left: 10px;"></i> mostafa332004a@gmail.com</p>
                     <p><i class="fas fa-map-marker-alt" style="margin-left: 10px;"></i> دبي، الإمارات العربية المتحدة</p>
                 </div>
                 
                 <div>
-                    <h3 style="margin-bottom: 15px;">لوحة التحكم</h3>
-                    <p>للوصول إلى لوحة التحكم المتقدمة:</p>
-                    <a href="#" onclick="showAdminLogin()" class="btn-vip" style="padding: 8px 15px; display: inline-block; margin-top: 10px;">
-                        <i class="fas fa-chart-line"></i> دخول لوحة التحكم
-                    </a>
+                    <h3 style="margin-bottom: 20px;">ساعات العمل</h3>
+                    <p>24 ساعة / 7 أيام</p>
+                    <p>جميع أيام الأسبوع</p>
+                    <p>خدمة طوارئ متاحة</p>
+                    <div style="margin-top: 20px;">
+                        <a href="tel:+971543205058" class="btn btn-phone" style="padding: 10px 20px;">
+                            <i class="fas fa-phone"></i> اتصل للطوارئ
+                        </a>
+                    </div>
                 </div>
             </div>
             
-            <div style="text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <div style="text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
                 <p>© <span id="currentYear"></span> المحترف السريع. جميع الحقوق محفوظة.</p>
-                <p style="color: #aaa; font-size: 0.9rem; margin-top: 10px;">نظام تتبع الزوار المتقدم | الرقم السري: 332004</p>
+                <p style="color: #aaa; font-size: 0.9rem; margin-top: 10px;">تم التطوير بواسطة مصطفى عبدة - 0545216539</p>
             </div>
         </div>
     </footer>
 
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('loginModal')">×</button>
-            <div style="margin-bottom: 25px;">
-                <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
-                    <i class="fas fa-chart-line" style="color: white; font-size: 2rem;"></i>
-                </div>
-                <h2 style="color: var(--primary); margin-bottom: 10px; text-align: center;">لوحة التحكم المتقدمة</h2>
-                <p style="color: var(--gray); text-align: center;">أدخل الرقم السري للوصول إلى إحصائيات الزوار</p>
-            </div>
-            
-            <div style="display: flex; flex-direction: column; gap: 15px;">
-                <div style="position: relative;">
-                    <i class="fas fa-lock" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--gray);"></i>
-                    <input type="password" id="adminPassword" placeholder="الرقم السري" 
-                           style="width: 100%; padding: 12px 12px 12px 40px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; font-family: 'Cairo', sans-serif;">
-                </div>
-                
-                <button onclick="checkAdminPassword()" class="btn" style="width: 100%; padding: 12px;">
-                    <i class="fas fa-sign-in-alt"></i> دخول إلى لوحة التحكم
-                </button>
-                
-                <p style="color: var(--gray); font-size: 0.9rem; text-align: center; margin-top: 10px;">
-                    الرقم السري: <strong>332004</strong>
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Admin Panel -->
-    <div id="adminPanel" class="modal">
-        <div class="admin-panel">
-            <div class="admin-header">
+    <!-- لوحة رفع الفيديوهات المخفية -->
+    <div id="videoUploadPanel" class="video-upload-panel">
+        <div class="video-upload-content">
+            <div class="video-upload-header">
                 <div>
-                    <h2 style="margin: 0; color: white;"><i class="fas fa-chart-line"></i> لوحة تحكم تتبع الزوار</h2>
-                    <p style="margin: 5px 0 0; color: rgba(255,255,255,0.8);" id="adminSubtitle">إحصائيات الزوار في الوقت الحقيقي</p>
+                    <h2 style="color: var(--vip); margin: 0;">
+                        <i class="fas fa-upload"></i> رفع فيديوهات جديدة
+                    </h2>
+                    <p style="color: var(--gray); margin-top: 5px;">خاص بإدارة المحتوى</p>
                 </div>
-                <div style="display: flex; gap: 10px;">
-                    <button onclick="refreshVisitorData()" class="btn" style="padding: 8px 15px; background: rgba(255,255,255,0.2);">
-                        <i class="fas fa-redo"></i> تحديث
-                    </button>
-                    <button onclick="closeAdminPanel()" class="btn btn-danger" style="padding: 8px 15px;">
+                <div>
+                    <button onclick="closeVideoUploadPanel()" class="btn btn-danger" style="padding: 10px 20px;">
                         <i class="fas fa-times"></i> إغلاق
                     </button>
                 </div>
             </div>
             
-            <div class="admin-stats-grid">
-                <div class="admin-stat-box">
-                    <div><i class="fas fa-users"></i> إجمالي الزوار</div>
-                    <div class="admin-stat-number" id="totalVisitors">0</div>
-                    <div style="font-size: 0.85rem; color: var(--gray);">زائر فريد</div>
+            <!-- رسائل التنبيه -->
+            <div id="uploadAlert" style="display: none; padding: 15px; border-radius: 10px; margin-bottom: 20px;"></div>
+            
+            <!-- نموذج رفع الفيديو -->
+            <form id="uploadVideoForm" class="video-upload-form">
+                <div>
+                    <label for="videoTitle">عنوان الفيديو</label>
+                    <input type="text" id="videoTitle" placeholder="مثال: تنظيف ستائر احترافي" required>
                 </div>
-                <div class="admin-stat-box">
-                    <div><i class="fas fa-eye"></i> إجمالي الزيارات</div>
-                    <div class="admin-stat-number" id="totalVisits">0</div>
-                    <div style="font-size: 0.85rem; color: var(--gray);">عدد الزيارات</div>
+                
+                <div>
+                    <label for="videoLink">معرف الفيديو (Instagram Reel ID)</label>
+                    <input type="text" id="videoLink" placeholder="مثال: DS5MLupiZ0Z (11 حرف من رابط Instagram)" required>
+                    <small style="color: #666; display: block; margin-top: 5px;">
+                        يمكنك الحصول على الـ ID من رابط Instagram Reel
+                    </small>
                 </div>
-                <div class="admin-stat-box">
-                    <div><i class="fas fa-calendar-day"></i> زيارات اليوم</div>
-                    <div class="admin-stat-number" id="todayVisits">0</div>
-                    <div style="font-size: 0.85rem; color: var(--gray);">هذا اليوم</div>
+                
+                <div>
+                    <label for="videoThumb">رابط صورة المصغرة (اختياري)</label>
+                    <input type="text" id="videoThumb" placeholder="https://imgur.com/xxxxxx.jpg">
                 </div>
-                <div class="admin-stat-box">
-                    <div><i class="fas fa-clock"></i> زيارات الساعة</div>
-                    <div class="admin-stat-number" id="hourlyVisits">0</div>
-                    <div style="font-size: 0.85rem; color: var(--gray);">آخر ساعة</div>
+                
+                <div>
+                    <label for="videoDesc">وصف الفيديو (اختياري)</label>
+                    <textarea id="videoDesc" placeholder="وصف قصير للفيديو"></textarea>
+                </div>
+                
+                <button type="submit" class="btn" style="background: var(--vip);">
+                    <i class="fas fa-upload"></i> رفع الفيديو
+                </button>
+            </form>
+            
+            <!-- الفيديوهات الحالية -->
+            <div class="current-videos">
+                <h3>
+                    <i class="fas fa-list"></i> الفيديوهات الحالية
+                    <span id="videosCount" style="font-size: 0.9rem; color: #666; margin-right: 10px;">(0)</span>
+                </h3>
+                <div id="currentVideosList">
+                    <p style="color: #666; text-align: center; padding: 20px;">
+                        لا توجد فيديوهات مرفوعة بعد
+                    </p>
                 </div>
             </div>
             
-            <div style="padding: 20px;">
-                <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
-                    <input type="text" id="searchIP" placeholder="🔍 البحث بعنوان IP" 
-                           style="padding: 10px; border: 2px solid #ddd; border-radius: 8px; flex: 1; min-width: 200px;">
-                    <button onclick="applyFilters()" class="btn" style="padding: 10px 20px;">
-                        <i class="fas fa-search"></i> بحث
-                    </button>
-                    <button onclick="exportData()" class="btn btn-success" style="padding: 10px 20px;">
-                        <i class="fas fa-download"></i> تصدير
-                    </button>
-                </div>
-                
-                <div style="overflow-x: auto;">
-                    <table class="visitors-table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>عنوان IP</th>
-                                <th>عدد الزيارات</th>
-                                <th>أول زيارة</th>
-                                <th>آخر زيارة</th>
-                                <th>المتصفح</th>
-                                <th>الجهاز</th>
-                                <th>تفاصيل</th>
-                            </tr>
-                        </thead>
-                        <tbody id="visitorsTableBody">
-                            <tr>
-                                <td colspan="8" style="text-align: center; padding: 30px;">
-                                    <p>جاري تحميل بيانات الزوار...</p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
-                    <p style="margin: 0; color: var(--gray); font-size: 0.9rem;">
-                        <i class="fas fa-info-circle"></i> نظام تتبع الزوار المتقدم | الإصدار 2.0 | الرقم السري: 332004
-                    </p>
-                </div>
+            <!-- تعليمات -->
+            <div style="margin-top: 30px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                <h4 style="color: var(--primary); margin-bottom: 10px;">
+                    <i class="fas fa-info-circle"></i> تعليمات
+                </h4>
+                <ul style="color: #666; font-size: 0.9rem; padding-right: 15px;">
+                    <li>معرف الفيديو هو الجزء الأخير من رابط Instagram Reel</li>
+                    <li>مثال: من رابط https://instagram.com/reel/DS5MLupiZ0Z/ يكون المعرف: DS5MLupiZ0Z</li>
+                    <li>يمكنك استخدام Imgur لرفع صور المصغرة</li>
+                    <li>الفيديوهات تظهر تلقائياً في قسم الفيديوهات بالموقع</li>
+                </ul>
             </div>
         </div>
     </div>
 
-    <!-- Phone Float -->
-    <div class="phone-float">
-        <div class="phone-main" onclick="makePhoneCall()">
+    <!-- Video Modal -->
+    <div id="videoModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; align-items: center; justify-content: center;">
+        <div style="position: relative; width: 90%; max-width: 900px;">
+            <button onclick="closeVideoModal()" style="position: absolute; top: -40px; left: 0; background: none; border: none; color: white; font-size: 2rem; cursor: pointer;">×</button>
+            <iframe id="videoFrame" style="width: 100%; height: 500px; border: none; border-radius: 10px;"></iframe>
+        </div>
+    </div>
+
+    <!-- Call Now Button -->
+    <div class="call-now-button">
+        <div class="call-now-main" onclick="makePhoneCall()">
             <i class="fas fa-phone"></i>
+            <span>اتصل الآن</span>
         </div>
     </div>
 
@@ -927,459 +1321,34 @@
         </div>
     </div>
 
+    <!-- Phone Float -->
+    <div class="phone-float">
+        <div class="phone-main" onclick="makePhoneCall()">
+            <i class="fas fa-phone"></i>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
     <!-- JavaScript -->
     <script>
-        // ============================================
-        // نظام تتبع الزوار المتطور
-        // ============================================
-        
-        const ADMIN_PASSWORD = "332004";
-        let isAdminLoggedIn = false;
-        let visitorTracker = null;
-        
-        class AdvancedVisitorTracker {
-            constructor() {
-                this.visitors = this.loadVisitors();
-                this.currentSessionId = this.generateSessionId();
-                this.init();
-            }
-            
-            init() {
-                // تتبع الزائر الحالي
-                this.trackCurrentVisitor();
-                
-                // تحديث البيانات كل 30 ثانية
-                setInterval(() => this.updateSession(), 30000);
-                
-                // حفظ البيانات قبل إغلاق الصفحة
-                window.addEventListener('beforeunload', () => this.saveData());
-            }
-            
-            async trackCurrentVisitor() {
-                try {
-                    // إنشاء معرف فريد للزائر
-                    const visitorId = this.generateVisitorId();
-                    
-                    // محاولة الحصول على IP حقيقي
-                    let ip = 'غير معروف';
-                    let location = 'غير معروف';
-                    
-                    try {
-                        // محاولة الحصول على IP من خدمة ipify
-                        const ipResponse = await fetch('https://api.ipify.org?format=json', { 
-                            timeout: 5000 
-                        });
-                        const ipData = await ipResponse.json();
-                        ip = ipData.ip;
-                        
-                        // محاولة الحصول على الموقع من ipapi
-                        try {
-                            const locationResponse = await fetch(`https://ipapi.co/${ip}/json/`, { 
-                                timeout: 3000 
-                            });
-                            const locationData = await locationResponse.json();
-                            location = `${locationData.city || ''}, ${locationData.country_name || ''}`;
-                        } catch (locationError) {
-                            // استخدام ipinfo كبديل
-                            try {
-                                const backupResponse = await fetch(`https://ipinfo.io/${ip}/json`, { 
-                                    timeout: 3000 
-                                });
-                                const backupData = await backupResponse.json();
-                                location = `${backupData.city || ''}, ${backupData.country || ''}`;
-                            } catch {
-                                location = 'غير معروف';
-                            }
-                        }
-                    } catch (ipError) {
-                        console.log('⚠️ استخدام IP افتراضي');
-                        ip = this.generateFallbackIP();
-                    }
-                    
-                    // جمع معلومات الجهاز
-                    const deviceInfo = this.collectDeviceInfo();
-                    const browserInfo = this.getBrowserInfo();
-                    const screenInfo = this.getScreenInfo();
-                    const networkInfo = this.getNetworkInfo();
-                    
-                    // إنشاء بيانات الزائر
-                    const visitorData = {
-                        id: visitorId,
-                        sessionId: this.currentSessionId,
-                        ip: ip,
-                        location: location,
-                        firstVisit: new Date().toISOString(),
-                        lastVisit: new Date().toISOString(),
-                        visitCount: 1,
-                        device: deviceInfo,
-                        browser: browserInfo,
-                        screen: screenInfo,
-                        network: networkInfo,
-                        userAgent: navigator.userAgent.substring(0, 200),
-                        language: navigator.language,
-                        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                        referrer: document.referrer || 'مباشر',
-                        currentPage: window.location.href,
-                        sessions: [{
-                            id: this.currentSessionId,
-                            startTime: new Date().toISOString(),
-                            lastActivity: new Date().toISOString()
-                        }]
-                    };
-                    
-                    // البحث عن الزائر الموجود
-                    const existingVisitorIndex = this.visitors.findIndex(v => v.id === visitorId);
-                    
-                    if (existingVisitorIndex !== -1) {
-                        // تحديث الزائر الموجود
-                        const existingVisitor = this.visitors[existingVisitorIndex];
-                        existingVisitor.visitCount += 1;
-                        existingVisitor.lastVisit = visitorData.lastVisit;
-                        existingVisitor.lastIP = ip;
-                        existingVisitor.lastLocation = location;
-                        
-                        // إضافة جلسة جديدة إذا كانت مختلفة
-                        const existingSession = existingVisitor.sessions.find(s => s.id === this.currentSessionId);
-                        if (!existingSession) {
-                            existingVisitor.sessions.push({
-                                id: this.currentSessionId,
-                                startTime: new Date().toISOString(),
-                                lastActivity: new Date().toISOString()
-                            });
-                        }
-                        
-                        this.visitors[existingVisitorIndex] = existingVisitor;
-                    } else {
-                        // إضافة زائر جديد
-                        this.visitors.unshift(visitorData);
-                    }
-                    
-                    // حفظ البيانات
-                    this.saveVisitors();
-                    
-                    console.log('✅ تم تتبع الزائر:', { ip, device: deviceInfo.type });
-                    
-                } catch (error) {
-                    console.error('❌ خطأ في تتبع الزائر:', error);
-                    this.trackWithFallback();
-                }
-            }
-            
-            trackWithFallback() {
-                // تتبع بديل عند فشل الحصول على IP
-                const visitorId = this.generateVisitorId();
-                const deviceInfo = this.collectDeviceInfo();
-                
-                const fallbackData = {
-                    id: visitorId,
-                    sessionId: this.currentSessionId,
-                    ip: 'مجهول',
-                    location: 'غير معروف',
-                    firstVisit: new Date().toISOString(),
-                    lastVisit: new Date().toISOString(),
-                    visitCount: 1,
-                    device: deviceInfo,
-                    browser: this.getBrowserInfo(),
-                    screen: this.getScreenInfo(),
-                    userAgent: navigator.userAgent.substring(0, 100),
-                    language: navigator.language,
-                    referrer: document.referrer || 'مباشر'
-                };
-                
-                const existingIndex = this.visitors.findIndex(v => v.id === visitorId);
-                if (existingIndex !== -1) {
-                    this.visitors[existingIndex].visitCount += 1;
-                    this.visitors[existingIndex].lastVisit = fallbackData.lastVisit;
-                } else {
-                    this.visitors.unshift(fallbackData);
-                }
-                
-                this.saveVisitors();
-            }
-            
-            collectDeviceInfo() {
-                const ua = navigator.userAgent;
-                let type = 'كمبيوتر';
-                let model = 'غير معروف';
-                let platform = 'غير معروف';
-                
-                // تحديد نوع الجهاز
-                if (/Mobi|Android/i.test(ua)) type = 'موبايل';
-                if (/Tablet|iPad/i.test(ua)) type = 'تابلت';
-                
-                // تحديد الموديل
-                if (ua.match(/iPhone/i)) model = 'iPhone';
-                else if (ua.match(/iPad/i)) model = 'iPad';
-                else if (ua.match(/Android/i)) model = 'Android';
-                else if (ua.match(/Windows/i)) model = 'Windows';
-                else if (ua.match(/Mac/i)) model = 'Mac';
-                else if (ua.match(/Linux/i)) model = 'Linux';
-                
-                // تحديد المنصة
-                if (ua.match(/Windows/i)) platform = 'Windows';
-                else if (ua.match(/Mac/i)) platform = 'macOS';
-                else if (ua.match(/Linux/i)) platform = 'Linux';
-                else if (ua.match(/Android/i)) platform = 'Android';
-                else if (ua.match(/iPhone|iPad/i)) platform = 'iOS';
-                
-                // تحديد المعالج
-                const cores = navigator.hardwareConcurrency || 'غير معروف';
-                
-                // تحديد الذاكرة
-                const memory = performance.memory ? 
-                    Math.round(performance.memory.totalJSHeapSize / 1024 / 1024) + 'MB' : 
-                    'غير معروف';
-                
-                return {
-                    type: type,
-                    model: model,
-                    platform: platform,
-                    cores: cores,
-                    memory: memory,
-                    touch: 'ontouchstart' in window ? 'نعم' : 'لا',
-                    online: navigator.onLine ? 'نعم' : 'لا'
-                };
-            }
-            
-            getBrowserInfo() {
-                const ua = navigator.userAgent;
-                let name = 'غير معروف';
-                let version = '';
-                let engine = 'غير معروف';
-                
-                // تحديد المتصفح
-                if (ua.includes('Chrome') && !ua.includes('Edg')) name = 'Chrome';
-                else if (ua.includes('Firefox')) name = 'Firefox';
-                else if (ua.includes('Safari') && !ua.includes('Chrome')) name = 'Safari';
-                else if (ua.includes('Edg')) name = 'Edge';
-                else if (ua.includes('Trident') || ua.includes('MSIE')) name = 'Internet Explorer';
-                else if (ua.includes('Opera') || ua.includes('OPR')) name = 'Opera';
-                
-                // تحديد الإصدار
-                const versionMatch = ua.match(/(chrome|firefox|safari|edge|msie|trident(?=\/))\/?\s*(\d+)/i);
-                if (versionMatch && versionMatch[2]) {
-                    version = versionMatch[2];
-                }
-                
-                // تحديد محرك التصميم
-                if (ua.includes('AppleWebKit')) engine = 'WebKit';
-                else if (ua.includes('Gecko')) engine = 'Gecko';
-                else if (ua.includes('Trident')) engine = 'Trident';
-                
-                return {
-                    name: name,
-                    version: version,
-                    engine: engine,
-                    cookies: navigator.cookieEnabled ? 'مفعل' : 'معطل',
-                    javascript: 'مفعل',
-                    cookiesSize: document.cookie.length + ' bytes'
-                };
-            }
-            
-            getScreenInfo() {
-                return {
-                    width: screen.width,
-                    height: screen.height,
-                    availWidth: screen.availWidth,
-                    availHeight: screen.availHeight,
-                    colorDepth: screen.colorDepth + ' بت',
-                    pixelDepth: screen.pixelDepth + ' بت',
-                    orientation: screen.orientation ? screen.orientation.type : 'غير معروف'
-                };
-            }
-            
-            getNetworkInfo() {
-                return {
-                    connection: navigator.connection ? 
-                        (navigator.connection.effectiveType || 'غير معروف') : 
-                        'غير معروف',
-                    downlink: navigator.connection ? 
-                        (navigator.connection.downlink + ' Mbps') : 
-                        'غير معروف',
-                    rtt: navigator.connection ? 
-                        (navigator.connection.rtt + ' ms') : 
-                        'غير معروف'
-                };
-            }
-            
-            generateVisitorId() {
-                // إنشاء معرف فريد يعتمد على خصائص الجهاز
-                const components = [
-                    navigator.userAgent,
-                    navigator.language,
-                    screen.width,
-                    screen.height,
-                    screen.colorDepth,
-                    new Date().getTimezoneOffset(),
-                    !!navigator.cookieEnabled,
-                    !!navigator.javaEnabled()
-                ].join('|');
-                
-                // استخدام hash بسيط
-                let hash = 0;
-                for (let i = 0; i < components.length; i++) {
-                    const char = components.charCodeAt(i);
-                    hash = ((hash << 5) - hash) + char;
-                    hash = hash & hash;
-                }
-                
-                return 'visitor_' + Math.abs(hash).toString(16);
-            }
-            
-            generateSessionId() {
-                return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-            }
-            
-            generateFallbackIP() {
-                // إنشاء IP افتراضي يعتمد على الوقت والبيانات المحلية
-                const timestamp = Date.now();
-                const random = Math.floor(Math.random() * 1000);
-                return `192.168.${(timestamp % 256)}.${random % 256}`;
-            }
-            
-            updateSession() {
-                const now = new Date().toISOString();
-                this.visitors.forEach(visitor => {
-                    const session = visitor.sessions?.find(s => s.id === this.currentSessionId);
-                    if (session) {
-                        session.lastActivity = now;
-                    }
-                });
-                this.saveVisitors();
-            }
-            
-            loadVisitors() {
-                try {
-                    return JSON.parse(localStorage.getItem('advanced_visitors') || '[]');
-                } catch (error) {
-                    console.error('❌ خطأ في تحميل الزوار:', error);
-                    return [];
-                }
-            }
-            
-            saveVisitors() {
-                try {
-                    // حفظ فقط آخر 500 زائر
-                    if (this.visitors.length > 500) {
-                        this.visitors = this.visitors.slice(0, 500);
-                    }
-                    localStorage.setItem('advanced_visitors', JSON.stringify(this.visitors));
-                } catch (error) {
-                    console.error('❌ خطأ في حفظ الزوار:', error);
-                }
-            }
-            
-            saveData() {
-                this.saveVisitors();
-            }
-            
-            getVisitorStats() {
-                const now = new Date();
-                const today = now.toLocaleDateString('ar-EG');
-                const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
-                
-                const totalVisitors = this.visitors.length;
-                const totalVisits = this.visitors.reduce((sum, v) => sum + v.visitCount, 0);
-                
-                const todayVisits = this.visitors.filter(v => {
-                    const lastVisit = new Date(v.lastVisit);
-                    return lastVisit.toLocaleDateString('ar-EG') === today;
-                }).reduce((sum, v) => sum + v.visitCount, 0);
-                
-                const hourlyVisits = this.visitors.filter(v => {
-                    const lastVisit = new Date(v.lastVisit);
-                    return lastVisit > oneHourAgo;
-                }).length;
-                
-                const uniqueIPs = [...new Set(this.visitors.map(v => v.ip).filter(ip => ip && ip !== 'مجهول'))];
-                
-                return {
-                    totalVisitors: totalVisitors,
-                    totalVisits: totalVisits,
-                    todayVisits: todayVisits,
-                    hourlyVisits: hourlyVisits,
-                    uniqueIPs: uniqueIPs.length,
-                    lastUpdated: now.toLocaleString('ar-EG')
-                };
-            }
-            
-            getFilteredVisitors(filters = {}) {
-                let filtered = [...this.visitors];
-                
-                if (filters.ip) {
-                    filtered = filtered.filter(v => 
-                        v.ip && v.ip.includes(filters.ip)
-                    );
-                }
-                
-                return filtered;
-            }
-            
-            exportData() {
-                try {
-                    const data = {
-                        visitors: this.visitors,
-                        stats: this.getVisitorStats(),
-                        exportDate: new Date().toISOString(),
-                        totalRecords: this.visitors.length
-                    };
-                    
-                    const dataStr = JSON.stringify(data, null, 2);
-                    const blob = new Blob([dataStr], { type: 'application/json' });
-                    const url = URL.createObjectURL(blob);
-                    
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = `visitors_${new Date().toISOString().split('T')[0]}.json`;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                    
-                    return true;
-                } catch (error) {
-                    console.error('❌ خطأ في تصدير البيانات:', error);
-                    return false;
-                }
-            }
-            
-            getDeviceIcon(deviceType) {
-                switch(deviceType) {
-                    case 'موبايل': return 'mobile-alt';
-                    case 'تابلت': return 'tablet-alt';
-                    default: return 'desktop';
-                }
-            }
-            
-            getBrowserIcon(browserName) {
-                switch(browserName.toLowerCase()) {
-                    case 'chrome': return 'chrome';
-                    case 'firefox': return 'firefox';
-                    case 'safari': return 'safari';
-                    case 'edge': return 'edge';
-                    case 'opera': return 'opera';
-                    case 'internet explorer': return 'internet-explorer';
-                    default: return 'globe';
-                }
-            }
-        }
-        
         // ============================================
         // تهيئة التطبيق
         // ============================================
         
+        const ADMIN_PASSWORD = "332004";
+        let isAdminAuthenticated = false;
+        
         document.addEventListener('DOMContentLoaded', function() {
-            // 1. تعيين السنة الحالية
+            // 1. تعيين السنة الحالية في الفوتر
             document.getElementById('currentYear').textContent = new Date().getFullYear();
             
-            // 2. بدء تتبع الزوار
-            visitorTracker = new AdvancedVisitorTracker();
-            
-            // 3. تحديث العدادات المتحركة
+            // 2. تحديث إحصائيات العداد
             const counters = document.querySelectorAll('.stat-number');
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-count');
-                const increment = target / 100;
+                const increment = target / 200;
                 let current = 0;
                 
                 const updateCounter = () => {
@@ -1395,7 +1364,13 @@
                 updateCounter();
             });
             
-            // 4. نموذج الاتصال
+            // 3. تحميل الفيديوهات من التخزين
+            loadVideosFromStorage();
+            
+            // 4. تحميل قائمة الفيديوهات الحالية في لوحة الرفع
+            loadCurrentVideosList();
+            
+            // 5. نموذج الاتصال
             document.getElementById('contactForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
@@ -1403,17 +1378,21 @@
                     name: document.getElementById('name').value,
                     phone: document.getElementById('phone').value,
                     service: document.getElementById('service').value,
-                    message: document.getElementById('message').value
+                    message: document.getElementById('message').value,
+                    timestamp: new Date().toISOString()
                 };
                 
+                // إرسال عبر واتساب
                 const whatsappMessage = `مرحباً، أود طلب خدمة تنظيف%0A%0Aالاسم: ${encodeURIComponent(formData.name)}%0Aالهاتف: ${encodeURIComponent(formData.phone)}%0Aالخدمة: ${encodeURIComponent(formData.service)}%0Aالرسالة: ${encodeURIComponent(formData.message)}`;
                 window.open(`https://wa.me/971543205058?text=${whatsappMessage}`, '_blank');
                 
+                // إعادة تعيين النموذج
                 this.reset();
+                
                 showToast('تم إرسال طلبك بنجاح! سيتم فتح واتساب لإكمال الطلب.', 'success');
             });
             
-            // 5. القائمة المتنقلة
+            // 6. القائمة المتنقلة
             const mobileBtn = document.querySelector('.mobile-menu-btn');
             const navLinks = document.querySelector('.nav-links');
             
@@ -1424,13 +1403,13 @@
                 navLinks.style.top = '100%';
                 navLinks.style.right = '0';
                 navLinks.style.background = 'white';
-                navLinks.style.padding = '15px';
-                navLinks.style.boxShadow = '0 8px 20px rgba(0,0,0,0.1)';
+                navLinks.style.padding = '20px';
+                navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
                 navLinks.style.borderRadius = '10px';
-                navLinks.style.width = '180px';
+                navLinks.style.width = '200px';
             });
             
-            // 6. إغلاق القائمة عند النقر على رابط
+            // 7. إغلاق القائمة عند النقر على رابط
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', () => {
                     if (window.innerWidth <= 992) {
@@ -1439,7 +1418,7 @@
                 });
             });
             
-            // 7. إخفاء القائمة عند تغيير حجم النافذة
+            // 8. إخفاء القائمة عند تغيير حجم النافذة
             window.addEventListener('resize', () => {
                 if (window.innerWidth > 992) {
                     navLinks.style.display = 'flex';
@@ -1451,262 +1430,247 @@
                 }
             });
             
-            // 8. التركيز على حقل الرقم السري
-            document.getElementById('adminPassword')?.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    checkAdminPassword();
-                }
+            // 9. نموذج رفع الفيديو
+            document.getElementById('uploadVideoForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                uploadNewVideo();
             });
+            
+            // 10. إخفاء زر الإدارة إذا لم يكن المستخدم مسجلاً
+            if (!isAdminAuthenticated) {
+                document.querySelector('.admin-entry').style.display = 'none';
+            }
         });
         
         // ============================================
-        // وظائف لوحة التحكم
+        // وظائف الفيديو
         // ============================================
         
-        function showAdminLogin() {
-            document.getElementById('loginModal').style.display = 'flex';
-            document.getElementById('adminPassword').focus();
+        function loadVideosFromStorage() {
+            const videos = JSON.parse(localStorage.getItem('siteVideos') || '[]');
+            const videosContainer = document.getElementById('videosContainer');
+            
+            // إضافة الفيديوهات الافتراضية إذا لم يكن هناك فيديوهات
+            if (videos.length === 0) {
+                const defaultVideos = [
+                    {
+                        title: "تنظيف ستائر احترافي",
+                        videoId: "DS5MLupiZ0Z",
+                        thumbnail: "https://imgur.com/GFtkD2h.jpg",
+                        description: "نظافة عميقة تعيد لستائرك رونقها"
+                    },
+                    {
+                        title: "تنظيف كنب احترافي",
+                        videoId: "DS5L_sFicww",
+                        thumbnail: "https://imgur.com/AnY0n1l.jpg",
+                        description: "إزالة البقع والروائح بعمق"
+                    },
+                    {
+                        title: "تنظيف منازل شامل",
+                        videoId: "DS5L5hlk22a",
+                        thumbnail: "https://imgur.com/bk3Etp4.jpg",
+                        description: "نظافة متكاملة بمعايير عالية"
+                    }
+                ];
+                
+                localStorage.setItem('siteVideos', JSON.stringify(defaultVideos));
+                renderVideos(defaultVideos);
+                return;
+            }
+            
+            renderVideos(videos);
         }
         
-        function checkAdminPassword() {
-            const password = document.getElementById('adminPassword').value;
+        function renderVideos(videos) {
+            const videosContainer = document.getElementById('videosContainer');
+            let html = '';
+            
+            videos.forEach(video => {
+                const thumbnail = video.thumbnail || 'https://imgur.com/bk3Etp4.jpg';
+                
+                html += `
+                    <div class="video-item">
+                        <div class="video-thumbnail">
+                            <img src="${thumbnail}" alt="${video.title}" onerror="this.src='https://imgur.com/bk3Etp4.jpg'">
+                            <div class="video-play" data-video="${video.videoId}" onclick="playVideo('${video.videoId}')">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info" style="padding: 20px;">
+                            <h3>${video.title}</h3>
+                            <p>${video.description || ''}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            videosContainer.innerHTML = html;
+        }
+        
+        function playVideo(videoId) {
+            const frame = document.getElementById('videoFrame');
+            frame.src = `https://www.instagram.com/reel/${videoId}/embed`;
+            document.getElementById('videoModal').style.display = 'flex';
+        }
+        
+        function closeVideoModal() {
+            document.getElementById('videoFrame').src = '';
+            document.getElementById('videoModal').style.display = 'none';
+        }
+        
+        // ============================================
+        // وظائف لوحة رفع الفيديوهات
+        // ============================================
+        
+        function showVideoUploadPanel() {
+            // طلب كلمة المرور
+            const password = prompt("🔐 أدخل الرقم السري للوصول إلى لوحة رفع الفيديوهات:");
             
             if (password === ADMIN_PASSWORD) {
-                isAdminLoggedIn = true;
-                closeModal('loginModal');
-                document.getElementById('adminPanel').style.display = 'flex';
-                refreshVisitorData();
-                showToast('مرحباً بك في لوحة تحكم تتبع الزوار!', 'success');
-            } else {
-                showToast('الرقم السري غير صحيح. الرقم السري هو: 332004', 'error');
-                document.getElementById('adminPassword').value = '';
-                document.getElementById('adminPassword').focus();
+                isAdminAuthenticated = true;
+                document.getElementById('videoUploadPanel').style.display = 'flex';
+                document.querySelector('.admin-entry').style.display = 'block';
+                showToast('مرحباً بك في لوحة رفع الفيديوهات!', 'success');
+            } else if (password !== null) {
+                showToast('الرقم السري غير صحيح!', 'error');
             }
         }
         
-        function closeAdminPanel() {
-            isAdminLoggedIn = false;
-            document.getElementById('adminPanel').style.display = 'none';
-            showToast('تم تسجيل الخروج من لوحة التحكم', 'info');
+        function closeVideoUploadPanel() {
+            document.getElementById('videoUploadPanel').style.display = 'none';
         }
         
-        function refreshVisitorData() {
-            if (!visitorTracker) return;
+        function uploadNewVideo() {
+            const title = document.getElementById('videoTitle').value.trim();
+            const videoId = document.getElementById('videoLink').value.trim();
+            const thumbnail = document.getElementById('videoThumb').value.trim();
+            const description = document.getElementById('videoDesc').value.trim();
             
-            const stats = visitorTracker.getVisitorStats();
-            const visitors = visitorTracker.getFilteredVisitors({
-                ip: document.getElementById('searchIP').value
-            });
+            if (!title || !videoId) {
+                showUploadAlert('يرجى ملء العنوان ومعرف الفيديو', 'error');
+                return;
+            }
             
-            // تحديث الإحصائيات
-            document.getElementById('totalVisitors').textContent = stats.totalVisitors;
-            document.getElementById('totalVisits').textContent = stats.totalVisits;
-            document.getElementById('todayVisits').textContent = stats.todayVisits;
-            document.getElementById('hourlyVisits').textContent = stats.hourlyVisits;
-            document.getElementById('adminSubtitle').textContent = `آخر تحديث: ${stats.lastUpdated}`;
+            if (videoId.length !== 11 && !videoId.includes('/')) {
+                showUploadAlert('معرف الفيديو يجب أن يكون 11 حرفاً (Instagram Reel ID)', 'error');
+                return;
+            }
             
-            // تحديث الجدول
-            updateVisitorsTable(visitors);
+            // إنشاء كائن الفيديو
+            const video = {
+                id: Date.now(),
+                title: title,
+                videoId: videoId,
+                thumbnail: thumbnail || 'https://imgur.com/bk3Etp4.jpg',
+                description: description,
+                date: new Date().toLocaleDateString('ar-EG')
+            };
+            
+            // الحصول على الفيديوهات الحالية
+            let videos = JSON.parse(localStorage.getItem('siteVideos') || '[]');
+            
+            // إضافة الفيديو الجديد
+            videos.push(video);
+            
+            // حفظ في LocalStorage
+            localStorage.setItem('siteVideos', JSON.stringify(videos));
+            
+            // تحديث عرض الفيديوهات
+            renderVideos(videos);
+            
+            // تحديث القائمة في اللوحة
+            loadCurrentVideosList();
+            
+            // إعادة تعيين النموذج
+            document.getElementById('uploadVideoForm').reset();
+            
+            // عرض رسالة النجاح
+            showUploadAlert('تم رفع الفيديو بنجاح! سيظهر في الموقع.', 'success');
+            
+            // إغلاق اللوحة بعد 2 ثانية
+            setTimeout(() => {
+                closeVideoUploadPanel();
+            }, 2000);
         }
         
-        function updateVisitorsTable(visitors) {
-            const tbody = document.getElementById('visitorsTableBody');
+        function loadCurrentVideosList() {
+            const videos = JSON.parse(localStorage.getItem('siteVideos') || '[]');
+            const videosList = document.getElementById('currentVideosList');
+            const videosCount = document.getElementById('videosCount');
             
-            if (!visitors || visitors.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="8" style="text-align: center; padding: 30px;">
-                            <i class="fas fa-search" style="font-size: 2rem; color: #ddd; margin-bottom: 10px;"></i>
-                            <p>لا توجد بيانات للزوار</p>
-                        </td>
-                    </tr>
+            videosCount.textContent = `(${videos.length})`;
+            
+            if (videos.length === 0) {
+                videosList.innerHTML = `
+                    <p style="color: #666; text-align: center; padding: 20px;">
+                        لا توجد فيديوهات مرفوعة بعد
+                    </p>
                 `;
                 return;
             }
             
+            // ترتيب الفيديوهات من الأحدث إلى الأقدم
+            videos.sort((a, b) => b.id - a.id);
+            
             let html = '';
-            visitors.slice(0, 50).forEach((visitor, index) => {
-                const firstVisit = new Date(visitor.firstVisit);
-                const lastVisit = new Date(visitor.lastVisit);
-                const now = new Date();
-                const diffHours = Math.floor((now - lastVisit) / (1000 * 60 * 60));
-                
-                let timeBadge = '';
-                if (diffHours < 1) {
-                    timeBadge = '<span class="badge badge-success">الآن</span>';
-                } else if (diffHours < 24) {
-                    timeBadge = `<span class="badge badge-primary">${diffHours} ساعة</span>`;
-                } else {
-                    timeBadge = `<span class="badge badge-warning">${Math.floor(diffHours/24)} يوم</span>`;
-                }
-                
-                let visitsBadge = '';
-                if (visitor.visitCount === 1) {
-                    visitsBadge = '<span class="badge badge-success">جديد</span>';
-                } else if (visitor.visitCount >= 10) {
-                    visitsBadge = '<span class="badge badge-warning">نشط جداً</span>';
-                } else if (visitor.visitCount >= 5) {
-                    visitsBadge = '<span class="badge badge-primary">مكرر</span>';
-                }
-                
-                const deviceIcon = visitorTracker.getDeviceIcon(visitor.device?.type || 'كمبيوتر');
-                const browserIcon = visitorTracker.getBrowserIcon(visitor.browser?.name || 'غير معروف');
-                
+            videos.forEach(video => {
                 html += `
-                    <tr>
-                        <td style="font-weight: bold;">${index + 1}</td>
-                        <td>
-                            <code style="background: #f8f9fa; padding: 2px 5px; border-radius: 3px; font-size: 0.85rem;">${visitor.ip || 'غير معروف'}</code>
-                            ${visitsBadge}
-                        </td>
-                        <td style="text-align: center;">
-                            <span style="font-weight: bold; color: var(--primary);">${visitor.visitCount || 1}</span>
-                        </td>
-                        <td>
-                            ${firstVisit.toLocaleDateString('ar-EG')}<br>
-                            <small style="color: var(--gray); font-size: 0.8rem;">${firstVisit.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })}</small>
-                        </td>
-                        <td>
-                            ${lastVisit.toLocaleDateString('ar-EG')}<br>
-                            <small style="color: var(--gray); font-size: 0.8rem;">${lastVisit.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })}</small>
-                            ${timeBadge}
-                        </td>
-                        <td>
-                            <i class="fab fa-${browserIcon}" style="margin-left: 5px;"></i>
-                            <span style="font-size: 0.9rem;">${visitor.browser?.name || 'غير معروف'}</span>
-                        </td>
-                        <td>
-                            <i class="fas fa-${deviceIcon}" style="margin-left: 5px;"></i>
-                            <span style="font-size: 0.9rem;">${visitor.device?.type || 'غير معروف'}</span>
-                        </td>
-                        <td>
-                            <button onclick="viewVisitorDetails(${index})" class="btn" style="padding: 5px 10px; font-size: 0.8rem;">
-                                <i class="fas fa-eye"></i> عرض
-                            </button>
-                        </td>
-                    </tr>
-                `;
-            });
-            
-            tbody.innerHTML = html;
-        }
-        
-        function applyFilters() {
-            refreshVisitorData();
-        }
-        
-        function exportData() {
-            if (visitorTracker.exportData()) {
-                showToast('تم تصدير البيانات بنجاح', 'success');
-            } else {
-                showToast('حدث خطأ أثناء التصدير', 'error');
-            }
-        }
-        
-        function viewVisitorDetails(index) {
-            if (!visitorTracker || !visitorTracker.visitors[index]) return;
-            
-            const visitor = visitorTracker.visitors[index];
-            const device = visitor.device || {};
-            const browser = visitor.browser || {};
-            const screen = visitor.screen || {};
-            
-            const details = `
-                <div style="background: white; padding: 25px; border-radius: 15px; max-width: 500px; width: 100%;">
-                    <button class="close-btn" onclick="closeModal('detailsModal')">×</button>
-                    <h3 style="color: var(--primary); margin-bottom: 20px; text-align: center;">
-                        <i class="fas fa-user-circle"></i> تفاصيل الزائر
-                    </h3>
-                    
-                    <div style="display: grid; gap: 15px;">
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-                            <div style="font-weight: bold; color: var(--gray); margin-bottom: 5px;">المعلومات الأساسية</div>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                <div>
-                                    <div style="font-size: 0.9rem; color: var(--gray);">عنوان IP</div>
-                                    <div style="font-weight: bold;">${visitor.ip || 'غير معروف'}</div>
-                                </div>
-                                <div>
-                                    <div style="font-size: 0.9rem; color: var(--gray);">عدد الزيارات</div>
-                                    <div style="font-weight: bold; color: var(--primary);">${visitor.visitCount || 1}</div>
-                                </div>
-                                <div>
-                                    <div style="font-size: 0.9rem; color: var(--gray);">الموقع</div>
-                                    <div>${visitor.location || 'غير معروف'}</div>
-                                </div>
-                                <div>
-                                    <div style="font-size: 0.9rem; color: var(--gray);">اللغة</div>
-                                    <div>${visitor.language || 'غير معروف'}</div>
-                                </div>
-                            </div>
+                    <div class="video-list-item">
+                        <div>
+                            <h4>${video.title}</h4>
+                            <p>${video.description || 'لا يوجد وصف'}</p>
+                            <small>تاريخ الرفع: ${video.date}</small>
                         </div>
-                        
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-                            <div style="font-weight: bold; color: var(--gray); margin-bottom: 5px;">معلومات الجهاز</div>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                <div>
-                                    <div style="font-size: 0.9rem; color: var(--gray);">نوع الجهاز</div>
-                                    <div><i class="fas fa-${visitorTracker.getDeviceIcon(device.type)}"></i> ${device.type || 'غير معروف'}</div>
-                                </div>
-                                <div>
-                                    <div style="font-size: 0.9rem; color: var(--gray);">النظام</div>
-                                    <div>${device.platform || 'غير معروف'}</div>
-                                </div>
-                                <div>
-                                    <div style="font-size: 0.9rem; color: var(--gray);">المعالج</div>
-                                    <div>${device.cores || 'غير معروف'} نواة</div>
-                                </div>
-                                <div>
-                                    <div style="font-size: 0.9rem; color: var(--gray);">الذاكرة</div>
-                                    <div>${device.memory || 'غير معروف'}</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-                            <div style="font-weight: bold; color: var(--gray); margin-bottom: 5px;">معلومات المتصفح</div>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                <div>
-                                    <div style="font-size: 0.9rem; color: var(--gray);">المتصفح</div>
-                                    <div><i class="fab fa-${visitorTracker.getBrowserIcon(browser.name)}"></i> ${browser.name || 'غير معروف'} ${browser.version || ''}</div>
-                                </div>
-                                <div>
-                                    <div style="font-size: 0.9rem; color: var(--gray);">محرك التصميم</div>
-                                    <div>${browser.engine || 'غير معروف'}</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-                            <div style="font-weight: bold; color: var(--gray); margin-bottom: 5px;">الشاشة</div>
-                            <div>الدقة: ${screen.width || 0} × ${screen.height || 0}</div>
-                        </div>
-                        
-                        <div style="text-align: center; margin-top: 10px;">
-                            <button onclick="closeModal('detailsModal')" class="btn" style="padding: 10px 30px;">
-                                <i class="fas fa-times"></i> إغلاق
+                        <div>
+                            <button onclick="deleteVideo(${video.id})" class="video-delete-btn">
+                                <i class="fas fa-trash"></i> حذف
                             </button>
                         </div>
                     </div>
-                </div>
-            `;
-            
-            const modal = document.createElement('div');
-            modal.id = 'detailsModal';
-            modal.className = 'modal';
-            modal.style.display = 'flex';
-            modal.innerHTML = details;
-            document.body.appendChild(modal);
-            
-            modal.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.remove();
-                }
+                `;
             });
+            
+            videosList.innerHTML = html;
+        }
+        
+        function deleteVideo(videoId) {
+            if (!confirm('هل أنت متأكد من حذف هذا الفيديو؟')) {
+                return;
+            }
+            
+            let videos = JSON.parse(localStorage.getItem('siteVideos') || '[]');
+            videos = videos.filter(video => video.id !== videoId);
+            localStorage.setItem('siteVideos', JSON.stringify(videos));
+            
+            // تحديث العرض
+            renderVideos(videos);
+            loadCurrentVideosList();
+            
+            showUploadAlert('تم حذف الفيديو بنجاح', 'success');
+        }
+        
+        function showUploadAlert(message, type) {
+            const alertDiv = document.getElementById('uploadAlert');
+            alertDiv.textContent = message;
+            alertDiv.style.display = 'block';
+            
+            if (type === 'success') {
+                alertDiv.style.background = '#d4edda';
+                alertDiv.style.color = '#155724';
+                alertDiv.style.border = '1px solid #c3e6cb';
+            } else {
+                alertDiv.style.background = '#f8d7da';
+                alertDiv.style.color = '#721c24';
+                alertDiv.style.border = '1px solid #f5c6cb';
+            }
+            
+            setTimeout(() => {
+                alertDiv.style.display = 'none';
+            }, 5000);
         }
         
         // ============================================
-        // وظائف مساعدة
+        // وظائف الاتصال
         // ============================================
         
         function makePhoneCall() {
@@ -1719,34 +1683,18 @@
             showToast('جاري فتح واتساب...', 'info');
         }
         
+        // ============================================
+        // وظائف مساعدة
+        // ============================================
+        
         function showToast(message, type = 'info') {
-            // إنشاء عنصر التوست
             const toast = document.createElement('div');
-            toast.style.cssText = `
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                background: white;
-                padding: 15px 20px;
-                border-radius: 10px;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-                display: flex;
-                align-items: center;
-                gap: 15px;
-                z-index: 10000;
-                animation: toastSlide 0.3s ease;
-                max-width: 400px;
-                border-right: 5px solid ${type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--danger)' : 'var(--primary)'};
-            `;
-            
-            const icon = type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle';
-            const iconColor = type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--danger)' : 'var(--primary)';
-            const title = type === 'success' ? 'نجاح' : type === 'error' ? 'خطأ' : 'معلومة';
-            
+            toast.className = `toast toast-${type}`;
             toast.innerHTML = `
-                <i class="fas fa-${icon}" style="color: ${iconColor}; font-size: 1.5rem;"></i>
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}" 
+                   style="color: ${type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--danger)' : 'var(--primary)'}; font-size: 1.5rem;"></i>
                 <div style="flex: 1;">
-                    <strong>${title}</strong>
+                    <strong>${type === 'success' ? 'نجاح' : type === 'error' ? 'خطأ' : 'معلومة'}</strong>
                     <p style="margin: 5px 0 0; font-size: 0.9rem;">${message}</p>
                 </div>
                 <button onclick="this.parentElement.remove()" style="background: none; border: none; color: var(--gray); cursor: pointer;">
@@ -1754,45 +1702,18 @@
                 </button>
             `;
             
-            document.body.appendChild(toast);
+            document.getElementById('toastContainer').appendChild(toast);
             
             setTimeout(() => {
                 if (toast.parentElement) {
                     toast.remove();
                 }
             }, 5000);
-            
-            // إضافة أنميشن
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes toastSlide {
-                    from {
-                        transform: translateX(100%);
-                        opacity: 0;
-                    }
-                    to {
-                        transform: translateX(0);
-                        opacity: 1;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
         }
         
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.style.display = 'none';
-            }
-        }
-        
-        // إغلاق المودال عند النقر خارج المحتوى
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.style.display = 'none';
-                }
-            });
+        // منع حق النقر الأيمن على زر الإدارة
+        document.querySelector('.admin-entry').addEventListener('contextmenu', function(e) {
+            e.preventDefault();
         });
     </script>
 </body>
